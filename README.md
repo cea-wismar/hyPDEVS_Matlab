@@ -4,7 +4,7 @@ An advanced DEVS implementation for hybrid system modeling and simulation within
 # ABSTRACT
 The hyPDEVS Toolbox for MATLAB (former MatlabDEVS Tbx) has been developed by the research group Computational Engineering and Automation at Hochschule Wismar - University of Applied Sciences, Technology, Business and Design, Germany.
 It provides an advanced DEVS implementation for hybrid system modeling and simulation within the Scientific and Technical Computation Environment Matlab®. The theoretical background of the toolbox is based on the general DEVS and PDEVS approaches by Zeigler et al 2000. and DEVS-based hybrid system extensions introduced in Pawletta et al 2002.
-Additionally, the toolbox supports hardware in the loop simulations, such as discussed in (Deatcu, Freymann, and Pawletta 2017).
+Additionally, the toolbox supports hardware in the loop simulations, such as discussed in ([Deatcu, Freymann, and Pawletta 2017](https://github.com/cea-wismar/hyPDEVS_Matlab/)).
 The current name of the toolbox hyPDEVS was created by Bernhard Heinzl, who used the Toolbox while working on his dissertation (Heinzl 2020).
 More information is published at hyPDEVS' webpage:
 https://www.cea-wismar.de/tbx/DEVS_Tbx/MatlabDEVS_Tbx.html
