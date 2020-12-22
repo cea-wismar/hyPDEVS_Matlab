@@ -1,0 +1,83 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="3513684222" file="/media/tina/500GB/Promotion/DEVS/2016/Vers20-hybrid/MatlabDEVS.prj" location="/media/tina/500GB/Promotion/DEVS/2016/Vers20-hybrid" name="MatlabDEVS" target="target.mlapps" target-name="Package App">
+    <param.appname>MatlabDEVS</param.appname>
+    <param.authnamewatermark>Deatcu, Freymann, and Pawletta</param.authnamewatermark>
+    <param.email>christina.deatcu@hs-wismar.de</param.email>
+    <param.company>Wismar University</param.company>
+    <param.icon>${PROJECT_ROOT}/MatlabDEVS_resources/icon_24.png</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}/MatlabDEVS_resources/icon_48.png</file>
+      <file>${PROJECT_ROOT}/MatlabDEVS_resources/icon_24.png</file>
+      <file>${PROJECT_ROOT}/MatlabDEVS_resources/icon_16.png</file>
+    </param.icons>
+    <param.summary>PDEVS Toolbox for MATLAB
+Vers. 2.0 September 2016</param.summary>
+    <param.description>This toolbox implements a PDEVS simulator with ports and also offers an experimental status of hybrid simulation by allowing the definition of continuous variables within atomic models. Usage requires a general understanding of how DEVS algorithms and DEVS modeling works.</param.description>
+    <param.screenshot>${PROJECT_ROOT}/MatlabDEVS_resources/icon_48.png</param.screenshot>
+    <param.version>2.0</param.version>
+    <param.products.name />
+    <param.products.id />
+    <param.products.version />
+    <param.platforms />
+    <param.output>/media/tina/500GB/Promotion/DEVS/2016/Vers20-hybrid</param.output>
+    <param.guid>24b62b21-a1e8-4087-b109-89fb4bbaf924</param.guid>
+    <unset>
+      <param.products.name />
+      <param.products.id />
+      <param.products.version />
+      <param.platforms />
+      <param.output />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}/MatlabDEVS.m</file>
+    </fileset.main>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}/Check.p</file>
+    </fileset.depfun>
+    <fileset.resources>
+      <file>${PROJECT_ROOT}/00-Readme.txt</file>
+      <file>${PROJECT_ROOT}/00-simulator</file>
+      <file>${PROJECT_ROOT}/01-Changes.txt</file>
+      <file>${PROJECT_ROOT}/01-Changes_deutsch.txt</file>
+      <file>${PROJECT_ROOT}/01-modelbase</file>
+      <file>${PROJECT_ROOT}/02-examples</file>
+      <file>${PROJECT_ROOT}/03-rand</file>
+      <file>${PROJECT_ROOT}/Contents.m</file>
+      <file>${PROJECT_ROOT}/GUI Toolboxen</file>
+      <file>${PROJECT_ROOT}/MatlabDEVS.fig</file>
+      <file>${PROJECT_ROOT}/MatlabDEVS_resources</file>
+      <file>${PROJECT_ROOT}/debug.txt</file>
+      <file>${PROJECT_ROOT}/doc</file>
+      <file>${PROJECT_ROOT}/g4630.png</file>
+      <file>${PROJECT_ROOT}/info.xml</file>
+      <file>${PROJECT_ROOT}/myodeplot.p</file>
+      <file>${PROJECT_ROOT}/ode_wrapper.p</file>
+      <file>${PROJECT_ROOT}/r_c_discrete.p</file>
+      <file>${PROJECT_ROOT}/r_c_hybrid.p</file>
+    </fileset.resources>
+    <fileset.package />
+    <build-deliverables>
+      <file location="/media/tina/500GB/Promotion/DEVS/2016" name="Vers20-hybrid" optional="false">/media/tina/500GB/Promotion/DEVS/2016/Vers20-hybrid</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>/usr/local/MATLAB/R2016b</root>
+      <toolboxes />
+    </matlab>
+    <platform>
+      <unix>true</unix>
+      <mac>false</mac>
+      <windows>false</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>true</linux>
+      <solaris>false</solaris>
+      <osver>4.4.0-45-generic</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>glnxa64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

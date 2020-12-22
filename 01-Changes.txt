@@ -1,0 +1,69 @@
+Welcome to Matlab PDEVS toolbox
+Vers. 2.0
+September 2016
+
+*********************************************************************
+* Major Changes in PDEVS Tbx for Matlab (Vers. 1.3 -> 1.5 -> 2.0)   *
+* Christina Deatcu 2016                                             *
+* Contact: christina.deatcu@hs-wismar.de                            *
+*********************************************************************
+
+Vers. 1.5 -> 2.0
+* packed as Matlab-App
+
+* GUI for entrance and introduction
+
+* Debug modes and internal handling improved
+  mode 0 : no messages
+  mode 1 : messages and fct.-calls to user defined output (e.g. std-out (default) or a .txt-file) 
+  mode 2 : same as 1, but stepwise
+  mode 3 : gauges of x, y and s of atomics
+
+* Improved fault tolerant methods for setting ports, states and system parameters
+
+
+
+Vers. 1.3 -> 1.5
+* User interface changed so that coupled models can be defined as class definitions for reuse,
+
+* Connecting more than one outports to one inport is possible,
+
+* Output and input messages are MATLAB cell arrays now,
+
+* Definition of system parameters (sysparams) for atomic models, which cannot be changed during
+  runtime to distinguish them from states (s),
+
+* Fault tolerant methods for setting ports, states and system parameters introduced,
+
+* States in atomic models can be automatically recorded over time during simulation by setting the observe_flag,
+
+* DEBUG parameter can be set locally for selected model parts (is a property of simulators/coordinators),
+
+* New Check() method for coupled models to verify that all subcomponents and all portnames used in coupling matrices are existing,
+  that component(s) don't define self loops, and that all existing ports are connected (warning, if unconnected ports are detected).
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

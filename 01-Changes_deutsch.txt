@@ -1,0 +1,96 @@
+09.2016
+Als Matlab Abb verfügbar
+
+Grafische Oberfläche zum Aufruf von Dokumentation und Beispielen
+
+Debug-Mode 1-3
+mode 0 : keine Anzeige
+mode 1 : Simulator-Nachrichten und Funktionsaufrufe, dabei Ausgabe auf Std-out, Std-err oder eine Textdatei 
+mode 2 : same as 1, but stepwise
+mode 3 : Grafische Anzeige von x, y und s atomarer Komponenten (online)
+
+12.2015
+Dokumentation hybrider Modelle vollständig.
+
+Neues Release 1.5. seit 23.12.2015 am Web
+
+09.2015
+Sowohl diskrete als auch hybride Modelle vollständig umgestellt.
+
+Dokumentation diskreter Modelle vollständig. 
+
+Dokumentation hybrider Modelle unvollständig.
+
+
+08.2015
+Nutzerschnittstelle massiv überarbeitet, gekoppelte Modelle können als Klassendefinitionen abgelegt werden.
+Grafischer Editor in Arbeit.
+
+Mehrere Ausgangsports auf einen Eingangsport möglich.
+
+System Parameter (sysparams) von Zuständen (states) in atomaren Modellen abgegrenzt.
+
+Fehlertolerante Methoden zum Setzen von ports, states, sysparams eingeführt.
+
+Automatisches Mitschneiden von states in atomaren Modellen über observe_flag möglich.
+Methoden zum (hierarchischen) Setzen des Flags eingeführt.
+
+DEBUG wird nicht mehr global gesetzt, sondern als property der Simulatoren/Koordinatoren.
+Methoden zum (hierarchischen) Setzen eingeführt.
+
+Zurzeit alle diskreten Beispiele umgestellt, aber noch nicht dokumentiert.
+
+
+
+08.2012
+r_c_discrete mit DEBUG 0-2 Funktionaltät
+r_c_neu für hybride Modelle ebenso
+
+
+03.2011
+alle Zwischenstände der root coordinatoren in Verz. "zz-test" verschoben
+
+
+11.2010
+CZid in coupled.m --> Einflussnehmermatrix für kontinuierliche Kopplungen, Definition analog Zid
+
+Z_msg and Z2_msg für die Vektor-Konfiguration
+- in Z_msg sammeln der Referenzen und Zustandsvariablen
+- in Z2_msg Auflösung der kontinuierlichen Kopplungen, zunächst NUR ICs
+
+Neue function build_eventlist für coupled models eingeführt
+
+c_states, c_x, c_y in Klasse devs definiert und an atomic, bzw. coupled vererbt
+
+Verweis auf hybride atomare Simulationsobjekte aSimObj als cell array statt als array,
+da handles unterschiedlicher Klassen gespeichert werden müssen.
+
+Eigenschaft mealy in Klasse atomic definiert, mealy = 1 --> Mealy-Automat, 0 --> Moore-Automat
+
+
+10.2010
+Aufruf der confluent function nicht mehr aus s_message des coupled coordinators, sondern dort
+Aufruf x_message des atomaren Simulators, die dann falls gt == tnext confluent function ruft.
+--> somit kein Setzen von tnext, tlast und kein Aufruf der tafun in confluent function mehr nötig
+
+Einführung deltastatefun für atomare Modelle
+--> Abarbeitung von state events nicht mehr über die deltaextfun, sondern separat!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
