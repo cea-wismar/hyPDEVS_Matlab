@@ -4,14 +4,14 @@ An advanced DEVS implementation for hybrid system modeling and simulation within
 # ABSTRACT
 The hyPDEVS Toolbox for MATLAB (former MatlabDEVS Tbx) has been developed by the research group Computational Engineering and Automation at Hochschule Wismar - University of Applied Sciences, Technology, Business and Design, Germany.
 It provides an advanced DEVS implementation for hybrid system modeling and simulation within the Scientific and Technical Computation Environment Matlab®. The theoretical background of the toolbox is based on the general DEVS and PDEVS approaches by [Zeigler et al 2000](https://github.com/cea-wismar/hyPDEVS_Matlab/blob/main/README.md#more-references). and DEVS-based hybrid system extensions introduced in [Pawletta et al 2002](https://github.com/cea-wismar/hyPDEVS_Matlab/blob/main/README.md#2002).
-Additionally, the toolbox supports hardware in the loop simulations, such as discussed in ([Deatcu, Freymann, and Pawletta 2017](https://github.com/cea-wismar/hyPDEVS_Matlab/blob/main/README.md#cite-this)).
+Additionally, the toolbox supports hardware in the loop simulations, such as discussed in [Deatcu, Freymann, and Pawletta 2017](https://github.com/cea-wismar/hyPDEVS_Matlab/blob/main/README.md#2017).
 The current name of the toolbox hyPDEVS was created by Bernhard Heinzl, who used the Toolbox while working on his dissertation ([Heinzl 2020](https://github.com/cea-wismar/hyPDEVS_Matlab/blob/main/README.md#more-references))
 More information is published at hyPDEVS' webpage:
 https://www.cea-wismar.de/tbx/DEVS_Tbx/MatlabDEVS_Tbx.html
 
 # INTRODUCTION
 This Toolbox is based on the Parallel DEVS (PDEVS) extension of the Discrete EVent System Specification (DEVS) formalism and its associated abstract simulator algorithms introduced by Zeigler in 1976.
-It implements a PDEVS simulator with ports and also offers an experimental status of hybrid simulation by allowing the definition of continuous variables within atomic models. Usage requires a general understanding of how DEVS algorithms and DEVS modeling works. The MatlabDEVS Tbx comes with some example models for pure discrete and hybrid scenarios and also QSS-based models.
+It implements a PDEVS simulator with ports and also offers an experimental status of hybrid simulation by allowing the definition of continuous variables within atomic models. Usage requires a general understanding of how DEVS algorithms and DEVS modeling works. The hyPDEVS Tbx for Matlab comes with some example models for pure discrete and hybrid scenarios and also QSS-based models.
 DEVS-based approaches are relatively unknown in the engineering community. So we hope to contribute in bringing DEVS to engineers by providing it for Matlab®. 
 
 # FEATURES
