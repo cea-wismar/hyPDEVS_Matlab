@@ -1,7 +1,7 @@
 # hyPDEVS_Matlab
 An advanced DEVS implementation for hybrid system modeling and simulation within the Scientific and Technical Computation Environment Matlab
 
-ABSTRACT
+# ABSTRACT
 The hyPDEVS Toolbox for MATLAB (former MatlabDEVS Tbx) has been developed by the research group Computational Engineering and Automation at Hochschule Wismar - University of Applied Sciences, Technology, Business and Design, Germany.
 It provides an advanced DEVS implementation for hybrid system modeling and simulation within the Scientific and Technical Computation Environment Matlab®. The theoretical background of the toolbox is based on the general DEVS and PDEVS approaches by Zeigler et al 2000. and DEVS-based hybrid system extensions introduced in Pawletta et al 2002.
 Additionally, the toolbox supports hardware in the loop simulations, such as discussed in (Deatcu, Freymann, and Pawletta 2017).
@@ -9,12 +9,12 @@ The current name of the toolbox hyPDEVS was created by Bernhard Heinzl, who used
 More information is published at hyPDEVS' webpage:
 https://www.cea-wismar.de/tbx/DEVS_Tbx/MatlabDEVS_Tbx.html
 
-INTRODUCTION
+# INTRODUCTION
 This Toolbox is based on the Parallel DEVS (PDEVS) extension of the Discrete EVent System Specification (DEVS) formalism and its associated abstract simulator algorithms introduced by Zeigler in 1976.
 It implements a PDEVS simulator with ports and also offers an experimental status of hybrid simulation by allowing the definition of continuous variables within atomic models. Usage requires a general understanding of how DEVS algorithms and DEVS modeling works. The MatlabDEVS Tbx comes with some example models for pure discrete and hybrid scenarios and also QSS-based models.
 DEVS-based approaches are relatively unknown in the engineering community. So we hope to contribute in bringing DEVS to engineers by providing it for Matlab®. 
 
-FEATURES
+# FEATURES
 The hyPDEVS Toolbox for MATLAB® offers the following features:
 * Simulator and coordinator classes,
 * Root coordinators for simulation of pure discrete or hybrid models,
@@ -25,19 +25,19 @@ The hyPDEVS Toolbox for MATLAB® offers the following features:
 * Automatic recording of states in atomic models over time during simulation,
 * Methods to check plausibility of models.
 
-INSTALLING hyPDEVS Toolbox for MATLAB®
+# INSTALLING hyPDEVS Toolbox for MATLAB®
 Note:
 The install instructions are based upon a former successful Matlab R2016a (or higher) installation. The software is tested with 32/64 bit Windows 7 and Ubuntu 12.04 but should also work with other operating systems.
 Unzip the downloaded file and copy it to your harddisk into a specified folder. Add the folder including any subfolders to the path variable within Matlab (Menue: File -> Set Path -> Add with subfolders).
 Alternatively install as Matlab's App: goto Tab APPS --> install Apps --> choose MatlabDEVS.mlappinstall --> done ;-) For usage see the following documentation. 
 
-DOCUMENTATION
+# DOCUMENTATION
 The hyPDEVS Toolbox for MATLAB® comes with an HTML-documentation for all examples, all basic models and hints for modeling and simulation.
 
-BUG REPORT
+# BUG REPORT
 Please report bugs to the project supervisor by email (christina.deatcu[at]hs-wismar.de). 
 
-RELATED PUBLICATIONS (by RG CEA)
+# RELATED PUBLICATIONS (by RG CEA)
 Relevant publications on the hyPDEVS Toolbox for MATLAB® and further research in this field.
 
 # 2017
@@ -84,7 +84,7 @@ C. Deatcu: Development of an Object-Orientated DEVS-Simulators with MATLAB, Dipl
 # 1999
 Schildmann, P.; Pawletta, T.; Lampe, B.; Drewelow, W.: Eine Simulationsmethode für hybride Systeme mit Strukturdynamik und deren Umsetzung. In Proc. 2. Wismarer Automatisierungssymposium, Wismar, 1999
 
-MORE REFERENCES
+# MORE REFERENCES
 [Zeigler et al 2000] Zeigler, B., Kim, T., Praehofer, H.: Theory of Modeling and Simulation. Elsevier Science, 2000.
 
 [Heinzl 2020] Heinzl, B.: Methods for Hybrid Modeling and Simulation-Based Optimization in Energy-Aware Production Planning. Dissertation. FBS 37 (Series 'Fortschrittsberichte Simulation / Advances in Simulation'); ISBN ebook: 978-3-903347-37-3, DOI: 10.11128/fbs.37, ARGESIM Wien 2020; ISBN print: 978-3-903311-11-4, TUVerlag Wien (print on demand) 2020. 
