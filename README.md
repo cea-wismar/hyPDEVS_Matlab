@@ -3,9 +3,9 @@ An advanced DEVS implementation for hybrid system modeling and simulation within
 
 # ABSTRACT
 The hyPDEVS Toolbox for MATLAB (former MatlabDEVS Tbx) has been developed by the research group Computational Engineering and Automation at Hochschule Wismar - University of Applied Sciences, Technology, Business and Design, Germany.
-It provides an advanced DEVS implementation for hybrid system modeling and simulation within the Scientific and Technical Computation Environment Matlab®. The theoretical background of the toolbox is based on the general DEVS and PDEVS approaches by Zeigler et al 2000. and DEVS-based hybrid system extensions introduced in Pawletta et al 2002.
+It provides an advanced DEVS implementation for hybrid system modeling and simulation within the Scientific and Technical Computation Environment Matlab®. The theoretical background of the toolbox is based on the general DEVS and PDEVS approaches by [Zeigler et al 2000](https://github.com/cea-wismar/hyPDEVS_Matlab/blob/main/README.md#more-references). and DEVS-based hybrid system extensions introduced in [Pawletta et al 2002](https://github.com/cea-wismar/hyPDEVS_Matlab/blob/main/README.md#2002).
 Additionally, the toolbox supports hardware in the loop simulations, such as discussed in ([Deatcu, Freymann, and Pawletta 2017](https://github.com/cea-wismar/hyPDEVS_Matlab/blob/main/README.md#cite-this)).
-The current name of the toolbox hyPDEVS was created by Bernhard Heinzl, who used the Toolbox while working on his dissertation ([Heinzl 2020](https://github.com/cea-wismar/hyPDEVS_Matlab/blob/main/README.md#heinzl2020))
+The current name of the toolbox hyPDEVS was created by Bernhard Heinzl, who used the Toolbox while working on his dissertation ([Heinzl 2020](https://github.com/cea-wismar/hyPDEVS_Matlab/blob/main/README.md#more-references))
 More information is published at hyPDEVS' webpage:
 https://www.cea-wismar.de/tbx/DEVS_Tbx/MatlabDEVS_Tbx.html
 
@@ -87,5 +87,5 @@ Schildmann, P.; Pawletta, T.; Lampe, B.; Drewelow, W.: Eine Simulationsmethode f
 # MORE REFERENCES
 [Zeigler et al 2000] Zeigler, B., Kim, T., Praehofer, H.: Theory of Modeling and Simulation. Elsevier Science, 2000.
 
-[#Heinzl 2020] Heinzl, B.: Methods for Hybrid Modeling and Simulation-Based Optimization in Energy-Aware Production Planning. Dissertation. FBS 37 (Series 'Fortschrittsberichte Simulation / Advances in Simulation'); ISBN ebook: 978-3-903347-37-3, DOI: 10.11128/fbs.37, ARGESIM Wien 2020; ISBN print: 978-3-903311-11-4, TUVerlag Wien (print on demand) 2020. 
+[Heinzl 2020] Heinzl, B.: Methods for Hybrid Modeling and Simulation-Based Optimization in Energy-Aware Production Planning. Dissertation. FBS 37 (Series 'Fortschrittsberichte Simulation / Advances in Simulation'); ISBN ebook: 978-3-903347-37-3, DOI: 10.11128/fbs.37, ARGESIM Wien 2020; ISBN print: 978-3-903311-11-4, TUVerlag Wien (print on demand) 2020. 
 
