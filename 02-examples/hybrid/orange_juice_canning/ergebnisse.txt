@@ -1,0 +1,42 @@
+average truck level: 252.6852
+standard deviation truck level: 518.3536
+max truck level: 2000
+min truck level: -2.9099e-09
+average tank level: 2483.2369
+standard deviation tank level: 1701.0863
+max tank level: 6000
+min tank level: 0
+average canner level: 4.9668
+standard deviation canner level: 11.9546
+max tank canner: 48
+min tank canner: 0
+
+
+trucks statistics
+----------------------------------
+number of trucks generated:
+    23
+
+number of trucks emptied:
+    23
+
+
+queue statistics
+----------------------------------
+max queue length: 2
+min queue length: 0
+final queue length: 0
+
+
+
+canning statistics
+----------------------------------
+up-time of canning process:
+  473.8124
+
+
+
+pallets statistics
+----------------------------------
+number of pallets completed:
+   958

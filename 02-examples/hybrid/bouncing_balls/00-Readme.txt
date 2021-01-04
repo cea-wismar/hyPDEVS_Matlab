@@ -1,0 +1,1 @@
+Zur Zeit funktioniert NUR init_4_balls und init_3_balls!!!
