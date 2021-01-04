@@ -1,0 +1,421 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Initialization Script: Orange Juice Canning</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-08-18"><meta name="DC.source" content="init_orange_juice_canning.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Initialization Script: Orange Juice Canning</h1><!--introduction--><p>Inits the combined discrete-continuous example "Orange Juice Canning" from "Introduction to Simulation using SIMAN", page 451.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Preparation</a></li><li><a href="#3">Create the Model</a></li><li><a href="#4">After Incarnation</a></li><li><a href="#6">Define Some Values for ODE-Plot</a></li><li><a href="#8">Finally</a></li></ul></div><p>Basic models are taken from the "Orange Juice Canning" example, folder <tt>DEVSPATH/01-modelbase/orange_juice_canning</tt>.</p><p>Call: <tt>init_orange_juice_canning</tt></p><p>File: <tt>DEVSPATH/02-examples/hybrid/orange_juice_canning/init_orange_juice_canning.m</tt></p><p><img vspace="5" hspace="5" src="img/orange_juice_canning.png" alt=""> </p><p><b>Model Structure</b></p><h2>Preparation<a name="2"></a></h2><pre class="codeinput"><span class="keyword">global</span> SIMUSTOP <span class="comment">% to stop simulation by condition</span>
+SIMUSTOP = 0;
+
+<span class="keyword">global</span> HYBRID
+HYBRID = 1; <span class="comment">% it's a hybrid model</span>
+
+elapsed = 0;
+</pre><h2>Create the Model<a name="3"></a></h2><p>Atomic models' classes: <a href="../../models/discrete/am_truck_generator.html">am_truck_generator</a>, <a href="../../models/discrete/am_fifo_queue.html">am_fifo_queue</a>, <a href="../../models/discrete/am_dock_undock_server.html">am_dock_undock_server</a>, <a href="../../models/hybrid/am_truck.html">am_truck</a>, <a href="../../models/hybrid/am_tank.html">am_tank</a>, <a href="../../models/hybrid/am_canner.html">am_canner</a>, <a href="../../models/discrete/am_truck_transducer.html">am_truck_transducer</a></p><pre class="codeinput"><span class="comment">% Components for coupled model root_model</span>
+<span class="comment">% Since hybrid DEVs is still in experimental phase, hybrid models need to be flattenend, so that there is no</span>
+<span class="comment">% hierarchy.</span>
+<span class="comment">%</span>
+<span class="comment">% Take care to choose different seeds for random number generators!</span>
+
+
+<span class="comment">% Generator for trucks, exponential 44 min. mean.</span>
+<span class="comment">% This is a discrete atomic.</span>
+random_seed = 4; <span class="comment">% system parameter</span>
+inistates = struct(<span class="string">'sigma'</span>,0,<span class="string">'rand_state'</span>,[],<span class="string">'number_generated'</span>,0,<span class="string">'generation_times'</span>,[]);<span class="comment">% generate first truck at right beginning</span>
+t_gen =  am_truck_generator(<span class="string">'t_gen'</span>,inistates,elapsed,random_seed);
+
+<span class="comment">% Queue for trucks, FIFO.</span>
+<span class="comment">% This is a discrete atomic.</span>
+inistates = struct(<span class="string">'sigma'</span>,inf,<span class="string">'queue_length'</span>,0,<span class="string">'queue_stats'</span>,[0,0],<span class="string">'requested'</span>,1);
+queue = am_fifo_queue(<span class="string">'queue'</span>,inistates,elapsed);
+
+<span class="comment">% Server for docking process for trucks.</span>
+<span class="comment">% This is a discrete atomic.</span>
+<span class="comment">% System parameter service_time</span>
+<span class="comment">% uniformely distributed 1-2 min.</span>
+service_time = [1,2];
+random_seed = 2; <span class="comment">% system parameters</span>
+inistates = struct(<span class="string">'sigma'</span>,inf,<span class="string">'rand_state'</span>,[]);
+dock = am_dock_undock_server(<span class="string">'dock'</span>,inistates,elapsed,service_time,random_seed);
+
+<span class="comment">% Server for undocking process for trucks.</span>
+<span class="comment">% This is a discrete atomic.</span>
+service_time = [1,2];
+random_seed = 3; <span class="comment">% system parameters</span>
+inistates = struct(<span class="string">'sigma'</span>,inf,<span class="string">'rand_state'</span>,[]);
+undock = am_dock_undock_server(<span class="string">'undock'</span>,inistates,elapsed,service_time,random_seed);
+
+<span class="comment">% Truck unload.</span>
+<span class="comment">% This is a hybrid atomic.</span>
+<span class="comment">% Event, if truck is empty.</span>
+TruckLevel = 0;
+TruckRate = 0;
+c_inistates = [TruckLevel; TruckRate];<span class="comment">% continuous initial values</span>
+inistates = struct(<span class="string">'sigma'</span>,inf,<span class="string">'active'</span>,1,<span class="string">'arrival'</span>,0);<span class="comment">% 'active' == 1 at init means: "not stopped by signal from tank"</span>
+truck = am_truck(<span class="string">'truck'</span>,inistates,c_inistates,elapsed);
+
+
+<span class="comment">% Tank.</span>
+<span class="comment">% This is a hybrid atomic.</span>
+<span class="comment">% Events, if filled with 6000 gallons,</span>
+<span class="comment">%         if sunk to 5500 gallons,</span>
+<span class="comment">%         if empty.</span>
+TankLevel = 0;
+TankRate = 0;
+c_inistates = [TankLevel; TankRate;];<span class="comment">% continuous initial values</span>
+inistates = struct(<span class="string">'sigma'</span>,inf,<span class="string">'filling_suspended'</span>,0,<span class="string">'event_type'</span>,<span class="string">''</span>);
+tank = am_tank(<span class="string">'tank'</span>,inistates,c_inistates,elapsed);
+
+<span class="comment">% Canning.</span>
+<span class="comment">% This is a hybrid atomic.</span>
+<span class="comment">% Event, if 48 gallons filled.</span>
+CannerLevel = 0;
+CannerRate = 0;
+c_inistates = [CannerLevel; CannerRate];<span class="comment">% continuous initial values</span>
+inistates = struct(<span class="string">'sigma'</span>,inf,<span class="string">'up_time'</span>,0, <span class="string">'start_time'</span>,0);<span class="comment">% canner up time and start time for statistics</span>
+canner = am_canner(<span class="string">'canner'</span>,inistates,c_inistates,elapsed);
+
+<span class="comment">% Transducer to collect data.</span>
+<span class="comment">% This is a discrete atomic.</span>
+inistates = struct(<span class="string">'sigma'</span>,inf,<span class="string">'num_trucks'</span>,0,<span class="string">'num_pallets'</span>,0);
+transducer = am_truck_transducer(<span class="string">'transducer'</span>,inistates,elapsed);
+
+<span class="comment">% Hybrid coupled model root_model</span>
+y_root = {};
+x_root = {};
+root_model = hybridcoupled(<span class="string">'root_model'</span>,x_root,y_root);
+addcomponents(root_model,{t_gen,queue,dock,undock,truck,tank,canner,transducer});
+Zid_model = {<span class="string">'t_gen'</span>,<span class="string">'p1'</span>,<span class="string">'queue'</span>,<span class="string">'in1'</span>;<span class="keyword">...</span><span class="comment">         % trucks from generator to queue, message: 1</span>
+             <span class="string">'queue'</span>,<span class="string">'out1'</span>,<span class="string">'dock'</span>,<span class="string">'p1'</span>;<span class="keyword">...</span><span class="comment">         % trucks from queue to dock-process, message: 1</span>
+             <span class="string">'dock'</span>,<span class="string">'out1'</span>,<span class="string">'truck'</span>,<span class="string">'in1'</span>;<span class="keyword">...</span><span class="comment">         % trucks from docking-process to truck unload, message: 1</span>
+             <span class="string">'truck'</span>,<span class="string">'out1'</span>,<span class="string">'undock'</span>,<span class="string">'p1'</span>;<span class="keyword">...</span><span class="comment">         % trucks (empty) from unload to undocking-process, message: 1</span>
+             <span class="string">'truck'</span>,<span class="string">'out2'</span>,<span class="string">'canner'</span>,<span class="string">'in1'</span>;<span class="keyword">...</span><span class="comment">         % signal, that new truck arrived to canner, message: 1</span>
+             <span class="string">'undock'</span>,<span class="string">'out1'</span>,<span class="string">'transducer'</span>,<span class="string">'p1'</span>;<span class="keyword">...</span><span class="comment">  % trucks from undocking-process to transducer, message: 1</span>
+             <span class="string">'undock'</span>,<span class="string">'out2'</span>,<span class="string">'queue'</span>,<span class="string">'in2'</span>;<span class="keyword">...</span><span class="comment">      % signal from undocking-process to queue, ask for next truck, message: 'send_next'</span>
+             <span class="string">'tank'</span>,<span class="string">'out1'</span>,<span class="string">'truck'</span>,<span class="string">'in2'</span>;<span class="keyword">...</span><span class="comment">           % signal from tank to truck unload to suspend/restart unloading, message: 0/1 (stop/start)</span>
+             <span class="string">'tank'</span>,<span class="string">'out2'</span>,<span class="string">'canner'</span>,<span class="string">'in2'</span>;<span class="keyword">...</span><span class="comment">          % signal from tank to canner to stop canning, because tank empty, message: 0</span>
+             <span class="string">'canner'</span>,<span class="string">'out1'</span>,<span class="string">'transducer'</span>,<span class="string">'p2'</span>};      <span class="comment">% pallet &agrave; 48 gallons to transducer, message: 1</span>
+set_Zid(root_model, Zid_model);
+
+CZid_model = {<span class="string">'truck'</span>,2,<span class="string">'tank'</span>,1;<span class="keyword">...</span><span class="comment">                % second continuous variable (TruckRate) of truck acts as first input for tank</span>
+              <span class="string">'canner'</span>,2,<span class="string">'tank'</span>,2};                 <span class="comment">% second continuous variable (CannerRate) of canner acts as second input for tank</span>
+                                                    <span class="comment">% end continuous couplings</span>
+set_CZid(root_model, CZid_model);
+</pre><h2>After Incarnation<a name="4"></a></h2><p>Display and check the outermost coupled. If you like to, set the observe flag to 1, so that all discrete state variables in s are tracked automatically.</p><pre class="codeinput">showall(root_model);
+<span class="comment">% set_observe(root_model, 1);</span>
+Check(root_model);
+</pre><p>Because we did not connect the second port of 'dock'- server, the Check() function results in:</p><p><img vspace="5" hspace="5" src="img/check_orange_juice_canning.png" alt=""> </p><p>No problem here - it is just a warning and we did it on purpose. ;-)</p><h2>Define Some Values for ODE-Plot<a name="6"></a></h2><p>Continuous variables can be plotted during simulation, if desired. If you want this, define here:</p><pre class="codeinput"><span class="keyword">global</span> ODEPLOT
+ODEPLOT = 1;
+
+<span class="comment">% If ODEPLOT is set, following structure needs to be definend:</span>
+plot_params = struct(<span class="string">'OutputSel_vec'</span>,[1 3 5],<span class="keyword">...</span><span class="comment">        % decide, which continuous variables are to be plotted. HERE: TruckLevel, TankLevel, CannerLevel</span>
+                     <span class="string">'name_strg'</span>,<span class="string">'Hybrid Example'</span>,<span class="keyword">...</span><span class="comment">   % name of the figure</span>
+                     <span class="string">'xlim_interv'</span>,[0 1440],<span class="keyword">...</span><span class="comment">         % xlim of axes</span>
+                     <span class="string">'ylim_interv'</span>,[-500 6000],<span class="keyword">...</span><span class="comment">      % ylim of axes</span>
+                     <span class="string">'xlabel_strg'</span>,<span class="string">'time [min]'</span>,<span class="keyword">...</span><span class="comment">     % label for x-axes</span>
+                     <span class="string">'ylabel_strg'</span>,<span class="string">'level [gallons]'</span>,<span class="keyword">...</span><span class="comment">% label for y-axes</span>
+                     <span class="string">'title_strg'</span>,<span class="string">'Orange Juice Canning'</span>,<span class="keyword">...</span><span class="comment">% title for plot</span>
+                     <span class="string">'num_legend'</span>, 3,<span class="keyword">...</span><span class="comment">                    % number of variables, for which a legend is supported</span>
+                     <span class="string">'legend1'</span>,<span class="string">'truck level'</span>,<span class="string">'legend2'</span>,<span class="string">'tank level'</span>,<span class="string">'legend3'</span>,<span class="string">'canner level'</span>);<span class="comment">% legend texts</span>
+</pre><p>ODEPLOT = 1 results in:</p><p><img vspace="5" hspace="5" src="img/odeplot.png" alt=""> </p><h2>Finally<a name="8"></a></h2><p>Done! Now the root_coordinator can be called to simulate the model.</p><p>without plotting during simulation (ODEPLOT == 0): <tt>[root_model,tout,yout,teout,yeout,ieout]=r_c_hybrid(root_model,tstart,tend)</tt></p><p>with plotting during simulation (ODEPLOT == 1): <tt>[root_model,tout,yout,teout,yeout,ieout]=r_c_hybrid(root_model,tstart,tend,plot_params)</tt></p><p>To simulate scenario from SIMAN book use <tt>tstart = 0</tt>, <tt>tend = 1440</tt>. This also fits with the plot_params. ;-)</p><p>After simulation you can get some statistics and plot the results via <tt>analyse_orange_juice_canning(root_model,tstart,tend,tout,yout)</tt></p><p><b>Commands to initialize, simulate, analyze the example:</b></p><p>&gt;&gt; <tt>init_orange_juice_canning;</tt></p><p>&gt;&gt; <tt>[root_model,tout,yout,teout,yeout,ieout] = r_c_hybrid(root_model,0,1440,plot_params);</tt></p><p>&gt;&gt; <tt>analyse_orange_juice_canning(root_model,0,1440,tout,yout);</tt></p><p>
+<br><br>
+<hr>
+<br>
+<a href="../../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:history.back()"><< Back</a>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Initialization Script: Orange Juice Canning
+% Inits the combined discrete-continuous example "Orange Juice Canning" from "Introduction to
+% Simulation using SIMAN", page 451.
+
+%%
+% Basic models are taken from the "Orange Juice Canning" example,
+% folder |DEVSPATH/01-modelbase/orange_juice_canning|.
+%
+% Call: |init_orange_juice_canning|
+%
+% File: |DEVSPATH/02-examples/hybrid/orange_juice_canning/init_orange_juice_canning.m|
+%
+% <<img/orange_juice_canning.png>>
+%
+% *Model Structure*
+%
+%% Preparation
+global SIMUSTOP % to stop simulation by condition
+SIMUSTOP = 0;
+
+global HYBRID
+HYBRID = 1; % it's a hybrid model
+
+elapsed = 0;
+
+%% Create the Model
+% 
+% Atomic models' classes:
+% <../../models/discrete/am_truck_generator.html am_truck_generator>,
+% <../../models/discrete/am_fifo_queue.html am_fifo_queue>,
+% <../../models/discrete/am_dock_undock_server.html am_dock_undock_server>,
+% <../../models/hybrid/am_truck.html am_truck>,
+% <../../models/hybrid/am_tank.html am_tank>,
+% <../../models/hybrid/am_canner.html am_canner>,
+% <../../models/discrete/am_truck_transducer.html am_truck_transducer>
+%
+
+% Components for coupled model root_model
+% Since hybrid DEVs is still in experimental phase, hybrid models need to be flattenend, so that there is no
+% hierarchy.
+%
+% Take care to choose different seeds for random number generators!
+
+
+% Generator for trucks, exponential 44 min. mean.
+% This is a discrete atomic.
+random_seed = 4; % system parameter
+inistates = struct('sigma',0,'rand_state',[],'number_generated',0,'generation_times',[]);% generate first truck at right beginning
+t_gen =  am_truck_generator('t_gen',inistates,elapsed,random_seed);
+    
+% Queue for trucks, FIFO.
+% This is a discrete atomic.
+inistates = struct('sigma',inf,'queue_length',0,'queue_stats',[0,0],'requested',1);
+queue = am_fifo_queue('queue',inistates,elapsed);
+    
+% Server for docking process for trucks.
+% This is a discrete atomic.
+% System parameter service_time
+% uniformely distributed 1-2 min.
+service_time = [1,2];
+random_seed = 2; % system parameters
+inistates = struct('sigma',inf,'rand_state',[]);
+dock = am_dock_undock_server('dock',inistates,elapsed,service_time,random_seed);
+
+% Server for undocking process for trucks.
+% This is a discrete atomic.
+service_time = [1,2];
+random_seed = 3; % system parameters
+inistates = struct('sigma',inf,'rand_state',[]);
+undock = am_dock_undock_server('undock',inistates,elapsed,service_time,random_seed);
+    
+% Truck unload.
+% This is a hybrid atomic.
+% Event, if truck is empty.
+TruckLevel = 0;
+TruckRate = 0;
+c_inistates = [TruckLevel; TruckRate];% continuous initial values
+inistates = struct('sigma',inf,'active',1,'arrival',0);% 'active' == 1 at init means: "not stopped by signal from tank"
+truck = am_truck('truck',inistates,c_inistates,elapsed);
+    
+    
+% Tank.
+% This is a hybrid atomic.
+% Events, if filled with 6000 gallons,
+%         if sunk to 5500 gallons,
+%         if empty. 
+TankLevel = 0;
+TankRate = 0;
+c_inistates = [TankLevel; TankRate;];% continuous initial values
+inistates = struct('sigma',inf,'filling_suspended',0,'event_type','');
+tank = am_tank('tank',inistates,c_inistates,elapsed);    
+    
+% Canning.
+% This is a hybrid atomic.
+% Event, if 48 gallons filled.
+CannerLevel = 0;
+CannerRate = 0;
+c_inistates = [CannerLevel; CannerRate];% continuous initial values
+inistates = struct('sigma',inf,'up_time',0, 'start_time',0);% canner up time and start time for statistics
+canner = am_canner('canner',inistates,c_inistates,elapsed);
+
+% Transducer to collect data.
+% This is a discrete atomic.
+inistates = struct('sigma',inf,'num_trucks',0,'num_pallets',0);
+transducer = am_truck_transducer('transducer',inistates,elapsed);  
+    
+% Hybrid coupled model root_model
+y_root = {};
+x_root = {};
+root_model = hybridcoupled('root_model',x_root,y_root);
+addcomponents(root_model,{t_gen,queue,dock,undock,truck,tank,canner,transducer});
+Zid_model = {'t_gen','p1','queue','in1';...         % trucks from generator to queue, message: 1
+             'queue','out1','dock','p1';...         % trucks from queue to dock-process, message: 1
+             'dock','out1','truck','in1';...         % trucks from docking-process to truck unload, message: 1
+             'truck','out1','undock','p1';...         % trucks (empty) from unload to undocking-process, message: 1
+             'truck','out2','canner','in1';...         % signal, that new truck arrived to canner, message: 1
+             'undock','out1','transducer','p1';...  % trucks from undocking-process to transducer, message: 1
+             'undock','out2','queue','in2';...      % signal from undocking-process to queue, ask for next truck, message: 'send_next'
+             'tank','out1','truck','in2';...           % signal from tank to truck unload to suspend/restart unloading, message: 0/1 (stop/start)
+             'tank','out2','canner','in2';...          % signal from tank to canner to stop canning, because tank empty, message: 0
+             'canner','out1','transducer','p2'};      % pallet à 48 gallons to transducer, message: 1
+set_Zid(root_model, Zid_model);
+                                   
+CZid_model = {'truck',2,'tank',1;...                % second continuous variable (TruckRate) of truck acts as first input for tank
+              'canner',2,'tank',2};                 % second continuous variable (CannerRate) of canner acts as second input for tank
+                                                    % end continuous couplings
+set_CZid(root_model, CZid_model); 
+
+%% After Incarnation
+% Display and check the
+% outermost coupled.
+% If you like to, set the observe flag to 1, so that all discrete state variables in s are tracked automatically.
+
+
+showall(root_model);
+% set_observe(root_model, 1);
+Check(root_model);
+
+%%
+% Because we did not connect the second port of 'dock'- server, the Check() function results in:
+%
+% <<img/check_orange_juice_canning.png>>
+%
+% No problem here - it is just a warning and we did it on purpose. ;-)
+
+                                                   
+                       
+%% Define Some Values for ODE-Plot
+% Continuous variables can be plotted during simulation, if desired.
+% If you want this, define here:
+global ODEPLOT
+ODEPLOT = 1;
+
+% If ODEPLOT is set, following structure needs to be definend:
+plot_params = struct('OutputSel_vec',[1 3 5],...        % decide, which continuous variables are to be plotted. HERE: TruckLevel, TankLevel, CannerLevel
+                     'name_strg','Hybrid Example',...   % name of the figure
+                     'xlim_interv',[0 1440],...         % xlim of axes
+                     'ylim_interv',[-500 6000],...      % ylim of axes
+                     'xlabel_strg','time [min]',...     % label for x-axes
+                     'ylabel_strg','level [gallons]',...% label for y-axes
+                     'title_strg','Orange Juice Canning',...% title for plot
+                     'num_legend', 3,...                    % number of variables, for which a legend is supported
+                     'legend1','truck level','legend2','tank level','legend3','canner level');% legend texts
+
+
+%%
+% ODEPLOT = 1 results in:
+%
+% <<img/odeplot.png>>
+
+%% Finally
+% Done!
+% Now the root_coordinator can be called to simulate the model.
+%
+% without plotting during simulation (ODEPLOT == 0):
+% |[root_model,tout,yout,teout,yeout,ieout]=r_c_hybrid(root_model,tstart,tend)|
+%
+% with plotting during simulation (ODEPLOT == 1):
+% |[root_model,tout,yout,teout,yeout,ieout]=r_c_hybrid(root_model,tstart,tend,plot_params)|
+%
+% To simulate scenario from SIMAN book use |tstart = 0|, |tend = 1440|.
+% This also fits with the plot_params. ;-)
+%
+% After simulation you can get some statistics and plot the results via
+% |analyse_orange_juice_canning(root_model,tstart,tend,tout,yout)|
+%
+%
+% *Commands to initialize, simulate, analyze the example:*
+% 
+% >> |init_orange_juice_canning;|
+%
+% >>
+% |[root_model,tout,yout,teout,yeout,ieout] = r_c_hybrid(root_model,0,1440,plot_params);|
+%
+% >> |analyse_orange_juice_canning(root_model,0,1440,tout,yout);|
+%
+%
+% <html>
+% <br><br>
+% <hr>
+% <br>
+% <a href="../../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="../../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="../../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="javascript:history.back()"><< Back</a>
+% </html>
+%
+%
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+##### SOURCE END #####
+--></body></html>

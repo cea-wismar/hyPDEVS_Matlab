@@ -1,0 +1,251 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Initialization Script: Bouncing Ball</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-08-02"><meta name="DC.source" content="init_qss1_ball_simple.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Initialization Script: Bouncing Ball</h1><!--introduction--><p>Initializes a QSS1 model of a ball bouncing up and down consisting of one static, two integrators and one event detection atomic model.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Preparation</a></li><li><a href="#3">Create the Model</a></li><li><a href="#5">Take a look at the model</a></li><li><a href="#6">Finally</a></li></ul></div><p>Basic models are taken from folder <tt>DEVSPATH/01-modelbase/qss</tt>.</p><p>Call: <tt>init_qss1_ball_simple</tt></p><p>File: <tt>DEVSPATH/02-examples/discrete/bouncing_ball_qss/init_qss1_ball_simple.m</tt></p><p><img vspace="5" hspace="5" src="img/qss_ball_simple.png" alt=""> </p><p><b>Model Structure</b></p><h2>Preparation<a name="2"></a></h2><pre class="codeinput"><span class="comment">%clear classes;</span>
+clc;
+
+<span class="keyword">global</span> SIMUSTOP <span class="comment">% to stop simulation by condition</span>
+SIMUSTOP = 0;
+
+<span class="keyword">global</span> HYBRID
+HYBRID = 0; <span class="comment">%discrete-only simulation</span>
+
+elapsed = 0;
+</pre><h2>Create the Model<a name="3"></a></h2><p>Atomic models' classes: <a href="../../models/discrete/static1.html">static1</a>, <a href="../../models/discrete/qss1.html">qss1</a>, <a href="../../models/discrete/event_detect.html">event_detect</a>.</p><pre class="codeinput"><span class="comment">% initial values for integrators</span>
+height = 1;
+velocity = 20;
+<span class="comment">% Coupled DEVS root_model</span>
+<span class="comment">%</span>
+<span class="comment">% Instantiate an atomic DEVS of type static1</span>
+<span class="comment">% that implements differential equation for gravity.</span>
+rate_of_change = -9.81; <span class="comment">% system parameter</span>
+inistates = struct(<span class="string">'sigma'</span>,0,<span class="string">'rate'</span>,-9.81);
+gravity = static1(<span class="string">'gravity'</span>,inistates,elapsed,rate_of_change);
+
+<span class="comment">% Instantiate two atomic DEVS of type qss1. First qss1 integrator calculates</span>
+<span class="comment">% and records current velocity, second current height.</span>
+
+epsilon = 0.1;
+dq = 0.1; <span class="comment">% system parameters</span>
+inistates = struct(<span class="string">'sigma'</span>,inf,<span class="string">'X'</span>,velocity,<span class="string">'dX'</span>,0,<span class="string">'q'</span>,floor(velocity/dq)*dq,<span class="string">'se'</span>,0,<span class="string">'traj'</span>,[],<span class="string">'qtraj'</span>,[]);
+integrator1 = qss1(<span class="string">'integrator1'</span>,inistates,elapsed,epsilon,dq);
+
+
+epsilon = 0.1;
+dq = 0.1; <span class="comment">% system parameters</span>
+inistates = struct(<span class="string">'sigma'</span>,inf,<span class="string">'X'</span>,height,<span class="string">'dX'</span>,0,<span class="string">'q'</span>,floor(height/dq)*dq,<span class="string">'se'</span>,0,<span class="string">'traj'</span>,[],<span class="string">'qtraj'</span>,[]);
+integrator2 = qss1(<span class="string">'integrator2'</span>,inistates,elapsed,epsilon,dq);
+
+<span class="comment">% Instantiate an atomic DEVS of type event_detect. Detects, if ball</span>
+<span class="comment">% hits ground.</span>
+
+inistates = struct(<span class="string">'sigma'</span>,inf,<span class="string">'X'</span>,height,<span class="string">'dX'</span>,0,<span class="string">'se'</span>,0,<span class="string">'traj'</span>,[],<span class="string">'eventtraj'</span>,[]);
+ev_det = event_detect(<span class="string">'ev_det'</span>,inistates,elapsed);
+</pre><p>Instantiate the root_model</p><pre class="codeinput">root_model = coupled(<span class="string">'root_model'</span>);<span class="comment">% in and output ports, always none for root model</span>
+addcomponents(root_model,{gravity,integrator1,integrator2,ev_det});
+Zid_model = {<span class="string">'gravity'</span>,<span class="string">'out1'</span>,<span class="string">'integrator1'</span>,<span class="string">'in1'</span>;<span class="keyword">...</span>
+             <span class="string">'integrator1'</span>,<span class="string">'out1'</span>,<span class="string">'integrator2'</span>,<span class="string">'in1'</span>;<span class="keyword">...</span>
+             <span class="string">'integrator1'</span>,<span class="string">'out1'</span>,<span class="string">'ev_det'</span>,<span class="string">'in1'</span>;<span class="keyword">...</span>
+             <span class="string">'ev_det'</span>,<span class="string">'out1'</span>,<span class="string">'integrator1'</span>,<span class="string">'in2'</span>};
+set_Zid(root_model, Zid_model);
+</pre><h2>Take a look at the model<a name="5"></a></h2><pre class="codeinput">showall(root_model);
+Check(root_model);
+
+set_observe(root_model, 1);<span class="comment">% track all state variables in s of atomics</span>
+</pre><h2>Finally<a name="6"></a></h2><p>Done! Now the root_coordinator can be called to simulate the model:</p><p><tt>root_model = r_c_discrete(root_model,tstart,tend)</tt></p><p>After simulation you can plot the results via <tt>plot_results_qss1_ball(root_model,tstart,tend)</tt>.</p><p><b>Commands to initialize, simulate, analyse the example:</b></p><p>&gt;&gt; <tt>init_qss1_ball_simple;</tt></p><p>&gt;&gt; <tt>root_model = r_c_discrete(root_model,0,20);</tt></p><p>&gt;&gt; <tt>plot_results_qss1_ball(root_model,0,20);</tt></p><p>
+<br><br>
+<hr>
+<br>
+<a href="../../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:history.back()"><< Back</a>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Initialization Script: Bouncing Ball 
+% Initializes a QSS1 model of a ball bouncing up and down consisting of one static, two integrators and one event detection atomic model.
+
+%%
+% Basic models are taken from
+% folder |DEVSPATH/01-modelbase/qss|.
+%
+% Call: |init_qss1_ball_simple|
+%
+% File: |DEVSPATH/02-examples/discrete/bouncing_ball_qss/init_qss1_ball_simple.m|
+%
+%
+% <<img/qss_ball_simple.png>>
+%
+% *Model Structure*
+%
+%% Preparation
+%clear classes;
+clc;
+
+global SIMUSTOP % to stop simulation by condition
+SIMUSTOP = 0;
+
+global HYBRID
+HYBRID = 0; %discrete-only simulation
+
+elapsed = 0;
+
+%% Create the Model
+%
+% Atomic models' classes:
+% <../../models/discrete/static1.html static1>,
+% <../../models/discrete/qss1.html qss1>,
+% <../../models/discrete/event_detect.html event_detect>.
+%
+
+% initial values for integrators
+height = 1;
+velocity = 20;
+% Coupled DEVS root_model
+%
+% Instantiate an atomic DEVS of type static1
+% that implements differential equation for gravity.
+rate_of_change = -9.81; % system parameter
+inistates = struct('sigma',0,'rate',-9.81);
+gravity = static1('gravity',inistates,elapsed,rate_of_change);
+    
+% Instantiate two atomic DEVS of type qss1. First qss1 integrator calculates
+% and records current velocity, second current height.
+
+epsilon = 0.1;
+dq = 0.1; % system parameters
+inistates = struct('sigma',inf,'X',velocity,'dX',0,'q',floor(velocity/dq)*dq,'se',0,'traj',[],'qtraj',[]);
+integrator1 = qss1('integrator1',inistates,elapsed,epsilon,dq);
+    
+
+epsilon = 0.1;
+dq = 0.1; % system parameters
+inistates = struct('sigma',inf,'X',height,'dX',0,'q',floor(height/dq)*dq,'se',0,'traj',[],'qtraj',[]);
+integrator2 = qss1('integrator2',inistates,elapsed,epsilon,dq); 
+    
+% Instantiate an atomic DEVS of type event_detect. Detects, if ball
+% hits ground.
+
+inistates = struct('sigma',inf,'X',height,'dX',0,'se',0,'traj',[],'eventtraj',[]);
+ev_det = event_detect('ev_det',inistates,elapsed);
+       
+%%    
+% Instantiate the root_model
+
+root_model = coupled('root_model');% in and output ports, always none for root model
+addcomponents(root_model,{gravity,integrator1,integrator2,ev_det});
+Zid_model = {'gravity','out1','integrator1','in1';...
+             'integrator1','out1','integrator2','in1';...
+             'integrator1','out1','ev_det','in1';...
+             'ev_det','out1','integrator1','in2'};
+set_Zid(root_model, Zid_model);
+
+        
+%% Take a look at the model
+
+showall(root_model);
+Check(root_model);
+
+set_observe(root_model, 1);% track all state variables in s of atomics
+
+
+%% Finally
+% Done!
+% Now the root_coordinator can be called to simulate the model:
+%
+% |root_model = r_c_discrete(root_model,tstart,tend)|
+%
+% After simulation you can plot the results via
+% |plot_results_qss1_ball(root_model,tstart,tend)|. 
+%
+%
+% *Commands to initialize, simulate, analyse the example:*
+% 
+% >> |init_qss1_ball_simple;|
+%
+% >> |root_model = r_c_discrete(root_model,0,20);|
+%
+% >> |plot_results_qss1_ball(root_model,0,20);|
+%
+%
+% <html>
+% <br><br>
+% <hr>
+% <br>
+% <a href="../../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="../../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="../../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="javascript:history.back()"><< Back</a>
+% </html>
+%
+%
+
+    
+
+##### SOURCE END #####
+--></body></html>

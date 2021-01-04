@@ -1,0 +1,250 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Initialization Script: Testcase two outputs to one input</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-08-02"><meta name="DC.source" content="init_2_out_1_in.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Initialization Script: Testcase two outputs to one input</h1><!--introduction--><p>Two generators generate workpieces either of type1 or type2. Processing block has one input and needs to decide of what type incoming WP is. Two workpieces can arrive at the same time at the same input port. A transducer counts completed workpieces.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Preparation</a></li><li><a href="#3">Create the Model</a></li><li><a href="#4">Take a look at the model</a></li><li><a href="#5">Finally</a></li></ul></div><p>Basic models are take from folder <tt>DEVSPATH/01-modelbase/2-outputs-to-1-input</tt>.</p><p>Call: <tt>init_2_out_1_in</tt></p><p>File: <tt>DEVSPATH/02-examples/discrete/2-outputs-to-1-input/init_2_out_1_in.m</tt></p><p><img vspace="5" hspace="5" src="img/two_out_1_in.png" alt=""> </p><p><b>Model Structure</b></p><h2>Preparation<a name="2"></a></h2><p>close all; clear all; clear classes;</p><pre class="codeinput"><span class="comment">%clc;</span>
+<span class="keyword">global</span> SIMUSTOP <span class="comment">% to stop simulation by condition</span>
+SIMUSTOP = 0;
+
+<span class="keyword">global</span> HYBRID
+HYBRID = 0; <span class="comment">% it's a pure discrete, not a hybrid model</span>
+
+elapsed = 0;
+</pre><h2>Create the Model<a name="3"></a></h2><p>Atomic models' classes: <a href="../../models/discrete/am_g_2types.html">am_g_2types</a>, <a href="../../models/discrete/am_double_input.html">am_double_input</a>, <a href="../../models/discrete/am_t.html">am_t</a></p><pre class="codeinput"><span class="comment">% Instantiate two atomic models generator, one generating workpieces of</span>
+<span class="comment">% type one, the other of type two. Intergeneration times are passed as</span>
+<span class="comment">% system parameters.</span>
+interarrival_time1 = 1;
+inistates1 = struct(<span class="string">'sigma'</span>,interarrival_time1,<span class="string">'counter'</span>,0);
+am_g1 = am_g_2types(<span class="string">'am_g1'</span>,inistates1,elapsed,<span class="string">'type1'</span>);
+
+interarrival_time2 = 2;
+inistates2= struct(<span class="string">'sigma'</span>,interarrival_time2,<span class="string">'counter'</span>,0);
+am_g2 = am_g_2types(<span class="string">'am_g2'</span>,inistates2,elapsed,<span class="string">'type2'</span>);
+
+<span class="comment">% Instantiate an atomic model assembling server, that assembles the two types,</span>
+inistates = struct(<span class="string">'phase'</span>,<span class="string">'passive'</span>,<span class="string">'sigma'</span>,inf,<span class="string">'q1'</span>,0,<span class="string">'q2'</span>,0);
+service_time = 3;
+am_proc=am_double_input(<span class="string">'am_proc'</span>,inistates,elapsed,service_time);
+
+
+<span class="comment">% Instantiate a transducer to count assembled workpieces.</span>
+inistates = struct(<span class="string">'q'</span>,0);
+am_t1 = am_t(<span class="string">'am_t1'</span>,inistates,elapsed);
+
+<span class="comment">% Coupled model root_model</span>
+y_root = {};
+x_root = {};
+root_model = coupled(<span class="string">'root_model'</span>,x_root,y_root);
+addcomponents(root_model,{am_g2,am_g1,am_proc,am_t1});
+Zid_root = {<span class="string">'am_g1'</span>,<span class="string">'p1'</span>,<span class="string">'am_proc'</span>,<span class="string">'in1'</span>;<span class="keyword">...</span>
+            <span class="string">'am_g2'</span>,<span class="string">'p1'</span>,<span class="string">'am_proc'</span>,<span class="string">'in1'</span>;<span class="keyword">...</span>
+            <span class="string">'am_proc'</span>,<span class="string">'out1'</span>,<span class="string">'am_t1'</span>,<span class="string">'p1'</span>;<span class="keyword">...</span>
+            };
+set_Zid(root_model, Zid_root);
+</pre><h2>Take a look at the model<a name="4"></a></h2><pre class="codeinput">showall(root_model);
+Check(root_model);
+set_debug(root_model,1,fopen(<span class="string">'debug.txt'</span>,<span class="string">'w'</span>)); <span class="comment">% write simulation messages to file debug.txt</span>
+set_observe(root_model, 1);<span class="comment">% track all state variables in s of atomics</span>
+
+<span class="comment">%set_debug(root_model, 1); % if you want to get the simulation messages to</span>
+<span class="comment">%std-out</span>
+</pre><h2>Finally<a name="5"></a></h2><p>Done! Now the root_coordinator can be called to simulate the model.</p><p><tt>root_model = r_c_discrete(root_model,tstart,tend)</tt></p><p>Choose for example <tt>tstart = 0</tt>, <tt>tend = 12</tt></p><p>Notice: <tt>DEBUG</tt> is set to 1, so you get simulation messages. Set <tt>DEBUG = 2</tt>, if you prefer stepwise simulation, or <tt>DEBUG = 3</tt> to keep track of x, y and s of atomics.</p><p>After simulation you can take a look at states of all atomics by executing the script <tt>plot_and_analyze2out1in</tt>.</p><p><b>Commands to initialize, simulate, analyse the example:</b></p><p>&gt;&gt; <tt>init_2_out_1_in;</tt></p><p>&gt;&gt; <tt>root_model = r_c_discrete(root_model,0,12);</tt></p><p>&gt;&gt; <tt>plot_and_analyze2out1in;</tt></p><p>
+<br><br>
+<hr>
+<br>
+<a href="../../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:history.back()"><< Back</a>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Initialization Script: Testcase two outputs to one input
+% Two generators generate workpieces either of type1 or type2.
+% Processing block has one input and needs to decide of what type incoming WP
+% is. Two workpieces can arrive at the same time at the same input port.
+% A transducer counts completed workpieces.
+
+%%
+% Basic models are take from
+% folder |DEVSPATH/01-modelbase/2-outputs-to-1-input|.
+%
+% Call: |init_2_out_1_in|
+%
+% File: |DEVSPATH/02-examples/discrete/2-outputs-to-1-input/init_2_out_1_in.m|
+%
+% <<img/two_out_1_in.png>>
+%
+% *Model Structure*
+%
+
+%% Preparation
+% close all;
+% clear all;
+% clear classes;
+
+%clc;
+global SIMUSTOP % to stop simulation by condition
+SIMUSTOP = 0;
+
+global HYBRID
+HYBRID = 0; % it's a pure discrete, not a hybrid model
+
+elapsed = 0;
+
+%% Create the Model
+%
+% Atomic models' classes:
+% <../../models/discrete/am_g_2types.html am_g_2types>,
+% <../../models/discrete/am_double_input.html am_double_input>,
+% <../../models/discrete/am_t.html am_t>
+
+% Instantiate two atomic models generator, one generating workpieces of
+% type one, the other of type two. Intergeneration times are passed as
+% system parameters.
+interarrival_time1 = 1;
+inistates1 = struct('sigma',interarrival_time1,'counter',0);
+am_g1 = am_g_2types('am_g1',inistates1,elapsed,'type1');
+
+interarrival_time2 = 2;
+inistates2= struct('sigma',interarrival_time2,'counter',0);
+am_g2 = am_g_2types('am_g2',inistates2,elapsed,'type2');
+
+% Instantiate an atomic model assembling server, that assembles the two types, 
+inistates = struct('phase','passive','sigma',inf,'q1',0,'q2',0);
+service_time = 3;
+am_proc=am_double_input('am_proc',inistates,elapsed,service_time);
+
+
+% Instantiate a transducer to count assembled workpieces.
+inistates = struct('q',0); 
+am_t1 = am_t('am_t1',inistates,elapsed);
+
+% Coupled model root_model
+y_root = {};
+x_root = {};
+root_model = coupled('root_model',x_root,y_root);
+addcomponents(root_model,{am_g2,am_g1,am_proc,am_t1});
+Zid_root = {'am_g1','p1','am_proc','in1';...
+            'am_g2','p1','am_proc','in1';...
+            'am_proc','out1','am_t1','p1';...
+            };
+set_Zid(root_model, Zid_root);
+
+
+
+        
+%% Take a look at the model
+showall(root_model);
+Check(root_model);
+set_debug(root_model,1,fopen('debug.txt','w')); % write simulation messages to file debug.txt
+set_observe(root_model, 1);% track all state variables in s of atomics
+
+%set_debug(root_model, 1); % if you want to get the simulation messages to
+%std-out
+
+%% Finally
+% Done!
+% Now the root_coordinator can be called to simulate the model.
+%
+% |root_model = r_c_discrete(root_model,tstart,tend)|
+%
+% Choose for example |tstart = 0|, |tend = 12|
+%
+% Notice: |DEBUG| is set to 1, so you get simulation messages. Set |DEBUG = 2|,
+% if you prefer stepwise simulation, or |DEBUG = 3| to keep track of x, y
+% and s of atomics.
+%
+% After simulation you can take a look at states of all atomics
+% by executing the script |plot_and_analyze2out1in|.
+%
+%
+% *Commands to initialize, simulate, analyse the example:*
+% 
+% >> |init_2_out_1_in;|
+%
+% >> |root_model = r_c_discrete(root_model,0,12);|
+%
+% >> |plot_and_analyze2out1in;|
+%
+%
+% <html>
+% <br><br>
+% <hr>
+% <br>
+% <a href="../../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="../../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="../../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="javascript:history.back()"><< Back</a>
+% </html>
+%
+%
+
+
+
+
+##### SOURCE END #####
+--></body></html>
