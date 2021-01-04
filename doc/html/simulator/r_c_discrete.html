@@ -1,0 +1,258 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PDEVS Root Coordinator for Pure Discrete Models</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-21"><meta name="DC.source" content="r_c_discrete.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>PDEVS Root Coordinator for Pure Discrete Models</h1><!--introduction--><pre>stored in DEVS_PATH/r_c_discrete.p</pre><p>Is provided as p-code.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Description</a></li><li><a href="#3">Preparation</a></li><li><a href="#4">Initialize the Model</a></li><li><a href="#5">Simulation Loop</a></li></ul></div><h2 id="1">Description</h2><p>Discrete DEVS root coordinator for parallel DEVS with ports.</p><p><b>Call:</b> <tt>model = r_c_discrete(model,tstart,tend)</tt></p><p><b>Input arguments:</b></p><p><tt>model</tt> : type is coupled object</p><p><tt>tstart</tt> : type is double, start time for simulation</p><p><tt>tend</tt> : type is double, end time for simulation</p><p><b>Variables used in simulator:</b></p><p><tt>gt</tt> : type is double, current simulation time</p><pre class="codeinput"><span class="comment">% BEGIN pure discrete root coordinator</span>
+<span class="keyword">function</span> root_model=r_c_discrete(root_model,tstart,tend)
+</pre><h2 id="3">Preparation</h2><pre class="codeinput"><span class="keyword">global</span> HYBRID
+<span class="keyword">if</span> isempty(HYBRID)
+    HYBRID = false;
+<span class="keyword">end</span>
+<span class="comment">% HYBRID = 1 --&gt; hybrid simulation</span>
+<span class="comment">% HYBRID = 0 --&gt; discrete-only simulation</span>
+<span class="comment">% set in initialization script of model</span>
+<span class="keyword">if</span> HYBRID
+    error(<span class="string">'You called the root coordinator for pure discrete DEVS to simulate a hybrid model'</span>);
+<span class="keyword">end</span>
+
+<span class="keyword">global</span> SIMUSTOP
+<span class="keyword">if</span> isempty(SIMUSTOP)
+    SIMUSTOP = false;
+<span class="keyword">end</span>
+<span class="comment">% to stop simulation by condition</span>
+<span class="comment">% SIMUSTOP = 0 --&gt; simulate</span>
+<span class="comment">% SIMUSTOP = 1 --&gt; stop simulation</span>
+<span class="comment">% set to 0 in initialization script of model</span>
+<span class="comment">% can be manipulated in any part of the model</span>
+
+<span class="comment">% DEBUG modes</span>
+<span class="comment">% debug_flag = 0 --&gt; no debugging</span>
+<span class="comment">% debug_flag = 1 --&gt; show messages and function calls</span>
+<span class="comment">% debug_flag = 2 --&gt; show messages and function calls, steps</span>
+<span class="comment">% debug_flag = 3 --&gt; show x,y and s of atomics</span>
+<span class="comment">% set in initialization script of model for entire model or parts of the</span>
+<span class="comment">% model</span>
+
+[debug_flag, descriptor] = is_debug(root_model,0,0);
+<span class="keyword">if</span> debug_flag == 1 || debug_flag == 2
+    debug_m = db_m(descriptor); <span class="comment">% create an object to display debug messages</span>
+<span class="keyword">else</span>
+    debug_m = db_empty; <span class="comment">% nothing will be displayed</span>
+<span class="keyword">end</span>
+</pre><h2 id="4">Initialize the Model</h2><p>Send initialization message to all children</p><pre class="codeinput">debug_m.dbprintroot(tstart,1,root_model); <span class="comment">% print a STARTUP message, if debug is activated</span>
+i_msg(root_model,tstart);
+
+<span class="keyword">if</span> debug_flag == 2
+        pause;
+<span class="keyword">end</span>
+gt = root_model.tnext;
+</pre><h2 id="5">Simulation Loop</h2><p>Send recursive *-messages</p><pre class="codeinput"><span class="keyword">while</span> (gt &lt;= tend) &amp;&amp; (~SIMUSTOP)
+
+    debug_m.dbprintroot(gt,2,root_model);  <span class="comment">% print a STEP message, if debug is activated</span>
+
+    s_msg(root_model,gt,1);<span class="comment">% flag = 1 for s-messages from root coordinator</span>
+
+    <span class="keyword">if</span> debug_flag == 2
+        pause;
+    <span class="keyword">end</span>
+
+    gt = root_model.tnext;
+    <span class="keyword">if</span> gt == inf
+        <span class="keyword">break</span>
+    <span class="keyword">end</span>
+
+<span class="keyword">end</span>
+
+debug_m.dbprintroot(gt,3,root_model); <span class="comment">% print an END message, if debug is activated</span>
+</pre><pre class="codeinput"><span class="keyword">end</span>
+<span class="comment">% END pure discrete root coordinator</span>
+</pre><p>
+<br><br>
+<hr>
+<br>
+<a href="../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:history.back()"><< Back</a>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% PDEVS Root Coordinator for Pure Discrete Models
+%  stored in DEVS_PATH/r_c_discrete.p
+%
+% Is provided as p-code.
+
+
+%% Description
+% Discrete DEVS root coordinator for parallel DEVS with ports.
+%
+% *Call:* |model = r_c_discrete(model,tstart,tend)|
+%
+% *Input arguments:*
+%
+% |model| : type is coupled object
+%
+% |tstart| : type is double, start time for simulation
+%
+% |tend| : type is double, end time for simulation
+%
+% *Variables used in simulator:*
+%
+% |gt| : type is double, current simulation time
+%
+
+% BEGIN pure discrete root coordinator
+function root_model=r_c_discrete(root_model,tstart,tend)
+
+%% Preparation
+%
+global HYBRID
+if isempty(HYBRID)
+    HYBRID = false;
+end
+% HYBRID = 1 REPLACE_WITH_DASH_DASH> hybrid simulation  
+% HYBRID = 0 REPLACE_WITH_DASH_DASH> discrete-only simulation
+% set in initialization script of model
+if HYBRID
+    error('You called the root coordinator for pure discrete DEVS to simulate a hybrid model');
+end
+
+global SIMUSTOP
+if isempty(SIMUSTOP)
+    SIMUSTOP = false;
+end
+% to stop simulation by condition
+% SIMUSTOP = 0 REPLACE_WITH_DASH_DASH> simulate
+% SIMUSTOP = 1 REPLACE_WITH_DASH_DASH> stop simulation
+% set to 0 in initialization script of model
+% can be manipulated in any part of the model
+
+% DEBUG modes
+% debug_flag = 0 REPLACE_WITH_DASH_DASH> no debugging
+% debug_flag = 1 REPLACE_WITH_DASH_DASH> show messages and function calls
+% debug_flag = 2 REPLACE_WITH_DASH_DASH> show messages and function calls, steps
+% debug_flag = 3 REPLACE_WITH_DASH_DASH> show x,y and s of atomics
+% set in initialization script of model for entire model or parts of the
+% model
+
+[debug_flag, descriptor] = is_debug(root_model,0,0);
+if debug_flag == 1 || debug_flag == 2 
+    debug_m = db_m(descriptor); % create an object to display debug messages
+else
+    debug_m = db_empty; % nothing will be displayed
+end
+
+
+%% Initialize the Model
+%
+% Send initialization message to all children
+debug_m.dbprintroot(tstart,1,root_model); % print a STARTUP message, if debug is activated         
+i_msg(root_model,tstart);
+
+if debug_flag == 2
+        pause;
+end
+gt = root_model.tnext;
+
+%% Simulation Loop
+%
+% Send recursive *-messages
+while (gt <= tend) && (~SIMUSTOP)
+   
+    debug_m.dbprintroot(gt,2,root_model);  % print a STEP message, if debug is activated 
+            
+    s_msg(root_model,gt,1);% flag = 1 for s-messages from root coordinator
+
+    if debug_flag == 2
+        pause;
+    end
+    
+    gt = root_model.tnext;
+    if gt == inf
+        break
+    end
+
+end
+            
+debug_m.dbprintroot(gt,3,root_model); % print an END message, if debug is activated           
+end
+% END pure discrete root coordinator
+
+%%
+%
+%
+%
+% <html>
+% <br><br>
+% <hr>
+% <br>
+% <a href="../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="javascript:history.back()"><< Back</a>
+% </html>
+##### SOURCE END #####
+--></body></html>

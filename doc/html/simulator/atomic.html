@@ -1,0 +1,657 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Atomic Object with Simulator Functionalities</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-23"><meta name="DC.source" content="atomic.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Atomic Object with Simulator Functionalities</h1><!--introduction--><pre>stored in DEVS_PATH/00-simulator/atomic.p</pre><p>Is provided as p-code.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Description</a></li><li><a href="#4">Superclass</a></li><li><a href="#5">Inherited properties</a></li><li><a href="#6">Properties</a></li><li><a href="#7">Class Methods</a></li><li><a href="#9">i_MSG</a></li><li><a href="#12">S_MSG</a></li><li><a href="#16">X_MSG</a></li><li><a href="#18">Y_MSG</a></li></ul></div><p>
+<table border=0><tr><td>Based on modified parallel DEVS
+algorithms (Zeigler, Schwatinski).</td></tr>
+<tr><td>All user defined atomic models have to be derived from class
+atomic.</td></tr>
+<tr><td>C. Deatcu 2016</td></tr></table>
+</p><h2 id="3">Description</h2><p>Class definition file for an <b>associated simulator</b> for atomic PDEVS models</p><p>constructor call:  <tt>obj = atomic(name,x,y,s,elapsed,sysparams)</tt></p><h2 id="4">Superclass</h2><p><tt>devs</tt></p><h2 id="5">Inherited properties</h2><div><ul><li><tt>sub_of</tt>    : string, name of the superordinate model --&gt; for debugging purposes</li><li><tt>tnext</tt>     : float, time of next event</li><li><tt>tlast</tt>     : float, time of last event</li><li><tt>name</tt>      : string, (unique) name of this model --&gt; for debugging purposes                 max. 12 characters for "nice" debug-look ;-)</li><li><tt>x</tt>         : structure, set of inport name/input value (cell array) pairs</li><li><tt>y</tt>         : structure, set of outport name/output value (cell array) pairs</li><li><tt>debug_flag</tt>: 0|1|2|3, no messages|messages|steps|visualize x, y, and s (default 0)</li><li><tt>observe_flag</tt>: 0|1, log states of atomic subcomponents or not (default 0)</li></ul></div><h2 id="6">Properties</h2><div><ul><li><tt>s</tt>         : structure, set of states</li><li><tt>elapsed</tt>   : float, time elapsed since last                 transition (only for initialization)</li><li><tt>sysparams</tt> : structure, set of system parameters, can be set only once at instantiation</li><li><tt>observed</tt>  : cell array including time stamps and a copy of s (structure of states)</li></ul></div><h2 id="7">Class Methods</h2><p><b>Simulation Messages</b></p><div><ul><li><tt>i_msg(obj,gt)</tt>   : initialization message -   sets tlast and calls tafun() of model to calculate tnext</li><li><tt>s_msg(obj,gt,flag)</tt>: star message - called when atomic is   imminent, calls deltaint() and tafun() of model, sets tlast and   tnext</li><li><tt>x_msg(obj,gt)</tt>  : x message - called, if external event   arrives, calls deltaconffun() or deltaextfun() of model</li><li><tt>y_msg(obj,gt)</tt>  : inperpellation y message - calls lambdafun   of model</li></ul></div><p><b>Set Methods for Flags</b></p><div><ul><li><tt>set_debug(obj, debug_flag)</tt>: set flag for debug messages to 0|1|2|3</li><li><tt>set_observe(obj, observe_flag)</tt>: set flag for tracking states to 0|1</li></ul></div><p><b>Set Methods for States</b></p><div><ul><li><tt>set_states(obj, statenames)</tt>: initializes the structure obj.s. with fields defined in statenames</li><li><tt>set.s(obj,svalues)</tt>:          safe setting of state values in s</li></ul></div><p><b>Display Methods</b></p><div><ul><li><tt>showall(obj)</tt>      : display the object</li><li><tt>showxports(obj)</tt>   : display x-ports and values</li><li><tt>showyports(obj)</tt>   : display y-ports and values</li><li><tt>showstates(obj)</tt>   : display states in s</li><li><tt>showsysparams(obj)</tt>: display system parameters in sysparams</li></ul></div><h2 id="9">i_MSG</h2><pre>function i_msg(obj,gt)</pre><p>WHAT HAPPENS IN I_MSG?</p><div><ul><li>set time <tt>tlast</tt> by calculating from current simulation time <tt>gt</tt> and <tt>elapsed</tt> <tt>tnext</tt> at all objects</li><li>call time advance function of associated model</li><li>set time for next internal event <tt>tnext</tt></li></ul></div><h2 id="12">S_MSG</h2><pre>function obj=s_msg(obj,gt,flag)</pre><p>WHAT HAPPENS IN S_MSG?</p><div><ul><li>call internal transition function of associated model</li><li>set time <tt>tlast</tt> to current time <tt>gt</tt></li><li>call time advance function of associated model</li><li>set time for next internal event <tt>tnext</tt></li></ul></div><p><tt>flag == 1</tt> --&gt; s_msg from ROOT, <tt>flag == 0</tt> --&gt; s_msg from other</p><p>flag here just for adapting debug-message, no different reactions depending on if from root or other components!</p><h2 id="16">X_MSG</h2><pre>function x_msg(obj,gt)</pre><p>WHAT HAPPENS IN X_MSG?</p><div><ul><li>if there is an external and internal event at the same time (current time <tt>gt == tnext</tt>), call confluent function of associated model</li><li>if there is just an external event, call external transition function of associated model</li><li>set time <tt>tlast</tt> to current time <tt>gt</tt></li><li>call time advance function of associated model</li><li>set time for next internal event <tt>tnext</tt></li></ul></div><h2 id="18">Y_MSG</h2><pre>function y_msg(obj,gt)</pre><p>WHAT HAPPENS IN Y_MSG?</p><div><ul><li>call output function of associated model</li><li>propagate output to superordinate coordinator</li></ul></div><p>
+<br><br>
+<hr>
+<br>
+<a href="../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:history.back()"><< Back</a>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Atomic Object with Simulator Functionalities
+%  stored in DEVS_PATH/00-simulator/atomic.p
+%
+% Is provided as p-code.
+
+%%
+% <html>
+% <table border=0><tr><td>Based on modified parallel DEVS
+% algorithms (Zeigler, Schwatinski).</td></tr>
+% <tr><td>All user defined atomic models have to be derived from class
+% atomic.</td></tr>
+% <tr><td>C. Deatcu 2016</td></tr></table>
+% </html>
+%
+%% 
+classdef atomic < devs
+    %% Description
+    % Class definition file for an *associated simulator* for
+    % atomic PDEVS models
+    %
+    % constructor call:  |obj =
+    % atomic(name,x,y,s,elapsed,sysparams)|
+    %
+    %
+    %% Superclass
+    % |devs|
+    %
+    %% Inherited properties
+    %
+    % * |sub_of|    : string, name of the superordinate model REPLACE_WITH_DASH_DASH> for debugging purposes
+    % * |tnext|     : float, time of next event
+    % * |tlast|     : float, time of last event
+    % * |name|      : string, (unique) name of this model REPLACE_WITH_DASH_DASH> for debugging purposes
+    %                 max. 12 characters for "nice" debug-look ;-)
+    % * |x|         : structure, set of inport name/input value (cell array) pairs
+    % * |y|         : structure, set of outport name/output value (cell array) pairs
+    % * |debug_flag|: 0|1|2|3, no messages|messages|steps|visualize x, y, and s (default 0)
+    % * |observe_flag|: 0|1, log states of atomic subcomponents or not (default 0)
+    %
+    %% Properties
+    %
+    % * |s|         : structure, set of states
+    % * |elapsed|   : float, time elapsed since last 
+    %                 transition (only for initialization)
+    % * |sysparams| : structure, set of system parameters, can be set only once at instantiation
+    % * |observed|  : cell array including time stamps and a copy of s (structure of states)
+    %
+    %% Class Methods
+    %
+    % *Simulation Messages*
+    %
+    % * |i_msg(obj,gt)|   : initialization message -
+    %   sets tlast and calls tafun() of model to calculate tnext
+    % * |s_msg(obj,gt,flag)|: star message - called when atomic is
+    %   imminent, calls deltaint() and tafun() of model, sets tlast and
+    %   tnext
+    % * |x_msg(obj,gt)|  : x message - called, if external event
+    %   arrives, calls deltaconffun() or deltaextfun() of model    
+    % * |y_msg(obj,gt)|  : inperpellation y message - calls lambdafun
+    %   of model
+    %
+    % *Set Methods for Flags*
+    %
+    % * |set_debug(obj, debug_flag)|: set flag for debug messages to
+    % 0|1|2|3
+    % * |set_observe(obj, observe_flag)|: set flag for tracking states to 0|1
+    %
+    % *Set Methods for States*
+    %
+    % * |set_states(obj, statenames)|: initializes the structure obj.s. with fields defined in statenames
+    % * |set.s(obj,svalues)|:          safe setting of state values in s
+    %
+    % *Display Methods*
+    %
+    % * |showall(obj)|      : display the object 
+    % * |showxports(obj)|   : display x-ports and values 
+    % * |showyports(obj)|   : display y-ports and values
+    % * |showstates(obj)|   : display states in s
+    % * |showsysparams(obj)|: display system parameters in sysparams
+    
+    properties (SetAccess = {?atomic, ?coupled}, GetAccess = public)      
+        elapsed 
+        observed
+    end
+    properties (SetObservable,SetAccess = {?atomic, ?coupled}, GetAccess = public)% Observable for debug-display
+        s       
+    end
+    properties (SetAccess = immutable, GetAccess = public)
+        sysparams % structure of system parameters as e.g. a service time
+    end
+    properties (Hidden)%for debug-display
+        x_table
+        s_table
+        y_table
+    end
+      
+    methods
+        % constructor
+        function obj = atomic(name,x,y,s,elapsed,sysparams)
+            obj = obj@devs();
+            if nargin < 6
+                warning('constructor of base class <<atomic>> called with less than 6 input parameters');
+            else
+                obj.name = name;
+                set_x_ports(obj,x);
+                set_y_ports(obj,y);
+                set_states(obj,s);
+                obj.sysparams = sysparams;
+                
+                obj.elapsed = elapsed;
+            end
+        end
+        
+        
+        %######################### SIMULATOR FUNCTIONS #########################
+        %% i_MSG  
+        %  function i_msg(obj,gt)
+        %%
+        % WHAT HAPPENS IN I_MSG?
+        %%
+        % * set time |tlast| by calculating from current simulation time |gt| and |elapsed| |tnext| at all objects
+        % * call time advance function of associated model 
+        % * set time for next internal event |tnext|
+        %
+        function i_msg(obj,gt)
+            % gt = current time
+            if obj.observe_flag % track states versus time
+                obj.observed = {gt , obj.s};% initialize state recording
+            end
+            
+            obj.debug_obj.dbprint(gt,100,obj,'');% begin i-msg debug-message
+            
+            obj.tlast = gt - obj.elapsed;
+            
+            obj.debug_obj.dbprintcall(gt,1,obj); % call tafunc. debug-message
+            
+            obj.tnext = obj.tlast + tafun(obj); % execute time advance function and set next event time
+            
+            obj.debug_obj.dbprint(gt,101,obj,'');% end i-msg debug-message
+            
+        end
+        
+         %% S_MSG  
+         %  function obj=s_msg(obj,gt,flag)
+         %%
+         % WHAT HAPPENS IN S_MSG?
+         %%
+         % * call internal transition function of associated model
+         % * set time |tlast| to current time |gt|
+         % * call time advance function of associated model 
+         % * set time for next internal event |tnext|
+         %  
+         %%
+         % |flag == 1| REPLACE_WITH_DASH_DASH> s_msg from ROOT, |flag == 0| REPLACE_WITH_DASH_DASH> s_msg from
+         % other
+         %
+         % flag here just for adapting debug-message, no different reactions depending on if from root or other components!
+         %
+        function s_msg(obj,gt,flag)
+            % gt = current time; flag = 1 from root coordinator, = 0 from upper component
+            % flag here just for adapting debug-message, no different reactions depending on if from root or other components!
+            if obj.debug_flag
+                if flag == 1
+                    % sender = 'ROOT';
+                    obj.debug_obj.dbprint(gt,102,obj,'');% receive s-msg from ROOT debug-message
+                else
+                    % sender = 'upper component';
+                    obj.debug_obj.dbprint(gt,103,obj,'');% receive s-msg from other coordinator debug-message
+                end
+            end
+            
+            if abs(obj.tnext - gt) > obj.epsi
+                disp(['error: bad synchronization at atomic_simulator of <',obj.name,'> in s_msg']);
+                disp (['Values are: tnext = ',num2str(obj.tnext), ' and current time = ',num2str(gt)]);
+                disp(obj);
+            end
+            
+            obj.debug_obj.dbprintcall(gt,2,obj); % call deltaintfunc. debug-message
+            
+            deltaintfun(obj); % execute internal transition function
+            
+            if obj.observe_flag % track states versus time
+                obj.observed = [obj.observed; {gt , obj.s}];
+            end
+            
+            obj.tlast = gt;
+            
+            obj.debug_obj.dbprintcall(gt,1,obj); % call tafunc. debug-message
+            
+            
+            obj.tnext= gt + tafun(obj); % execute time advance function and set next event time
+            
+            obj.debug_obj.dbprint(gt,104,obj,'');% end s-msg debug-message
+        end
+        
+
+         %% X_MSG
+         %  function x_msg(obj,gt)
+         %
+         % WHAT HAPPENS IN X_MSG?
+         %%
+         % * if there is an external and internal event at the same time
+         % (current time |gt == tnext|), call confluent function of
+         % associated model
+         % * if there is just an external event, call external transition
+         % function of associated model
+         % * set time |tlast| to current time |gt|
+         % * call time advance function of associated model 
+         % * set time for next internal event |tnext|
+         %
+        function x_msg(obj,gt)
+            
+            % gt = current time
+            obj.debug_obj.dbprint(gt,105,obj,'');% begin x-msg debug-message
+            
+            if (obj.tlast-gt) > obj.epsi || (gt-obj.tnext) > obj.epsi
+                disp(['error: bad synchronization at atomic_simulator of <',obj.name,'> in x_msg']);
+            end
+            obj.debug_obj.dbprintout(gt,2,obj,[])% print x-ports debug-message
+            if abs(obj.tnext - gt) <= obj.epsi % if there is also an pending internal event
+                
+                obj.debug_obj.dbprintcall(gt,3,obj); % call deltaconffunc. debug-message
+                
+                deltaconffun(obj,gt); % carry out confluent function
+                if obj.observe_flag % track states versus time
+                    obj.observed = [obj.observed; {gt , obj.s}];
+                end
+                
+                
+            else
+                
+               
+                obj.debug_obj.dbprintcall(gt,4,obj); % call deltaextfunc. debug-message
+                
+                
+                deltaextfun(obj,gt); % execute external transition function
+                if obj.observe_flag % track states versus time
+                    obj.observed = [obj.observed; {gt , obj.s}];
+                end
+            end
+            obj.tlast = gt;
+            
+            obj.debug_obj.dbprintcall(gt,1,obj); % call tafunc. debug-message
+            
+            obj.tnext = gt + tafun(obj); % execute time advance function
+            
+            obj.debug_obj.dbprint(gt,106,obj,'');% end x-msg debug-message
+        end
+
+       
+        %% Y_MSG
+        %  function y_msg(obj,gt)
+        %
+        % WHAT HAPPENS IN Y_MSG?
+        %%
+        % * call output function of associated model
+        % * propagate output to superordinate coordinator
+        %
+        function y_msg(obj,gt)
+            % gt = current time
+            obj.debug_obj.dbprint(gt,108,obj,[]);% receive interp. y-msg an begin y-msg debug-message
+            %obj.debug_obj.dbprint(gt,13,obj,[]);% begin y-msg debug-message
+            
+            % if obj.tnext~=gt
+            if abs(obj.tnext - gt) > obj.epsi
+                disp( ['error: bad synchronization at atomic_simulator of <',obj.name,'> in y_msg']);
+                disp (['Values are: tnext = ',num2str(obj.tnext), ' and current time = ',num2str(gt)]);
+            end
+            
+            obj.debug_obj.dbprintcall(gt,5,obj); % call lambdafunc. debug-message
+            
+            lambdafun(obj);
+            
+            
+            obj.debug_obj.dbprint(gt,107,obj,[]);% send y-msg to superordinateREPLACE_WITH_DASH_DASH> propagate output debug-message
+            obj.debug_obj.dbprint(gt,109,obj,[]);% end y-msg debug-message
+            
+        end
+
+       
+        %######################## end SIMULATOR FUNCTIONS #######################
+        
+       
+        %######################### Functions for setting properties #########################
+        % 
+        % * |function set_debug(obj,debug_flag)|: set debug flag to 0|1|2
+        % * |function set_observe(obj,observe_flag)|: set observe flag to 0|1
+        % * |set_states(obj, statenames)|: initialize the structure for the states
+        % * |set.s(obj,svalues)|: safe setting of new values for states
+        % * |function set_sysparams(obj,paramnames)|: initialize the system
+        %    parameters (if any) as empty cells array
+        %
+        function set_debug(obj, debug_flag,descriptor)
+            if ismember(debug_flag,[0, 1, 2, 3])
+                obj.debug_flag = debug_flag; % set the flag for THIS atomic
+                
+                if (debug_flag == 1) || (debug_flag == 2)
+                    if nargin == 3
+                        obj.debug_obj = db_m(descriptor);
+                    else
+                        obj.debug_obj = db_m(1);% std-out, if noc descriptor is specified
+                    end
+                end
+                
+                if debug_flag == 3 % online grafical debug
+                    ggDebug(obj)
+                    if  isstruct(obj.s)
+                        obj.s_update();
+                        addlistener(obj,'s','PreSet',@obj.s_update);
+                    end
+                    if  isstruct(obj.x)
+                        obj.x_update();
+                        addlistener(obj,'x','PreSet',@obj.x_update);
+                    end
+                    if  isstruct(obj.y)
+                        obj.y_update();
+                        addlistener(obj,'y','PreSet',@obj.y_update);
+                    end
+                end
+           
+            else
+                error('debug_flag needs to be 0|1|2|3');
+            end
+        end
+
+        function set_observe(obj, observe_flag)
+            if observe_flag == 0 ||  observe_flag == 1
+                obj.observe_flag=observe_flag; % set the flag for THIS atomic
+            else
+                error('observe_flag needs to be 0|1');
+            end
+        end
+
+
+        
+        function set_states(obj, statenames) % statenames is list of state names = cellstring
+            % create an empty structure
+            if iscellstr(statenames)
+                for j=1:length(statenames)
+                    states.(statenames{j}) = [];
+                end
+                obj.s = states;
+            else
+                error('Invalid value for input argument ''statenames''. Must be a cellstring.');
+            end
+        end
+        
+        function set.s(obj,svalues)
+           if isempty(obj.s)
+               obj.s = svalues;
+           else
+               if numel(fieldnames(obj.s)) == numel(fieldnames(svalues))
+                   obj.s = svalues;
+               else
+                   error('state s doesn''t exist')
+               end
+           end
+        end
+        
+        %####################### end SET FUNCTIONS #######################
+        
+        %######################### DISPLAY HELPER FUNCTIONS #########################
+        % functions for displaying the atomic objects
+        % * |function showxports(obj)|: display x-ports
+        % * |function showyports(obj)|: display y-ports
+        % * |showstates(obj)|: display states
+        %
+        % These functions *can* be called to get some information during
+        % or after simulation.       
+
+        function showxports(obj)
+            disp('Set of inputs x'),disp('REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH'),disp(obj.x);
+            fprintf(1,'\n');
+        end
+        
+        function showyports(obj)
+            disp('Set of outputs y '),disp('REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH'),disp(obj.y);
+            fprintf(1,'\n');
+        end
+        
+        function showstates(obj)
+            disp('Set of states s '),disp('REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH'),disp(obj.s);
+            fprintf(1,'\n');
+        end
+        
+        function showsysparams(obj)
+            disp('System parameters '),disp('REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH'),disp(obj.sysparams);
+            fprintf(1,'\n');
+        end
+        
+        function showall(obj)
+            disp(obj);
+            fprintf(1,'\n');
+            showsysparams(obj);
+            showxports(obj);
+            showyports(obj);
+            showstates(obj);
+        end
+        %####################### end DISPLAY HELPER FUNCTIONS #######################
+        
+        
+        %######################### GRAPHICAL DEBUG FUNCTIONS #########################
+        function  ggDebug(obj)
+            %just pass all arguments        
+            
+            % {
+            g = groot;
+            TF = true;
+            for i = 1:numel(g.Children)    
+                if strcmp(g.Children(i).Name,'DEVS DEBUG')
+                    TF = false;
+                    Grid = g.Children(i).Children;       
+                    break
+                end
+            end
+
+            if TF
+                f = figure(...
+                    'Name',         'DEVS DEBUG',...
+                    'NumberTitle',  'off',...        
+                    'MenuBar',      'none');
+                
+                javaFr = get(handle(f),'JavaFrame');
+                pause(0.1)
+                javaFr.setMaximized(true)
+               
+                Grid = uix.Grid(...
+                    'Parent',           f,...
+                    'Spacing',          2,...
+                    'BackgroundColor',  [0 0 0]);       
+            end            
+            
+            uicontrol(...
+                'Parent',           Grid,...
+                'Style',            'text',...
+                'FontWeight',       'bold',...
+                'BackgroundColor',  [1 0.7 0.7],...
+                'String',           [obj.sub_of, ' : ',obj.name]);
+            
+            HBox = uix.HBox(...
+                'Parent',           Grid,...
+                'Padding',          0);
+            
+            obj.x_table = uitable(...
+                'Parent',           HBox,...
+                'data',             {}, ...        
+                'Units',            'normalized',... 
+                'ColumnWidth',      {40 70},...
+                'RowName',          '',...
+                'BackgroundColor',  [0.7 0.7 0.7],...
+                'ColumnName',       {'Port','Value'});
+            obj.s_table = uitable(...
+                'Parent',           HBox,...
+                'data',             {}, ...        
+                'Units',            'normalized',... 
+                'ColumnWidth',      {40 70},...
+                'RowName',          '',...
+                'BackgroundColor',  [0.7 0.7 0.7],...
+                'ColumnName',       {'State','Value'});
+            obj.y_table = uitable(...
+                'Parent',           HBox,...
+                'data',             {}, ...        
+                'Units',            'normalized',... 
+                'ColumnWidth',      {40 70},...
+                'RowName',          '',... 
+                'BackgroundColor',  [0.7 0.7 0.7],...
+                'ColumnName',       {'Port','Value'});
+            
+            numCh = numel(Grid.Children);
+            T = [20 -1]';
+            if numCh < 8
+                H = T*ones(1,numCh/2);                
+            else
+                H = T*ones(1,4);                                      
+            end 
+            set(Grid,'Heights', H(:)')             
+            %}
+        end
+        
+        
+         
+        function x_update(obj,varargin)
+            set(obj.x_table,'data',statestruct2cell(obj.x));            
+            drawnow();            
+        end
+        
+        function y_update(obj,varargin)            
+            set(obj.y_table,'data',statestruct2cell(obj.y));
+            drawnow();            
+        end
+        
+        function s_update(obj,varargin)            
+            set(obj.s_table,'data',statestruct2cell(obj.s));
+            drawnow(); 
+        end
+                
+    end
+end
+
+
+% {
+function tmpCell = statestruct2cell(s)
+
+    FldNames = fieldnames(s);
+    tmpCell  = cell(numel(FldNames),2);
+    j = 1;
+
+    for i = FldNames'
+        value = s.(i{:});
+        if isempty(value)
+            if ischar(value)
+                tmpVal = '''''';
+            elseif iscell(value)
+                tmpVal = '{ }';
+            else
+                tmpVal = '[ ]';
+            end
+        elseif ischar(value)
+            tmpVal = ['''',value,''''];
+        elseif isnumeric(value)
+            tmpVal = num2str(value);
+        elseif iscell(value)
+            if iscellstr(value)
+                tmpVal = ['{''',value{1},'''}'];
+            elseif isnumeric(value{1}) || islogical(value{1})
+                tmpVal = ['{[',num2str(value{1}),']}'];
+            elseif isstruct(value{1})
+                [zz,ss] = size(value{1});
+                tmpVal = sprintf('{[%dx%d struct]}',zz,ss);
+            else
+                tmpVal = 'never mind 1';
+            end
+        elseif isstruct(value)
+            [zz,ss] = size(value);
+            tmpVal = sprintf('%dx%d struct',zz,ss);
+        elseif islogical(value)
+            if value
+            	tmpVal = 'TRUE';
+            else
+                tmpVal = 'FALSE';
+            end                
+        else
+            tmpVal = sprintf('%dx%d %s',size(value),class(value));
+        end
+
+        tmpCell{j,1} = i{:};
+        tmpCell{j,2} = tmpVal;
+        j = j+1;
+    end
+end
+    
+%}
+ %####################### end GRAPHICAL DEBUG FUNCTIONS #######################       
+  
+
+%%
+%
+%
+%
+% <html>
+% <br><br>
+% <hr>
+% <br>
+% <a href="../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="javascript:history.back()"><< Back</a>
+% </html>
+
+
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,449 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Hybrid Coupled Model with Coordinator Functionalities</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-23"><meta name="DC.source" content="hybridcoupled.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Hybrid Coupled Model with Coordinator Functionalities</h1><!--introduction--><pre>stored in DEVS_PATH/00-simulator/hybridcoupled.p</pre><p>Is provided as p-code.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Description</a></li><li><a href="#4">Superclass</a></li><li><a href="#5">Inherited properties</a></li><li><a href="#6">Properties</a></li><li><a href="#7">Class methods</a></li><li><a href="#9">Z_MSG</a></li><li><a href="#12">Z2_MSG</a></li><li><a href="#15">SE_MSG</a></li><li><a href="#18">Functions for displaying the coupled objects</a></li></ul></div><p>
+<table border=0><tr><td>Based on modified parallel DEVS algorithms (Zeigler,
+Schwatinski) and wrapper extension (Deatcu).</td></tr>
+<tr><td>User defined coupled models can be created as instances of this class directly or can
+be derived from it alternatively.
+For initialization, the modeler has to define input and output portnames.
+Components and coupling information are defined after instantiation via the methods *addcomponents(obj,comps)*, *set_Zid(obj,Zid)* and *set_CZid(obj,CZid)*.</td></tr>
+<tr><td>C. Deatcu 2016</td></tr></table>
+</p><h2 id="3">Description</h2><p>Class definition file for a hybrid coupled DEVS model and it's <b>associated coordinator</b>. Extends the discrete associated coordinator and model.</p><p>constructor call:  <tt>obj = hybridcoupled(name,xportnames,yportnames)</tt>, where xportnames and yportnames are optional</p><h2 id="4">Superclass</h2><p><tt>coupled</tt></p><h2 id="5">Inherited properties</h2><div><ul><li><tt>sub_of</tt>    : string, name of the superordinate model --&gt; for debugging purposes</li><li><tt>tnext</tt>     : float, time of next event</li><li><tt>tlast</tt>     : float, time of last event</li><li><tt>name</tt>      : string, (unique) name of this model --&gt; for debugging purposes                 max. 12 characters for "nice" debug-look ;-)</li><li><tt>x</tt>         : structure, set of inport name/input value pairs</li><li><tt>y</tt>         : structure, set of outport name/output value pairs</li><li><tt>debug_flag</tt>: 0|1|2|3, no messages|messages|steps|visualize x, y, and s of atomic subcomponents (default 0))</li><li><tt>observe_flag</tt>: 0|1, log states of atomic subcomponents or not (default 0)</li><li><tt>Da</tt>        : cell array of strings, names of atomic subcomponents</li><li><tt>Dc</tt>        : cell array of strings, names of coupled subcomponents</li><li><tt>Zid</tt>       : cell array of strings, "i-to-d-matrix" (couplings)</li><li><tt>components</tt>: array of objects, subcomponents</li><li><tt>eventlist</tt> : matrix with information on future events of subcomponents, eventlist = [a,b,c;...]</li></ul></div><pre>eventlist = [a,b,c;...]
+a - time for next transition
+b - {1,2} | 1 if atomic DEVS, 2 if coupled DEVS
+c - index for eventlist (position in Da or Dc)</pre><h2 id="6">Properties</h2><div><ul><li><tt>CZid</tt>: cell array of strings, "i-to-d-matrix" (continuous couplings)</li></ul></div><h2 id="7">Class methods</h2><div><ul><li><tt>i_msg(obj,gt)</tt>   : initialization message -                       sets tlast and tnext at all subcomponents and                       sets matrix <tt>eventlist</tt></li><li><tt>s_msg(obj,gt,flag)</tt>: star message - called when coupled is                         imminent, sets <tt>tlast</tt> and <tt>tnext</tt></li><li><tt>x_msg(obj,gt)</tt>  : x message - called, if external event                      arrives</li><li><tt>y_msg(obj,gt)</tt>  : inperpellation y message</li><li><tt>[obj,aSimObj,gstatvec,gevveclen,outoffs] = z_msg(obj,gt,soff,eoff)</tt>:   z message - vector configuration of continuous part</li><li><tt>obj = z2_msg(obj,gt,ioffs)</tt>: z2 message - second run of vector   configuration, setting indicies</li><li><tt>[obj,event_flag]=se_msg(obj,te,ye,ie)</tt>: state event message -   called when a state event occurred somewhere in entire model</li></ul></div><p><b>Methods to Define Components and Couplings</b></p><div><ul><li><tt>add_c_component(obj, comps)</tt>: add one coupled subcomponent</li><li><tt>add_a_component(obj, comps)</tt>: add one atomic subcomponent</li><li><tt>addcomponents(obj, comps)</tt>: add one or more subcomponents of any kind ;-)</li><li><tt>set_Zid(obj, Zid)</tt>: set Zid (one or more Lines)</li></ul></div><p><b>Set Methods for Flags</b></p><div><ul><li><tt>set_debug(obj,debug_flag)</tt>: set debug flag to 0|1|2|3</li><li><tt>set_observe(obj,observe_flag)</tt>: set observe flag to 0|1 (for tracking discrete states of atomic subcomponents)</li></ul></div><h2 id="9">Z_MSG</h2><pre>function [obj,aSimObj,gstatvec,gevveclen,outoffs]=z_msg(obj,gt,soff,eoff)</pre><p>WHAT HAPPENS IN Z_MSG?</p><div><ul><li>message for vector configuration (for hybrid simulation only)</li><li>collect references to all atomic subcomponents with continuous   states in aSimObj</li><li>collect continuous state variables in gstatvec</li><li>collect number of events per atomic submodel in gevveclen</li><li>collect indices of continuous output variables</li></ul></div><h2 id="12">Z2_MSG</h2><pre>function obj=z2_msg(obj,gt,ioffs)</pre><pre>WHAT HAPPENS IN Z2_MSG?</pre><div><ul><li>message for vector configuration (for hybrid simulation only)</li><li>second run for calculating and setting the index of local input variables</li></ul></div><h2 id="15">SE_MSG</h2><pre>function [obj,event_flag]=se_msg(obj,te,ye,ie)</pre><p>WHAT HAPPENS IN SE_MSG?</p><div><ul><li>state event message</li><li>is called when a state event occurred somewhere in entire model (for hybrid simulation only)</li><li>send all subcomponents an se_message</li><li>if state event occured in THIS model, set event_flag and calculate t_next</li></ul></div><h2 id="18">Functions for displaying the coupled objects</h2><div><ul><li><tt>function showxports(obj)</tt>: display x-ports</li><li><tt>function showyports(obj)</tt>: display y-ports</li><li><tt>function showsubcomponents(obj)</tt>: display atomic and coupled subcomponents</li><li><tt>function showcouplings(obj)</tt>: display coupling matrix</li><li><tt>function showeventlist(obj)</tt>: display eventlist</li><li><tt>function showall(obj)</tt>: display the entire object</li></ul></div><p>These functions <b>can</b> be called to get some information during or after simulation.</p><p>
+<br><br>
+<hr>
+<br>
+<a href="../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:history.back()"><< Back</a>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Hybrid Coupled Model with Coordinator Functionalities
+%  stored in DEVS_PATH/00-simulator/hybridcoupled.p
+%
+% Is provided as p-code.
+
+%%
+% <html>
+% <table border=0><tr><td>Based on modified parallel DEVS algorithms (Zeigler,
+% Schwatinski) and wrapper extension (Deatcu).</td></tr>
+% <tr><td>User defined coupled models can be created as instances of this class directly or can
+% be derived from it alternatively.
+% For initialization, the modeler has to define input and output portnames.
+% Components and coupling information are defined after instantiation via the methods *addcomponents(obj,comps)*, *set_Zid(obj,Zid)* and *set_CZid(obj,CZid)*.</td></tr>
+% <tr><td>C. Deatcu 2016</td></tr></table>
+% </html>
+% 
+%%
+
+
+
+classdef hybridcoupled < coupled
+    %% Description
+    % Class definition file for a hybrid coupled DEVS model and it's *associated
+    % coordinator*. Extends the discrete associated coordinator and model.
+    %
+    % constructor call:  |obj =
+    % hybridcoupled(name,xportnames,yportnames)|, where xportnames and yportnames
+    % are optional
+    %
+    %
+    %% Superclass
+    % |coupled|
+    %
+    %% Inherited properties
+    %
+    % * |sub_of|    : string, name of the superordinate model REPLACE_WITH_DASH_DASH> for debugging purposes
+    % * |tnext|     : float, time of next event
+    % * |tlast|     : float, time of last event
+    % * |name|      : string, (unique) name of this model REPLACE_WITH_DASH_DASH> for debugging purposes
+    %                 max. 12 characters for "nice" debug-look ;-)
+    % * |x|         : structure, set of inport name/input value pairs
+    % * |y|         : structure, set of outport name/output value pairs
+    % * |debug_flag|: 0|1|2|3, no messages|messages|steps|visualize x, y, and s of atomic subcomponents (default 0))
+    % * |observe_flag|: 0|1, log states of atomic subcomponents or not (default 0)
+    % * |Da|        : cell array of strings, names of atomic subcomponents
+    % * |Dc|        : cell array of strings, names of coupled subcomponents
+    % * |Zid|       : cell array of strings, "i-to-d-matrix" (couplings)
+    % * |components|: array of objects, subcomponents
+    % * |eventlist| : matrix with information on future events of subcomponents, eventlist = [a,b,c;...]
+    %
+    %  eventlist = [a,b,c;...]
+    %  a - time for next transition
+    %  b - {1,2} | 1 if atomic DEVS, 2 if coupled DEVS
+    %  c - index for eventlist (position in Da or Dc)
+    %
+    %% Properties
+    %
+    % * |CZid|: cell array of strings, "i-to-d-matrix" (continuous couplings)
+    %
+    %% Class methods
+    % * |i_msg(obj,gt)|   : initialization message -
+    %                       sets tlast and tnext at all subcomponents and 
+    %                       sets matrix |eventlist|
+    % * |s_msg(obj,gt,flag)|: star message - called when coupled is
+    %                         imminent, sets |tlast| and |tnext|
+    % * |x_msg(obj,gt)|  : x message - called, if external event
+    %                      arrives 
+    % * |y_msg(obj,gt)|  : inperpellation y message
+    % * |[obj,aSimObj,gstatvec,gevveclen,outoffs] = z_msg(obj,gt,soff,eoff)|:
+    %   z message - vector configuration of continuous part
+    % * |obj = z2_msg(obj,gt,ioffs)|: z2 message - second run of vector
+    %   configuration, setting indicies
+    % * |[obj,event_flag]=se_msg(obj,te,ye,ie)|: state event message -
+    %   called when a state event occurred somewhere in entire model
+    %    
+    % *Methods to Define Components and Couplings*
+    %
+    % * |add_c_component(obj, comps)|: add one coupled subcomponent 
+    % * |add_a_component(obj, comps)|: add one atomic subcomponent
+    % * |addcomponents(obj, comps)|: add one or more subcomponents of any kind ;-)
+    % * |set_Zid(obj, Zid)|: set Zid (one or more Lines)
+    %
+    % *Set Methods for Flags*
+    %
+    % * |set_debug(obj,debug_flag)|: set debug flag to 0|1|2|3
+    % * |set_observe(obj,observe_flag)|: set observe flag to 0|1 (for tracking discrete states of atomic subcomponents)
+   
+    % * some methods for getting information on the object (see below
+    %   section _Functions for Displaying the Coupled Objects_)
+    %
+    %
+   
+    properties (Access = public) 
+        CZid
+    end
+       
+    methods
+        
+        function obj = hybridcoupled(name,xportnames,yportnames)
+            %obj = hybridcoupled(name,x,y,Da,Dc,Zid,CZid)
+            obj = obj@coupled(name); % create a father object just with a name
+            if nargin < 1
+                error(['mistake at constructor method for class hybridcoupled <<',name,'>>']);
+            else
+                if nargin > 1
+                    x =  xportnames;
+                    set_x_ports(obj, x);
+                end
+                if nargin > 2
+                    y =  yportnames;
+                    set_y_ports(obj, y);
+                end
+            end
+            
+            %obj = obj@coupled(name,xportnames,yportnames);
+           % obj.CZid = CZid;
+        end
+            
+        
+
+   % ######################################################################
+   %% Z_MSG
+   %  function [obj,aSimObj,gstatvec,gevveclen,outoffs]=z_msg(obj,gt,soff,eoff)
+   %%
+   % WHAT HAPPENS IN Z_MSG?
+   %%
+   % * message for vector configuration (for hybrid simulation only)
+   % * collect references to all atomic subcomponents with continuous
+   %   states in aSimObj
+   % * collect continuous state variables in gstatvec
+   % * collect number of events per atomic submodel in gevveclen
+   % * collect indices of continuous output variables
+   %
+   function [obj,aSimObj,gstatvec,gevveclen,outoffs]=z_msg(obj,gt,soff,eoff)
+            % gt: current time
+            % soff: state offset REPLACE_WITH_DASH_DASH> will be set
+            % eoff: event offset REPLACE_WITH_DASH_DASH> will be set
+            % gstatvec: local state vector for building global state vector
+            % gevveclen: number of local state events for calculating
+            %            offset in global state event vector
+            % outoffs: indexes of continuous output variables in global
+            %          state vector
+             
+            
+            obj.debug_obj.dbprint(gt,17,obj,[]); % begin z-msg debug-message
+            %initialize return parameters
+            aSimObj={};
+            gstatvec=[];
+            gevveclen=[];
+            outoffs=[];           
+            % atomic models
+            if ~isempty(obj.Da)% if there are atomic subcomponents
+               for idx=1:length(obj.Da)% for all atomic subcomponents
+                    a_obj = obj.components.(char(obj.Da(idx))); % get the atomic subcomponent
+                    if isa(a_obj,'hybridatomic')
+                        if ~isempty(a_obj.c_states)
+                        obj.debug_obj.dbprint(gt,18,obj,a_obj); % send z-msg to subcomponent debug-message   
+                        [a_obj,svec,eveclen,ooffs] = z_msg(a_obj,gt,soff,eoff); % send the atomic subcomponent a z-message
+                        aSimObj={aSimObj{1:end},a_obj};%add to list of hybrid atomic subcomponents
+                        gstatvec=[gstatvec,svec];% add continuous state variables of this atomic subcomponent to vector
+                    
+                        soff=soff+length(svec);% calculate state offset for setting offset in next subcomponent
+                        eoff=eoff+eveclen;% calculate number of local state events for setting offset in next subcomponent
+                        gevveclen=eoff; % set number of local state events for return
+                        outoffs=[outoffs,ooffs];% collect output offsets for return
+                        end
+                    end
+               end
+            end
+            % coupled models
+            if ~isempty(obj.Dc)% if there are coupled subcomponents
+                for j=1:length(obj.Dc)% for all coupled subcomponents
+                    c_obj = obj.components.(char(obj.Dc(j))); % get the coupled subcomponent
+                    
+                    obj.debug_obj.dbprint(gt,18,obj,c_obj); % send z-msg to subcomponent debug-message  
+                    [c_obj,asubSimObj,svec,eveclen,ooffs]=z_msg(c_obj,gt,soff,eoff);
+                    aSimObj={aSimObj{1:end},asubSimObj{1:end}};%add to list of hybrid atomic subcomponents
+                    gstatvec=[gstatvec,svec];% add continuous state variables of this coupled subcomponent to vector
+                    soff=soff+length(svec);% calculate state offset for setting offset in next subcomponent
+                    eoff=eoff+eveclen;% calculate number of local state events for setting offset in next subcomponent
+                    gevveclen=eoff; % set number of local state events for return
+                    outoffs=[outoffs,ooffs];% collect output offsets for return
+                end
+            end
+            obj.debug_obj.dbprint(gt,19,obj,[]); % end z-msg debug-message  
+            
+   end
+   % ###################################################################### 
+   %% Z2_MSG
+   %  function obj=z2_msg(obj,gt,ioffs)
+   %%
+   %  WHAT HAPPENS IN Z2_MSG?
+   %%
+   % * message for vector configuration (for hybrid simulation only)
+   % * second run for calculating and setting the index of local input variables
+   %
+        function obj = z2_msg(obj,gt,ioffs)
+            % gt: current time
+            % ioffs: input offsets
+            % ioffs: index of first local input variable in global state
+            % vector
+             
+            obj.debug_obj.dbprint(gt,20,obj,[]); % begin z2-msg debug-message
+            % initialize local variables
+            offset = 0;
+            
+            % atomic submodels
+            if ~isempty(obj.Da)% if there are atomic subcomponents
+               for idx=1:length(obj.Da)% for all atomic subcomponents
+                   a_obj = obj.components.(char(obj.Da(idx))); % get the atomic subcomponent  
+                   if isa(a_obj,'hybridatomic')
+                     if ~isempty(a_obj.c_states)
+                     % find in CZid, where this atomic model is influenced
+                     % by others
+                     ioffs=[];
+                    for k=1:size(obj.CZid,1) % for all continuous couplings
+                       
+                        if strcmp(obj.CZid(k,3),a_obj.name) % if the atomic subcomponent is influenced
+%                             if obj.debug_flag
+%                                 disp(['internal coupling for: ',a_obj.name]);
+%                                 disp(['influenced by ',char(obj.CZid(k,1)),' ,port: ',obj.CZid(k,2)]);
+%                             end
+                           
+                             % ioffs berechenbar aus obj.state_offset und obj.num_c_state_events des Einflussnehmers
+                             % erster output = obj.state_offset + 1, zweiter
+                           
+                           
+                           ioffs=[ioffs,obj.components.(char(obj.CZid(k,1))).state_offset + obj.CZid{k,2}];%collect all input offsets of subcomponents
+                           
+                       end
+                           
+                   end
+                   obj.debug_obj.dbprint(gt,21,obj,a_obj); % send z2-msg to subcomponent debug-message 
+                   a_obj = z2_msg(a_obj,gt,ioffs); % send the influenced subcomponent a z2-message to set input offsets
+                     end
+                   end
+               end
+            end
+            % coupled submodels
+            if ~isempty(obj.Dc)% if there are coupled subcomponents
+                for j=1:length(obj.Dc)% for all coupled subcomponents
+                    c_obj = obj.components.(char(obj.Dc(j))); % get the coupled subcomponent
+                    % find in CZid, where this coupled model is influenced
+                    % by others
+                    obj.debug_obj.dbprint(gt,22,obj,c_obj); % send z2-msg to subcomponent debug-message 
+                end
+            end
+            obj.debug_obj.dbprint(gt,22,obj,[]); % end z2-msg debug-message 
+                
+        end     
+   % ######################################################################
+   %% SE_MSG
+   %  function [obj,event_flag]=se_msg(obj,te,ye,ie)
+   %%
+   % WHAT HAPPENS IN SE_MSG?
+   %%
+   % * state event message
+   % * is called when a state event occurred somewhere in entire model (for hybrid simulation only)
+   % * send all subcomponents an se_message
+   % * if state event occured in THIS model, set event_flag and calculate t_next 
+   % 
+   function [obj,event_flag]=se_msg(obj,te,ye,ie)
+             
+            obj.debug_obj.dbprint(te(1),23,obj,[]); % begin se-msg debug-message
+            event_flag = 0; % standard return, if event did not happen HERE
+            if ~isempty(obj.Da)% if there are atomic subcomponents
+               for i=1:length(obj.Da)% for all atomic subcomponents
+                    a_obj = obj.components.(char(obj.Da(i))); % get the atomic subcomponent
+                    if isa(a_obj,'hybridatomic')
+                        obj.debug_obj.dbprint(te(1),24,obj,a_obj); % send se-msg to subcomponent debug-message       
+                        [a_obj,a_event_flag]=se_msg(a_obj,te,ye,ie); % and send an se-message
+                    if a_event_flag == 1 % EVENT occured in an atomic subcomponent
+                        event_flag = 1; % event occured in THIS coupled
+                    end
+                    
+                    end
+               end
+            end
+            if event_flag==1 % if event occurred in THIS model part
+                build_eventlist(obj);% build a new matrix eventlist, set tnext and tlast
+                obj.debug_obj.dbprint(te(1),25,obj,[]); % end se-msg debug-message 
+            end
+   end
+         
+%% Functions for displaying the coupled objects
+%%
+% 
+% * |function showxports(obj)|: display x-ports
+% * |function showyports(obj)|: display y-ports
+% * |function showsubcomponents(obj)|: display atomic and coupled subcomponents
+% * |function showcouplings(obj)|: display coupling matrix
+% * |function showeventlist(obj)|: display eventlist
+% * |function showall(obj)|: display the entire object
+%
+% These functions *can* be called to get some information during
+% or after simulation.
+%
+      function showcontcouplings(obj)
+            disp('Continuous couplings (CZid)')
+            disp('from         var#      to           var#  ');
+            disp('REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH');
+            for i=1:size(obj.CZid,1)
+                disp([obj.CZid{i,1},blanks(13-length(obj.CZid{i,1})),num2str(obj.CZid{i,2}),blanks(6-length(obj.CZid{i,2})),' -> ',obj.CZid{i,3},blanks(13-length(obj.CZid{i,3})),num2str(obj.CZid{i,4})]);
+            end
+            fprintf(1,'\n');
+        end            
+            
+        
+        function showall(obj)
+            disp(obj);
+            showxports(obj);
+            showyports(obj);
+            showsubcomponents(obj);
+            showcontcouplings(obj)
+            showcouplings(obj);
+            showeventlist(obj);
+         end
+        %####################### end DISPLAY HELPER FUNCTIONS #######################
+        
+% Functions for setting properties
+%
+% * |function set_CZid(obj, CZid)|: set continuous couplings in CZid (one or more Lines)%
+
+
+function set_CZid(obj, CZid) % CZid is one or more line of coupling definition
+      % {'fromcomp',continuous variable #,'tocomp',continuous input #;...
+      %   ....}
+      if iscellstr(CZid(:,1)) && iscellstr(CZid(:,3)) && isnumeric(CZid{1,2}) && isnumeric(CZid{1,4}) && size(CZid,2) == 4
+          for j=1:size(CZid,1)
+              obj.CZid = [obj.CZid;CZid(j,:)];% add a new line to object's CZid
+          end
+      else
+          error('Invalid value for input argument ''CZid''. Must be a cellstring with 4 entries for each row.');
+      end
+  end
+        
+        
+    end
+end
+%%
+%
+%
+%
+% <html>
+% <br><br>
+% <hr>
+% <br>
+% <a href="../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="javascript:history.back()"><< Back</a>
+% </html>
+
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>
