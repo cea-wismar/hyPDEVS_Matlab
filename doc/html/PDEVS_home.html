@@ -1,0 +1,285 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PDEVS Toolbox for MATLAB&reg;</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-21"><meta name="DC.source" content="PDEVS_home.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>PDEVS Toolbox for MATLAB&reg;</h1><!--introduction--><p><b>Vers.2.0, September 2016</b></p><p>Christina Deatcu, Birger Freymann, Thorsten Pawletta</p><p>The MatlabDEVS Tbx has been developed by the research group Computational Engineering and Automation at Hochschule Wismar - University of Applied Sciences, Technology, Business and Design, Germany.</p><p>Contact project supervisor Christina Deatcu (<a href="mailto:christina.deatcu@hs-wismar.de">christina.deatcu@hs-wismar.de</a>) for any questions, download authorization and bug reports.</p><p><b>Disclaimer of warranty:</b> <i>The developers assume no liability for accuracy and completeness of the provided information.</i> <i>This refers to damages of substantial or ideational form, that are caused</i> <i>by the usage of the MatlabDEVS Toolbox.</i> <i>By reason that the MatlabDEVS Toolbox is constantly evolving there is no warranty for operability.</i></p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">About</a></li><li><a href="#2">Installation</a></li><li><a href="#3">Quick Start</a></li><li><a href="#4">Getting Help</a></li><li><a href="#5">Class Hierarchy</a></li><li><a href="#6">Simulator</a></li><li><a href="#7">Modeling</a></li><li><a href="#8">Debug modes</a></li><li><a href="#9">Exampels</a></li></ul></div><h2 id="1">About</h2><p>This Toolbox is based on the Discrete EVent System Specification (DEVS) and its associated abstract simulator algorithms introduced by Zeigler in 1976. It implements a PDEVS simulator with ports and also offers an experimental status of hybrid simulation by allowing the definition of continuous variables within atomic models. Usage requires a general understanding of how DEVS algorithms and DEVS modeling works. The MatlabDEVS Tbx comes with some example models for pure discrete and hybrid scenarios and also QSS-based models. DEVS-based approaches are relatively unknown in the engineering community. So we hope to contribute in bringing DEVS to engineers by providing it for Matlab&reg;.</p><p>You can download the toolbox <a href="https://www.mb.hs-wismar.de/cea/DEVS_Tbx/MatlabDEVS_Tbx.html">here</a>.</p><p><b>The MatlabDEVS Toolbox offers the following features:</b></p><div><ul><li>Lean GUI to run some examples,</li><li>Simulator and coordinator classes,</li><li>Root coordinators for simulation of pure discrete or hybrid models,</li><li>Debug modes,</li><li>Templates for user defined atomic and coupled models,</li><li>Modelbase containing reusable atomic and coupled models,</li><li>Examples, including QSS and hybrid models,</li><li>Automatic recording of states in atomic models over time during simulation,</li><li>Methods to check plausibility of models.</li></ul></div><h2 id="2">Installation</h2><p>The install instructions are based upon a former successful Matlab R2016a (or higher) installation. The software is tested with 32/64 bit Windows 7 and Ubuntu 16.04 but should also work with other operating systems.</p><p>Unzip the downloaded file and copy it to your harddisk into a specified folder. Add the folder including any subfolders to the path variable within Matlab (Menue: File -&gt; Set Path -&gt; Add with subfolders).</p><p>Alternatively install as Matlab's App: goto Tab APPS --&gt; install Apps --&gt; choose MatlabDEVS.mlappinstall --&gt; done ;-)</p><h2 id="3">Quick Start</h2><p>After installation run <i>MatlabDEVS</i> from Apps or type <tt>MatlabDEVS</tt> at Matlab prompt. The GUI will offer you access to this documentation and allows you to run some of the examples choosing different time intervals and debug modes.</p><p><img vspace="5" hspace="5" src="gui.png" alt=""> </p><h2 id="4">Getting Help</h2><p>You already found this HTML-documentation --&gt; excellent! So you can browse it in your standard browser.</p><p>MatlabDEVS also integrates into Matlab's help browser. After having added Tbx's folder to the path, you can access the help files via the <i>Supplemental Software</i> tab in help browser and also search for keywords.</p><p><img vspace="5" hspace="5" src="help_browser.png" alt=""> </p><p><img vspace="5" hspace="5" src="help_browser2.png" alt=""> </p><h2 id="5">Class Hierarchy</h2><p>The DEVS simulation environment and model definitions are programmed following the object oriented approach. For atomics, base classes act as associated simulators, derived classes are the models. The modeler has to implement models by deriving new classes from <tt>atomic</tt> and <tt>hybridatomic</tt> respectively. For the coupled, the classes <tt>coupled</tt> and <tt>hybridcoupled</tt> respectively act as coordinators and as models either. Alternatively, it is possible to derive user defined coupled models from class <tt>coupled</tt> and <tt>hybridcoupled</tt>, if you want to save them for reuse.</p><p><img vspace="5" hspace="5" src="class_hierarchy.png" alt=""> </p><h2 id="6">Simulator</h2><p><b>Root Coordinators:</b></p><div><ul><li>root coordinator (pure discrete simulation) --&gt; <a href="simulator/r_c_discrete.html">r_c_discrete</a></li><li>root coordinator (hybrid simulation) --&gt; <a href="simulator/r_c_hybrid.html">r_c_hybrid</a></li></ul></div><p><b>Associated Simulators and Coordinators:</b></p><div><ul><li>coordinator (discrete) AND model --&gt; <a href="simulator/coupled.html">coupled</a></li><li>coordinator (hybrid) AND model --&gt; <a href="simulator/hybridcoupled.html">hybridcoupled</a></li><li>simulator (discrete) --&gt; <a href="simulator/atomic.html">atomic</a></li><li>simulator (hybrid) --&gt; <a href="simulator/hybridatomic.html">hybridatomic</a></li><li>base class --&gt; <a href="simulator/devs.html">devs</a></li></ul></div><p>Use of <i>debug modes</i> and call of root coordinators is explained in initialization scripts of example models.</p><h2 id="7">Modeling</h2><p>Find a list of all models provided in <b>Modelbase</b> <a href="PDEVS_modelbase.html">here</a>.</p><p>All pure discrete atomic models are based on <a href="models/am_discrete_template.html">am_discrete_template.m</a>, all hybrid atomic models are based on <a href="models/am_hybrid_template.html">am_hybrid_template.m</a>. Discrete coupled models are based on <a href="models/cm_discrete_template.html">cm_discrete_template.m</a>.</p><p>To create own atomic models use the templates, define x and y ports, states, sytem parameters, and fill characteristic functions with the desired behaviour.</p><p>Coupled models are defined by creating instances of class <tt>coupled</tt> and <tt>hybrid_coupled</tt> respectively and defining ports, components and couplings within initialization scripts. For definition of reusable coupled models, you can also derive user defined classes from <tt>coupled</tt> or <tt>hybridcoupled</tt>. In this case, the constructor of user defined coupled models needs to instantiate all submodels and define ports and couplings.</p><p>Explore the <a href="PDEVS_examples.html">examples</a> to learn how to define models within initialization scripts. Typically, an experiment consists of an initialization script, a call of the appropriate root coordinator to start a simulation run, and an analysis and/or plot function or script to get simulation results.</p><p>To verify that your model is consistent, you can use the <b>Check</b> method. Pass the outermost model to this method (call: Check(root_model)) and it will be checked recursively if:</p><div><ul><li>all subcomponents are existing,</li><li>all portnames used in coupling matrices are existing,</li><li>component(s) define self loops,</li><li>all existing ports are connected (warning, if unconnected ports are detected).</li></ul></div><h2 id="8">Debug modes</h2><p>The textual debug modes 1 and 2 provide information about simulation messages interchanged between associated simulators and coordinators, calls of the dynamic functions of atomic models and current input, output and state values. Moreover, these modes are well suited for learning PDEVS and for understanding the simulation algorithms. For both modes the following can be defined whether the textual output should be written as: (i) standard output device (the MATLAB prompt); (ii) standard error device or (iii) a text file.</p><p>Debug mode 2 generates exactly the same output as mode 1 but it operates stepwise. A step is, thereby, not defined as an equidistant amount of time but as the distance between two internal events.</p><p>The debug mode 3 (for atomics) provides an online visual representation of ports and states and their current values.</p><p>Each of the three debug modes can be set for the entire model, the root_model or for parts of it, by calling the set_debug(obj,mode,out) method and passing the object reference, the debug mode and an optional parameter out to define output, if the mode is set to 1 or 2, such as follows:</p><p><tt>set_debug(root_model,1,1)</tt> for entire model, mode=1, out= stdout</p><p><tt>set_debug(...coupled_model,2,2)</tt> for coupled and it&#8217;s submodels, mode=2, out= stderr</p><p><tt>set_debug(...atomic_model,3)</tt> for single atomic, mode=3</p><p>Setting of debug mode needs to be done before simulation, usually in an initialization script.</p><h2 id="9">Exampels</h2><p>Get a list of examples <a href="PDEVS_examples.html">here</a>.</p><p><b>Discrete Examples</b></p><div><ul><li>single server</li><li>assembly line</li><li>testcase: two outputs to one input</li><li>bouncing ball qss</li><li>sinus qss</li><li>step qss</li></ul></div><p><b>Hybrid Examples</b></p><div><ul><li>bouncing ball</li><li>orange juice canning</li></ul></div><p>
+<br><br>
+<hr>
+<br>
+<a href="PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:history.back()"><< Back</a>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% PDEVS Toolbox for MATLAB(R)
+%
+% *Vers.2.0, September 2016*
+%
+% Christina Deatcu, Birger Freymann, Thorsten Pawletta
+%
+% The MatlabDEVS Tbx has been developed by the research group Computational
+% Engineering and Automation at Hochschule Wismar - University of Applied
+% Sciences, Technology, Business and Design, Germany.
+% 
+% Contact project supervisor Christina Deatcu
+% (christina.deatcu@hs-wismar.de) for any questions, download authorization and bug
+% reports.
+%
+% *Disclaimer of warranty:* _The developers assume no liability for accuracy and completeness of the
+% provided information._
+% _This refers to damages of substantial or ideational form, that are caused_
+% _by the usage of the MatlabDEVS Toolbox._
+% _By reason that the MatlabDEVS Toolbox is constantly evolving there is no warranty for operability._
+%
+%
+%% About
+% This Toolbox is based on the Discrete EVent System Specification (DEVS) and
+% its associated abstract simulator algorithms introduced by Zeigler in 1976.
+% It implements a PDEVS simulator with ports and also offers an experimental status
+% of hybrid simulation by allowing the definition of continuous variables within atomic models.
+% Usage requires a general understanding of how DEVS algorithms and DEVS modeling works.
+% The MatlabDEVS Tbx comes with some example models for pure discrete and hybrid scenarios
+% and also QSS-based models. DEVS-based approaches are relatively unknown in the engineering community.
+% So we hope to contribute in bringing DEVS to engineers by providing it for
+% Matlab(R).
+% 
+% You can download the toolbox
+% <https://www.mb.hs-wismar.de/cea/DEVS_Tbx/MatlabDEVS_Tbx.html here>.
+%
+% *The MatlabDEVS Toolbox offers the following features:*
+%
+% * Lean GUI to run some examples,
+% * Simulator and coordinator classes,
+% * Root coordinators for simulation of pure discrete or hybrid models,
+% * Debug modes,
+% * Templates for user defined atomic and coupled models,
+% * Modelbase containing reusable atomic and coupled models,
+% * Examples, including QSS and hybrid models,
+% * Automatic recording of states in atomic models over time during simulation,
+% * Methods to check plausibility of models.
+%
+%% Installation
+% The install instructions are based upon a former successful Matlab R2016a
+% (or higher) installation. The software is tested with 32/64 bit Windows 7
+% and Ubuntu 16.04 but should also work with other operating systems.
+%
+% Unzip the downloaded file and copy it to your harddisk into a specified folder.
+% Add the folder including any subfolders to the path variable within Matlab
+% (Menue: File -> Set Path -> Add with subfolders).
+% 
+% Alternatively install as Matlab's App:
+% goto Tab APPS REPLACE_WITH_DASH_DASH> install Apps REPLACE_WITH_DASH_DASH> choose MatlabDEVS.mlappinstall REPLACE_WITH_DASH_DASH>
+% done ;-)
+%
+%
+%% Quick Start
+% After installation run _MatlabDEVS_ from Apps or type |MatlabDEVS| at Matlab prompt.
+% The GUI will offer you access to this documentation and allows you to run
+% some of the examples choosing different time intervals and debug modes. 
+%
+% <<gui.png>>
+%
+%
+%
+%% Getting Help
+% You already found this HTML-documentation REPLACE_WITH_DASH_DASH> excellent!
+% So you can browse it in your standard browser.
+%
+% MatlabDEVS also integrates into Matlab's help browser. After having added
+% Tbx's folder to the path, you can access the help files via the _Supplemental
+% Software_ tab in help browser and also search for keywords.
+%
+% <<help_browser.png>>
+%
+% <<help_browser2.png>>
+%
+%% Class Hierarchy
+% The DEVS simulation environment and model definitions are programmed following
+% the object oriented approach. 
+% For atomics, base classes act as associated simulators, derived classes
+% are the models. The modeler has to implement models by deriving new classes from |atomic| and |hybridatomic| respectively.
+% For the coupled, the classes |coupled| and |hybridcoupled| respectively act as
+% coordinators and as models either. Alternatively, it is possible to
+% derive user defined coupled models from class |coupled| and
+% |hybridcoupled|, if you want to save them for reuse.
+% 
+%
+% <<class_hierarchy.png>>
+% 
+%
+%% Simulator
+% 
+% *Root Coordinators:*
+%
+% * root coordinator (pure discrete simulation) REPLACE_WITH_DASH_DASH> <simulator/r_c_discrete.html r_c_discrete>
+% * root coordinator (hybrid simulation) REPLACE_WITH_DASH_DASH> <simulator/r_c_hybrid.html r_c_hybrid>
+%
+% *Associated Simulators and Coordinators:*
+%
+% * coordinator (discrete) AND model REPLACE_WITH_DASH_DASH> <simulator/coupled.html coupled>
+% * coordinator (hybrid) AND model REPLACE_WITH_DASH_DASH> <simulator/hybridcoupled.html hybridcoupled>
+% * simulator (discrete) REPLACE_WITH_DASH_DASH> <simulator/atomic.html atomic>
+% * simulator (hybrid) REPLACE_WITH_DASH_DASH> <simulator/hybridatomic.html hybridatomic>
+% * base class REPLACE_WITH_DASH_DASH> <simulator/devs.html devs>
+%
+% Use of _debug modes_ and call of root coordinators is explained in initialization
+% scripts of example models. 
+%     
+%
+%% Modeling
+% Find a list of all models provided in *Modelbase* <PDEVS_modelbase.html here>.
+%
+% All pure discrete atomic models are based on <models/am_discrete_template.html am_discrete_template.m>,
+% all hybrid atomic models are based on <models/am_hybrid_template.html am_hybrid_template.m>.
+% Discrete coupled models are based on <models/cm_discrete_template.html cm_discrete_template.m>.
+% 
+%
+% To create own atomic models use the templates, define x and y ports,
+% states, sytem parameters,
+% and fill characteristic functions with the desired behaviour.
+% 
+% Coupled models are defined by creating instances of class |coupled|
+% and |hybrid_coupled| respectively and defining ports, components
+% and couplings within initialization scripts.
+% For definition of reusable coupled models, you can also derive user
+% defined classes from |coupled| or |hybridcoupled|. In this case, the
+% constructor of user defined coupled models needs to instantiate all
+% submodels and define ports and couplings.
+%
+% Explore the <PDEVS_examples.html examples> to learn how to define models within initialization
+% scripts. Typically, an experiment consists of an initialization script,
+% a call of the appropriate root coordinator to start a simulation run, and an analysis
+% and/or plot function or script to get simulation results.
+%
+% To verify that your model is consistent, you can use the *Check* method.
+% Pass the outermost model to this method (call: Check(root_model)) and it
+% will be checked recursively if:
+%
+% * all subcomponents are existing,
+% * all portnames used in coupling matrices are existing,
+% * component(s) define self loops,
+% * all existing ports are connected (warning, if unconnected ports are detected).
+%
+%
+%% Debug modes
+% The textual debug modes 1 and 2 provide
+% information about simulation messages interchanged between associated simulators and coordinators,
+% calls of the dynamic functions of atomic models and current input, output and state values. Moreover,
+% these modes are well suited for learning PDEVS and for understanding the simulation algorithms. For
+% both modes the following can be defined whether the textual output should be written as: (i) standard
+% output device (the MATLAB prompt); (ii) standard error device or (iii) a text file.
+%
+% Debug mode 2
+% generates exactly the same output as mode 1 but it operates stepwise. A step is, thereby, not defined as an
+% equidistant amount of time but as the distance between two internal events.
+%
+% The debug mode 3 (for atomics) provides
+% an online visual representation of ports and states and their current values.
+%
+% Each of the three debug modes can be set for the entire model, the root_model or for parts of it, by
+% calling the set_debug(obj,mode,out) method and passing the object reference, the debug mode and an
+% optional parameter out to define output, if the mode is set to 1 or 2, such as follows:
+%
+% |set_debug(root_model,1,1)| for entire model, mode=1, out= stdout
+%
+% |set_debug(...coupled_model,2,2)| for coupled and it’s submodels, mode=2, out= stderr
+%
+% |set_debug(...atomic_model,3)| for single atomic, mode=3
+%
+% Setting of debug mode needs to be done before simulation, usually in an
+% initialization script.
+%
+%
+%% Exampels
+% Get a list of examples <PDEVS_examples.html here>.
+%
+% *Discrete Examples*
+%
+% * single server
+% * assembly line
+% * testcase: two outputs to one input
+% * bouncing ball qss
+% * sinus qss
+% * step qss
+%
+% *Hybrid Examples*
+%
+% * bouncing ball
+% * orange juice canning
+%
+%
+%
+% <html>
+% <br><br>
+% <hr>
+% <br>
+% <a href="PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="javascript:history.back()"><< Back</a>
+% </html>
+##### SOURCE END #####
+--></body></html>

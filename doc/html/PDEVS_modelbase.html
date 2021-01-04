@@ -1,0 +1,153 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>MatlabDEVS Tbx Modelbase</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-08-02"><meta name="DC.source" content="PDEVS_modelbase.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>MatlabDEVS Tbx Modelbase</h1><!--introduction--><p>Folder: <tt>DEVSPATH/01-modelbase</tt></p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Discrete Atomic Models</a></li><li><a href="#2">Hybrid Atomic Models</a></li><li><a href="#3">Discrete Coupled Models</a></li><li><a href="#4">Hybrid Coupled Models</a></li></ul></div><h2>Discrete Atomic Models<a name="1"></a></h2><p>All discrete atomic models are derived from class <tt>atomic</tt> which implements the associated discrete atomic simulator.</p><div><ul><li><a href="models/discrete/am_ball_starter.html">am_ball_starter</a></li><li><a href="models/discrete/am_dock_undock_server.html">am_dock_undock_server</a></li><li><a href="models/discrete/am_double_input.html">am_double_input</a></li><li><a href="models/discrete/am_fifo_queue.html">am_fifo_queue</a></li><li><a href="models/discrete/am_g_2types.html">am_g_2types</a></li><li><a href="models/discrete/am_generator.html">am_generator</a></li><li><a href="models/discrete/am_hit_counter.html">am_hit_counter</a></li><li><a href="models/discrete/am_proc_block.html">am_proc_block</a></li><li><a href="models/discrete/am_t.html">am_t</a></li><li><a href="models/discrete/am_transducer.html">am_transducer</a></li><li><a href="models/discrete/am_truck_generator.html">am_truck_generator</a></li><li><a href="models/discrete/am_truck_transducer.html">am_truck_transducer</a></li><li><a href="models/discrete/event_detect.html">event_detect</a></li><li><a href="models/discrete/qss1.html">qss1</a></li><li><a href="models/discrete/sine_qss1.html">sine_qss1</a></li><li><a href="models/discrete/static1.html">static1</a></li><li><a href="models/discrete/step_qss1.html">step_qss1</a></li><li><a href="models/discrete/timed_sine_qss1.html">timed_sine_qss1</a></li></ul></div><p>Template to design own atomic models is <a href="models/am_discrete_template.html">am_discrete_template</a>.</p><h2>Hybrid Atomic Models<a name="2"></a></h2><p>All hybrid atomic models are derived from class <tt>hybrid_atomic</tt> which implements the associated hybrid atomic simulator.</p><div><ul><li><a href="models/hybrid/am_bball.html">am_bbball</a></li><li><a href="models/hybrid/am_canner.html">am_canner</a></li><li><a href="models/hybrid/am_truck.html">am_truck</a></li><li><a href="models/hybrid/am_tank.html">am_tank</a></li></ul></div><p>Template to design own atomic models is <a href="models/am_hybrid_template.html">am_hybrid_template</a>.</p><h2>Discrete Coupled Models<a name="3"></a></h2><p>All discrete coupled models are derived from class <tt>coupled</tt> which implements the associated discrete coupled coordinator.</p><div><ul><li><a href="models/discrete/cm_c13.html">cm_c13</a></li><li><a href="models/discrete/cm_c2.html">cm_c2</a></li><li><a href="models/discrete/cm_g.html">cm_g</a></li></ul></div><p>Note: <i>Instead of deriving new classes from coupled, it is also possible to create models directly by invoking instances of class <tt>coupled</tt> and defining ports, components and couplings within initialization scripts.</i></p><h2>Hybrid Coupled Models<a name="4"></a></h2><p>All hybrid coupled models are derived from class <tt>hybrid_coupled</tt> which implements both, the associated hybrid coupled coordinator and model. Ports, components, discrete and continuous couplings are defined in initialization scripts.</p><p>
+<br><br>
+<hr>
+<br>
+<a href="PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:history.back()"><< Back</a>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% MatlabDEVS Tbx Modelbase
+% Folder: |DEVSPATH/01-modelbase|
+%
+%% Discrete Atomic Models
+%
+% All discrete atomic models are derived from class |atomic| which
+% implements the associated discrete atomic simulator.
+%
+% * <models/discrete/am_ball_starter.html am_ball_starter>
+% * <models/discrete/am_dock_undock_server.html am_dock_undock_server>
+% * <models/discrete/am_double_input.html am_double_input>
+% * <models/discrete/am_fifo_queue.html am_fifo_queue>
+% * <models/discrete/am_g_2types.html am_g_2types>
+% * <models/discrete/am_generator.html am_generator>
+% * <models/discrete/am_hit_counter.html am_hit_counter>
+% * <models/discrete/am_proc_block.html am_proc_block>
+% * <models/discrete/am_t.html am_t>
+% * <models/discrete/am_transducer.html am_transducer>
+% * <models/discrete/am_truck_generator.html am_truck_generator>
+% * <models/discrete/am_truck_transducer.html am_truck_transducer>
+% * <models/discrete/event_detect.html event_detect>
+% * <models/discrete/qss1.html qss1>
+% * <models/discrete/sine_qss1.html sine_qss1>
+% * <models/discrete/static1.html static1>
+% * <models/discrete/step_qss1.html step_qss1>
+% * <models/discrete/timed_sine_qss1.html timed_sine_qss1>
+%
+% Template to design own atomic models is <models/am_discrete_template.html am_discrete_template>.
+%
+%
+%% Hybrid Atomic Models
+%
+% All hybrid atomic models are derived from class |hybrid_atomic| which
+% implements the associated hybrid atomic simulator.
+%
+% * <models/hybrid/am_bball.html am_bbball>
+% * <models/hybrid/am_canner.html am_canner>
+% * <models/hybrid/am_truck.html am_truck>
+% * <models/hybrid/am_tank.html am_tank>
+%
+% Template to design own atomic models is <models/am_hybrid_template.html am_hybrid_template>.
+%
+%
+%% Discrete Coupled Models
+%
+% All discrete coupled models are derived from class |coupled| which implements
+% the associated discrete coupled coordinator.
+% 
+% * <models/discrete/cm_c13.html cm_c13>
+% * <models/discrete/cm_c2.html cm_c2>
+% * <models/discrete/cm_g.html cm_g>
+%
+% Note: 
+% _Instead of deriving new classes from coupled, it is also possible to create models directly by invoking instances of class |coupled|
+% and defining ports, components and couplings within initialization scripts._
+%
+%% Hybrid Coupled Models
+%
+% All hybrid coupled models are derived from class |hybrid_coupled| which
+% implements both, the associated hybrid coupled coordinator and model. Ports,
+% components,
+% discrete and continuous couplings are defined in initialization scripts. 
+%
+%
+% <html>
+% <br><br>
+% <hr>
+% <br>
+% <a href="PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="javascript:history.back()"><< Back</a>
+% </html>
+%
+%
+##### SOURCE END #####
+--></body></html>
