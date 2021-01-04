@@ -1,0 +1,335 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>HYBRID ATOMIC PDEVS am_truck</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-23"><meta name="DC.source" content="am_truck.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>HYBRID ATOMIC PDEVS am_truck</h1><!--introduction--><pre>stored in DEVS_PATH/01-atomic-modelbase/orange_juice_canning/am_truck.m</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Description</a></li><li><a href="#3">Superclass</a></li><li><a href="#4">Class Methods</a></li><li><a href="#5">Inherited Properties</a></li><li><a href="#6">Ports</a></li><li><a href="#7">States</a></li><li><a href="#8">Hybrid Characteristics</a></li><li><a href="#9">System Parameters in sysparams</a></li><li><a href="#10">More</a></li></ul></div><h2 id="2">Description</h2><p>Class definition file for an <b>hybrid atomic PDEVS model</b> that implements a truck, that arrives filled with 2000 gallons and is then unloaded.</p><p><img vspace="5" hspace="5" src="img/am_truck.png" alt=""> </p><p>constructor call: <tt>obj = am_truck(name,inistates,c_inistates,elapsed)</tt></p><h2 id="3">Superclass</h2><p><tt>hybridatomic</tt> (superclass acts as associated hybrid simulator)</p><h2 id="4">Class Methods</h2><p><b>characteristic functions:</b></p><div><ul><li><tt>ta = tafun(obj)</tt>              : time advance function -   calculates time until next internal event by   evaluating the states in <tt>s</tt></li><li><tt>deltaconffun(obj,gt)</tt>   : confluent function -   calculates from states <tt>s</tt>, inputs <tt>x</tt> and elapsed time <tt>elapsed</tt>   the new states <tt>s'</tt>, if there is an internal and an external event   at the same time</li><li><tt>deltaextfun(obj,gt)</tt>    : external transition function -   calculates from states <tt>s</tt>, inputs <tt>x</tt> and elapsed time   <tt>elapsed</tt> the new states <tt>s'</tt></li><li><tt>deltaintfun(obj)</tt>       : internal transition function -   calculates from states <tt>s</tt> the new states <tt>s'</tt></li><li><tt>lambdafun(obj)</tt>         : output function   calculates from states <tt>s</tt> the ouptputs <tt>y</tt></li><li><tt>dq = f(obj,gt,x,y)</tt>: rate of change function - returns derivations</li><li><tt>ret = cse(obj,gt,y)</tt>: state event condition function - checks, if   there are events</li><li><tt>deltastatefun(obj,gt,y,event_number)</tt>: state event transition function -   describes the reaction on state events</li><li><tt>cy = lambda_c(obj,gt,y)</tt>: continuous output function</li></ul></div><p><b>display functions:</b></p><div><ul><li><tt>showall(obj)</tt>      : display the object</li><li><tt>showxports(obj)</tt>   : display x-ports and values</li><li><tt>showyports(obj)</tt>   : display y-ports and values</li><li><tt>showstates(obj)</tt>   : display states in s</li><li><tt>showsysparams(obj)</tt>: display system parameters in sysparams</li><li><tt>showcontstates(obj)</tt>: display continuous states</li></ul></div><h2 id="5">Inherited Properties</h2><p><b>inherited from atomic:</b></p><div><ul><li><tt>name</tt>      : string, (unique) name of this model --&gt; for debugging purposes                 max. 12 characters for "nice" debug-look ;-)</li><li><tt>x</tt>         : structure, set of inport name/input value pairs</li><li><tt>y</tt>         : structure, set of outport name/output value pairs</li><li><tt>s</tt>         : structure, set of states</li><li><tt>sysparams</tt> : structure, set of system parameters, can be set only once at instantiation</li><li><tt>elapsed</tt>   : float, time elapsed since last                 transition (only for initialization)</li></ul></div><div><ul><li><tt>debug_flag</tt>: 0|1|2|3, no messages|messages|steps|visualize x, y, and s (default 0)</li><li><tt>observe_flag</tt>: 0|1, log states of atomic subcomponents or not (default 0)</li><li><tt>observed</tt>  : cell array including time stamps and a copy of s (structure of states)</li></ul></div><p><b>inherited from hybridatomic:</b></p><div><ul><li><tt>c_states</tt>: vector of continuous variables</li><li><tt>output_length</tt>   : length of output-vector returned by lamda_c</li><li><tt>mealy</tt>: 1 or 0, model is of mealy or moore type</li></ul></div><h2 id="6">Ports</h2><p>has two inputs <tt>x</tt>: in1 and in2, 1 for incoming trucks, one for suspend-unloading and restart-unloading signals</p><p>has two outputs <tt>y</tt>: out1 and out2,  1 to send empty truck to undocking server, 1 to send truck-arrival signal to canner</p><p>Note: <i>continuous couplings need no ports. They are managed via</i> <i>continuous variables' indices.</i></p><h2 id="7">States</h2><p><b>discrete in s:</b></p><p><tt>s.sigma</tt>: for time advance</p><p><tt>s.active</tt>: 0 or 1, 1 if unloading is allowed, 0 if not</p><p><tt>s.arrival</tt>: marks, if last external event was truck arrival</p><p><b>continuous:</b></p><p><tt>c_states = [TruckLevel; TruckRate]</tt></p><h2 id="8">Hybrid Characteristics</h2><p><tt>mealy = 0</tt>: model is of Moore type</p><p><tt>output_length = 1</tt>: the function lamda_c returns 1 element (current TruckRate)</p><p><b>state events:</b></p><div><ul><li>if truck is empty</li></ul></div><h2 id="9">System Parameters in sysparams</h2><p>none</p><h2 id="10">More</h2><p><tt>global SIMUSTOP</tt> : can be used to stop allover simulation</p><p>
+<br><br>
+<hr>
+<br>
+<a href="../../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:history.back()"><< Back</a>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% HYBRID ATOMIC PDEVS am_truck
+%  stored in DEVS_PATH/01-atomic-modelbase/orange_juice_canning/am_truck.m
+
+%%
+classdef am_truck < hybridatomic
+    %% Description
+    % Class definition file for an *hybrid atomic PDEVS model*
+    % that implements a truck, that arrives filled with 2000 gallons and is then unloaded.
+    %
+    % <<img/am_truck.png>>
+    %
+    % constructor call: |obj =
+    % am_truck(name,inistates,c_inistates,elapsed)|
+    %
+    %% Superclass
+    % |hybridatomic|
+    % (superclass acts as associated hybrid simulator)
+    %
+    %% Class Methods
+    %
+    % *characteristic functions:*
+    % 
+    % * |ta = tafun(obj)|              : time advance function -
+    %   calculates time until next internal event by
+    %   evaluating the states in |s|
+    % * |deltaconffun(obj,gt)|   : confluent function -
+    %   calculates from states |s|, inputs |x| and elapsed time |elapsed|
+    %   the new states |s'|, if there is an internal and an external event
+    %   at the same time
+    % * |deltaextfun(obj,gt)|    : external transition function - 
+    %   calculates from states |s|, inputs |x| and elapsed time
+    %   |elapsed| the new states |s'|
+    % * |deltaintfun(obj)|       : internal transition function -
+    %   calculates from states |s| the new states |s'|
+    % * |lambdafun(obj)|         : output function
+    %   calculates from states |s| the ouptputs |y|  
+    % * |dq = f(obj,gt,x,y)|: rate of change function - returns derivations
+    % * |ret = cse(obj,gt,y)|: state event condition function - checks, if
+    %   there are events
+    % * |deltastatefun(obj,gt,y,event_number)|: state event transition function -
+    %   describes the reaction on state events
+    % * |cy = lambda_c(obj,gt,y)|: continuous output function
+    %
+    % *display functions:*
+    %
+    % * |showall(obj)|      : display the object 
+    % * |showxports(obj)|   : display x-ports and values 
+    % * |showyports(obj)|   : display y-ports and values
+    % * |showstates(obj)|   : display states in s
+    % * |showsysparams(obj)|: display system parameters in sysparams
+    % * |showcontstates(obj)|: display continuous states
+    %
+    %% Inherited Properties
+    %
+    % *inherited from atomic:*
+    %
+    % * |name|      : string, (unique) name of this model REPLACE_WITH_DASH_DASH> for debugging purposes
+    %                 max. 12 characters for "nice" debug-look ;-)
+    % * |x|         : structure, set of inport name/input value pairs
+    % * |y|         : structure, set of outport name/output value pairs
+    % * |s|         : structure, set of states
+    % * |sysparams| : structure, set of system parameters, can be set only once at instantiation
+    % * |elapsed|   : float, time elapsed since last 
+    %                 transition (only for initialization)
+    %
+    % * |debug_flag|: 0|1|2|3, no messages|messages|steps|visualize x, y, and s (default 0)
+    % * |observe_flag|: 0|1, log states of atomic subcomponents or not (default 0)
+    % * |observed|  : cell array including time stamps and a copy of s (structure of states)
+    %
+    % *inherited from hybridatomic:*
+    %
+    % * |c_states|: vector of continuous variables
+    % * |output_length|   : length of output-vector returned by lamda_c
+    % * |mealy|: 1 or 0, model is of mealy or moore type 
+    %
+    %% Ports
+    %
+    % has two inputs |x|: in1 and in2, 1 for incoming trucks, one for suspend-unloading and restart-unloading signals
+    %
+    % has two outputs |y|: out1 and out2,  1 to send empty truck to undocking server, 1 to send truck-arrival signal to canner
+    %
+    % Note: _continuous couplings need no ports. They are managed via_
+    % _continuous variables' indices._
+    %
+    %% States
+    %
+    % *discrete in s:*
+    %
+    % |s.sigma|: for time advance
+    %
+    % |s.active|: 0 or 1, 1 if unloading is allowed, 0 if not
+    %
+    % |s.arrival|: marks, if last external event was truck arrival
+    %
+    %
+    % *continuous:*
+    %
+    % |c_states = [TruckLevel; TruckRate]|
+    %
+    %% Hybrid Characteristics
+    %
+    % |mealy = 0|: model is of Moore type
+    %
+    % |output_length = 1|: the function lamda_c returns 1 element (current
+    % TruckRate)
+    %
+    % *state events:*
+    %
+    % * if truck is empty
+    %
+    %% System Parameters in sysparams
+    % none
+    %
+    %% More
+    %
+    % |global SIMUSTOP| : can be used to stop allover simulation
+    %
+    %
+    %
+    % <html>
+    % <br><br>
+    % <hr>
+    % <br>
+    % <a href="../../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    % <a href="../../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    % <a href="../../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    % <a href="javascript:history.back()"><< Back</a>
+    % </html>
+    
+    properties (Access = public)
+           
+    end
+    
+    methods
+       
+        function obj = am_truck(name,inistates,c_inistates,elapsed)
+            if nargin == 4
+                x = {'in1','in2'};     % 1 for incoming trucks, one for suspend-unloading and restart-unloading signals
+                y = {'out1','out2'};     % 1 to send empty truck do undocking server, 1 to send truck-arrival signal to canner
+                s = {'sigma','active','arrival'};  
+                sysparams = {};
+                c_states = [0; 0];               % level and rate
+                mealy = 0; % model is of Moore type  
+            else
+                error('mistake at constructor method for class am_truck');
+            end
+            obj = obj@hybridatomic(name,x,y,s,c_states,mealy,elapsed,sysparams);% incarnate the associated hybrid simulator
+            % set hybrid parameters
+            obj.output_length = 1; % the function lamda_c returns 1 element
+            % initialize the continuous states
+            obj.c_states = c_inistates;
+            % initialize the discrete states
+            obj.s.sigma = inistates.sigma;
+            obj.s.active = inistates.active;  
+            obj.s.arrival = inistates.arrival; 
+            disp('hybrid truck constructed');
+        end
+
+        
+        function ta = tafun(obj)
+           ta = obj.s.sigma; 
+        end
+        
+        
+        function deltaconffun(obj,gt) 
+            deltaextfun(obj,gt)
+            deltaintfun(obj);
+            % execute first external function
+        end
+
+        
+        function deltaextfun(obj,gt) %#ok<*INUSD>
+            if ~isempty(obj.x.in1) && (obj.s.active == 1)% a truck arrives and unloading allowed
+                 obj.c_states(1) = 2000; % TruckLevel always 2000 at arrival
+                 obj.c_states(2) = -200;  % TruckRate set to 200 gallons/per minute outflow
+                 obj.s.arrival = 1; % to later differ between outputs in lambdafun
+                 obj.s.sigma = 0; % to send arrival-signal to canner
+             end
+             if ~isempty(obj.x.in1) && (obj.s.active == 0)% a truck arrives and unloading not allowed
+                 obj.c_states(1) = 2000; % TruckLevel always 2000 at arrival
+                 obj.c_states(2) = 0;  % TruckRate set to zero
+             end
+             if ~isempty(obj.x.in2) 
+                if obj.x.in2{1} == 0; % signal from tank to stop unloading
+                obj.s.active = 0; % unloading not allowed
+                obj.c_states(2) =  0;% TruckRate set to zero
+                end
+             end
+             
+             if ~isempty(obj.x.in2)
+                 if obj.x.in2{1} == 1; % signal from tank to restart unloading
+                     obj.s.active = 1; % unloading allowed
+                     obj.c_states(2) =  -200;% TruckRate set to 200 outflow
+                 end
+             end                 
+        end
+        
+      
+        function deltaintfun(obj)
+               obj.s.sigma = inf;
+        end
+               
+       
+        function lambdafun(obj) 
+          if obj.s.arrival
+                obj.y.out1 = {};
+                obj.y.out2 = {1}; % send arrival-signal to canner
+                obj.s.arrival = 0;% reset marker
+          else
+                obj.y.out1 = {1}; % send the truck to undock server
+                obj.y.out2 = {}; % no signal for canner
+          end
+            
+        end 
+        
+       
+        function dq = f(obj,gt,x,y) %#ok<*INUSL>
+            %gt current time, x continuous input vector
+            %y local continuous state vector            
+           dq(1) = y(2); % derivation this is the current TruckRate
+           dq(2) = 0; % TruckRate does not change here
+           
+           obj.c_states(1)= y(1);
+           obj.c_states(2)= y(2);% put back the state values
+         end
+        
+      
+        function ret = cse(obj,gt,y)
+                   %continuous state value height
+                   % |  integration termination event (1/0)
+                   % |  |    zero-crossing direction from + to - (1 if event
+                   % |  |    fct increases, -1 if decreases)
+                   % |  |    |
+             ret = [y(1),1,-1]; % event, if TruckLevel reaches zero
+            end
+     
+        function deltastatefun(obj,gt,y,event_number)
+        % state event occurred in THIS atomic 
+                obj.c_states(1) = 0; % set TruckLevel to zero
+                obj.c_states(2) = 0; % set TruckRate to zero
+                obj.s.sigma = 0; % trigger an internal event to send truck to undock-server                               
+        end
+      
+        function cy = lambda_c(obj,gt,y)
+               cy = y(2); % output of current TruckRate
+            end 
+        
+        
+               
+    end
+        
+        
+ end
+
+
+##### SOURCE END #####
+--></body></html>

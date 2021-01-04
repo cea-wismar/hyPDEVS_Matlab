@@ -1,0 +1,227 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>COUPLED PDEVS cm_c2</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-23"><meta name="DC.source" content="cm_c2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>COUPLED PDEVS cm_c2</h1><!--introduction--><pre>stored in DEVS_PATH/01-modelbase/cm_c2.m</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Description</a></li><li><a href="#3">Superclass</a></li><li><a href="#4">Inherited Properties</a></li><li><a href="#5">Class Methods</a></li><li><a href="#6">Ports</a></li><li><a href="#7">Subcomponents</a></li><li><a href="#8">Coupling Matrix (Zid)</a></li></ul></div><h2 id="2">Description</h2><p>Class definition file of a <b>coupled PDEVS model</b> with two atomic subcomponents of type <i>am_proc_block</i> .</p><p><img vspace="5" hspace="5" src="img/cm_c2.png" alt=""> </p><p>Processing blocks assemble workpieces from two queues and are connected in parallel. FIFO queues for workpieces are included in this subcomponents.</p><p>constructor call: <tt>obj = cm_c2(name,service_time1, service_time2)</tt></p><h2 id="3">Superclass</h2><p><tt>coupled</tt> (superclass acts as associated coordinator)</p><h2 id="4">Inherited Properties</h2><p><b>inherited from coupled (to be set here):</b></p><div><ul><li><tt>name</tt>      : string, (unique) name of this model --&gt; for debugging purposes                 max. 12 characters for "nice" debug-look ;-)</li><li><tt>x</tt>         : cell array of strings, names of inports</li><li><tt>y</tt>         : cell array of strings, names of outports</li><li><tt>components</tt>: array of objects, subcomponents</li><li><tt>Zid</tt>       : cell array of strings, "i-to-d-matrix" (couplings)</li></ul></div><p><b>inherited from coupled (are set automatically):</b></p><div><ul><li><tt>Da</tt>        : cell array of strings, names of atomic subcomponents</li><li><tt>Dc</tt>        : cell array of strings, names of coupled subcomponents</li></ul></div><h2 id="5">Class Methods</h2><p><b>Methods to Define Components and Couplings</b></p><div><ul><li><tt>add_c_component(obj, comps)</tt>: add one coupled subcomponent</li><li><tt>add_a_component(obj, comps)</tt>: add one atomic subcomponent</li><li><tt>addcomponents(obj, comps)</tt>: add one or more subcomponents of any kind ;-)</li><li><tt>set_x_ports(obj, ports)</tt>: define input ports</li><li><tt>set_y_ports(obj, ports)</tt>: define output ports</li><li><tt>set_Zid(obj, Zid)</tt>: set Zid (one or more Lines)</li></ul></div><p><b>Set Methods for Flags</b></p><div><ul><li><tt>set_debug(obj,debug_flag)</tt>: set debug flag to 0|1|2|3</li><li><tt>set_observe(obj,observe_flag)</tt>: set observe flag to 0|1 (for tracking states of atomic subcomponents)</li></ul></div><p><b>display functions:</b></p><div><ul><li><tt>showall(obj)</tt>              : display the object</li><li><tt>showxports(obj)</tt>           : display x-ports and values</li><li><tt>showyports(obj)</tt>           : display y-ports and values</li><li><tt>showssubcomponents(obj)</tt>   : display names of all subcomponents in Da and Dc</li><li><tt>showycouplings(obj)</tt>       : display all couplings in Zid</li><li><tt>showeventlist(obj)</tt>        : display, when subcomponents become imminent</li></ul></div><h2 id="6">Ports</h2><p>has for inputs <tt>x</tt>: p1,p2,p3,p4 for incoming workpieces</p><p>has two outputs <tt>y</tt>: out1, out2 to emit assembled parts</p><h2 id="7">Subcomponents</h2><p>has two atomic subcomponents of type <i>am_proc_block</i>, named 'am_m1' and 'am_m2'</p><h2 id="8">Coupling Matrix (Zid)</h2><p>structure is as follows: FROM <i>component_name</i> <i>port_name</i> TO <i>component_name</i> <i>port_name</i> (EICs and IOCs require the component name 'parent')</p><pre class="language-matlab">Zid = {<span class="string">'parent'</span>,<span class="string">'p1'</span>,<span class="string">'am_m1'</span>,<span class="string">'in1'</span>;<span class="keyword">...</span>
+       <span class="string">'parent'</span>,<span class="string">'p2'</span>,<span class="string">'am_m1'</span>,<span class="string">'in2'</span>;<span class="keyword">...</span>
+       <span class="string">'parent'</span>,<span class="string">'p3'</span>,<span class="string">'am_m2'</span>,<span class="string">'in1'</span>;<span class="keyword">...</span>
+       <span class="string">'parent'</span>,<span class="string">'p4'</span>,<span class="string">'am_m2'</span>,<span class="string">'in2'</span>;<span class="keyword">...</span>
+       <span class="string">'am_m1'</span>,<span class="string">'out1'</span>,<span class="string">'parent'</span>,<span class="string">'out1'</span>;<span class="keyword">...</span>
+       <span class="string">'am_m2'</span>,<span class="string">'out1'</span>,<span class="string">'parent'</span>,<span class="string">'out2'</span>};
+</pre><p>After incarnation you can use the method Check(obj) to verify, that all component names and all port names are existent.</p><p>
+<br><br>
+<hr>
+<br>
+<a href="../../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:history.back()"><< Back</a>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% COUPLED PDEVS cm_c2
+%  stored in DEVS_PATH/01-modelbase/cm_c2.m
+
+%%
+classdef cm_c2 < coupled
+    %% Description
+    % Class definition file of a *coupled PDEVS model*
+    % with two atomic subcomponents of type _am_proc_block_ .
+    %
+    % <<img/cm_c2.png>>
+    %
+    % Processing blocks assemble workpieces from two queues and are
+    % connected in parallel.
+    % FIFO queues for workpieces are included in this subcomponents.
+    %
+    % constructor call: |obj =
+    % cm_c2(name,service_time1, service_time2)|
+    %
+    %% Superclass
+    % |coupled|
+    % (superclass acts as associated coordinator)
+    %
+   %% Inherited Properties 
+    %
+    % *inherited from coupled (to be set here):*
+    %
+    % * |name|      : string, (unique) name of this model REPLACE_WITH_DASH_DASH> for debugging purposes
+    %                 max. 12 characters for "nice" debug-look ;-)
+    % * |x|         : cell array of strings, names of inports
+    % * |y|         : cell array of strings, names of outports
+    % * |components|: array of objects, subcomponents
+    % * |Zid|       : cell array of strings, "i-to-d-matrix" (couplings)
+    %
+    % *inherited from coupled (are set automatically):*
+    %
+    % * |Da|        : cell array of strings, names of atomic subcomponents
+    % * |Dc|        : cell array of strings, names of coupled subcomponents
+    %
+    %
+    %% Class Methods
+    % *Methods to Define Components and Couplings*
+    %
+    % * |add_c_component(obj, comps)|: add one coupled subcomponent 
+    % * |add_a_component(obj, comps)|: add one atomic subcomponent
+    % * |addcomponents(obj, comps)|: add one or more subcomponents of any kind ;-)
+    % * |set_x_ports(obj, ports)|: define input ports
+    % * |set_y_ports(obj, ports)|: define output ports
+    % * |set_Zid(obj, Zid)|: set Zid (one or more Lines)
+    %
+    % *Set Methods for Flags*
+    %
+    % * |set_debug(obj,debug_flag)|: set debug flag to 0|1|2|3
+    % * |set_observe(obj,observe_flag)|: set observe flag to 0|1 (for tracking states of atomic subcomponents)
+    %
+    % *display functions:*
+    %
+    % * |showall(obj)|              : display the object 
+    % * |showxports(obj)|           : display x-ports and values 
+    % * |showyports(obj)|           : display y-ports and values
+    % * |showssubcomponents(obj)|   : display names of all subcomponents in Da and Dc
+    % * |showycouplings(obj)|       : display all couplings in Zid
+    % * |showeventlist(obj)|        : display, when subcomponents become imminent
+    %
+    %    
+    %% Ports
+    % has for inputs |x|: p1,p2,p3,p4 for incoming workpieces
+    %
+    % has two outputs |y|: out1, out2 to emit assembled parts
+    %
+    %% Subcomponents
+    % has two atomic subcomponents of type _am_proc_block_, named 'am_m1'
+    % and 'am_m2'
+    %
+    %% Coupling Matrix (Zid)
+    % structure is as follows: FROM _component_name_ _port_name_ TO _component_name_ _port_name_
+    % (EICs and IOCs require the component name 'parent')
+    %
+%   Zid = {'parent','p1','am_m1','in1';...
+%          'parent','p2','am_m1','in2';...
+%          'parent','p3','am_m2','in1';...
+%          'parent','p4','am_m2','in2';...
+%          'am_m1','out1','parent','out1';...
+%          'am_m2','out1','parent','out2'};
+%
+    % After incarnation you can use the method Check(obj) to verify, that
+    % all component names and all port names are existent.
+    %
+    % <html>
+    % <br><br>
+    % <hr>
+    % <br>
+    % <a href="../../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    % <a href="../../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    % <a href="../../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    % <a href="javascript:history.back()"><< Back</a>
+    % </html>
+    
+    methods
+        function obj = cm_c2(name,varargin) 
+            obj=obj@coupled(name); % incarnate the associated coordinator 
+            % varargin may be used to pass some sysparams or inistates to atomic
+            % subcomponents
+            elapsed=0; % MUSS DAS VON AUSSEN?
+            
+            % incarnate atomic subcomponents; must be defined as classes in
+            % the modelbase            
+            inistates = struct('phase','passive','sigma',inf,'q1',0,'q2',0);
+            service_time = varargin{1};
+            am_m1=am_proc_block('am_m1',inistates,elapsed,service_time);
+            
+            inistates = struct('phase','passive','sigma',inf,'q1',0,'q2',0);
+            service_time = varargin{2};
+            am_m2=am_proc_block('am_m2',inistates,elapsed,service_time);
+           
+            % add all atomic and coupled subcomponents to the model
+            % Attention: subcomponents' names need to be unique
+            addcomponents(obj,{am_m1,am_m2});
+            
+            
+            % add inports, portnames must be unique on this level
+            set_x_ports(obj, {'p1','p2','p3','p4'});
+            
+            % add portnames must be unique on this level
+            set_y_ports(obj, {'out1','out2'});
+            
+            
+            % define the couplings in matrix Zid
+            % lines in Zid are 
+            % EICs and IOCs require the portname 'parent'
+            Zid = {'parent','p1','am_m1','in1';...
+                'parent','p2','am_m1','in2';...
+                'parent','p3','am_m2','in1';...
+                'parent','p4','am_m2','in2';...
+                'am_m1','out1','parent','out1';...
+                'am_m2','out1','parent','out2'};
+            set_Zid(obj, Zid);
+        end       
+    end
+end
+
+
+##### SOURCE END #####
+--></body></html>

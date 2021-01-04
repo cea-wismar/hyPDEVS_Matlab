@@ -1,0 +1,447 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Template for a hybrid ATOMIC PDEVS</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-23"><meta name="DC.source" content="am_hybrid_template.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Template for a hybrid ATOMIC PDEVS</h1><!--introduction--><pre>stored in DEVS_PATH/01-modelbase/am_hybrid_template.m</pre><p>Adopt this template to create your own hybrid atomic models.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Description</a></li><li><a href="#2">Superclass</a></li><li><a href="#3">Superclass</a></li><li><a href="#4">Class Methods</a></li><li><a href="#5">Inherited Properties</a></li><li><a href="#6">Ports</a></li><li><a href="#7">States</a></li><li><a href="#8">Hybrid Characteristics</a></li><li><a href="#9">System Parameters in sysparams</a></li><li><a href="#10">More</a></li><li><a href="#11">Class File</a></li></ul></div><h2 id="1">Description</h2><p>Template for a class definition file of a *hybrid atomic PDEVS model</p><p>constructor call: <tt>obj = am_hybrid_template(name,inistates,c_inistates,elapsed,~)</tt></p><p>To define your own model adopt this file and fill transition functions with your model specific behaviour. First step is to alter the class name in <tt>classdef</tt> section, the constructor call and save the class definition to a new m-file with the name of your user-defined class.</p><h2 id="2">Superclass</h2><p><tt>hybridatomic</tt> (superclass acts as associated hybrid simulator)</p><h2 id="3">Superclass</h2><p><tt>hybridatomic</tt> (superclass acts as associated hybrid simulator)</p><h2 id="4">Class Methods</h2><p><b>characteristic functions:</b></p><div><ul><li><tt>ta = tafun(obj)</tt>              : time advance function -   calculates time until next internal event by   evaluating the states in <tt>s</tt></li><li><tt>deltaconffun(obj,gt)</tt>   : confluent function -   calculates from states <tt>s</tt>, inputs <tt>x</tt> and elapsed time <tt>elapsed</tt>   the new states <tt>s'</tt>, if there is an internal and an external event   at the same time</li><li><tt>deltaextfun(obj,gt)</tt>    : external transition function -   calculates from states <tt>s</tt>, inputs <tt>x</tt> and elapsed time   <tt>elapsed</tt> the new states <tt>s'</tt></li><li><tt>deltaintfun(obj)</tt>       : internal transition function -   calculates from states <tt>s</tt> the new states <tt>s'</tt></li><li><tt>lambdafun(obj)</tt>         : output function   calculates from states <tt>s</tt> the ouptputs <tt>y</tt></li><li><tt>dq = f(obj,gt,x,y)</tt>: rate of change function - returns derivations</li><li><tt>ret = cse(obj,gt,y)</tt>: state event condition function - checks, if   there are events</li><li><tt>deltastatefun(obj,gt,y,event_number)</tt>: state event transition function -   describes the reaction on state events</li><li><tt>cy = lambda_c(obj,gt,y)</tt>: continuous output function</li></ul></div><p><b>display functions:</b></p><div><ul><li><tt>showall(obj)</tt>      : display the object</li><li><tt>showxports(obj)</tt>   : display x-ports and values</li><li><tt>showyports(obj)</tt>   : display y-ports and values</li><li><tt>showstates(obj)</tt>   : display states in s</li><li><tt>showsysparams(obj)</tt>: display system parameters in sysparams</li><li><tt>showcontstates(obj)</tt>: display continuous states</li></ul></div><h2 id="5">Inherited Properties</h2><p><b>inherited from atomic:</b></p><div><ul><li><tt>name</tt>      : string, (unique) name of this model --&gt; for debugging purposes                 max. 12 characters for "nice" debug-look ;-)</li><li><tt>x</tt>         : structure, set of inport name/input value pairs</li><li><tt>y</tt>         : structure, set of outport name/output value pairs</li><li><tt>s</tt>         : structure, set of states</li><li><tt>sysparams</tt> : structure, set of system parameters, can be set only once at instantiation</li><li><tt>elapsed</tt>   : float, time elapsed since last                 transition (only for initialization)</li></ul></div><div><ul><li><tt>debug_flag</tt>: 0|1|2|3, no messages|messages|steps|visualize x, y, and s (default 0)</li><li><tt>observe_flag</tt>: 0|1, log states of atomic subcomponents or not (default 0)</li><li><tt>observed</tt>  : cell array including time stamps and a copy of s (structure of states)</li></ul></div><p><b>inherited from hybridatomic:</b></p><div><ul><li><tt>c_states</tt> : vector of continuous variables</li><li><tt>output_length</tt> : length of output-vector returned by lamda_c</li><li><tt>mealy</tt> : 0 or 1, model is of mealy or moore type</li></ul></div><h2 id="6">Ports</h2><p>has one input <tt>x</tt> : in1 (example!)</p><p>has two outputs <tt>y</tt> : out1 and out2  (example!)</p><h2 id="7">States</h2><p><b>discrete in s:</b></p><p><tt>s.sigma</tt> : for time advance</p><p><tt>s.state_2</tt> : (example state!)</p><p><tt>s.state_3</tt> :  (example state!)</p><p><b>continuous:</b></p><p><tt>c_states = [c_state1; c_state2]</tt> (examples!)</p><h2 id="8">Hybrid Characteristics</h2><p><tt>mealy = 1</tt>: model is of Mealy type (example!)</p><p><tt>output_length = 1</tt>: the function lamda_c returns 1 element (example!)</p><p><b>state events:</b></p><div><ul><li>if c_state1 reaches 200 (example!)</li></ul></div><h2 id="9">System Parameters in sysparams</h2><p>none</p><h2 id="10">More</h2><p><tt>global SIMUSTOP</tt> : can be used to stop allover simulation e.g. when a predefined number of jobs has finished</p><h2 id="11">Class File</h2><pre class="codeinput"><span class="keyword">classdef</span> am_hybrid_template &lt; hybridatomic
+   <span class="keyword">methods</span>
+
+        <span class="keyword">function</span> obj = am_hybrid_template(name,inistates,c_inistates,elapsed)
+            <span class="keyword">if</span> nargin == 4
+                x = {<span class="string">'in1'</span>}; <span class="comment">% one discrete inport (example!)</span>
+                y = {<span class="string">'out1'</span>,<span class="string">'out2'</span>}; <span class="comment">% two discrete outports (example!)</span>
+                s = {<span class="string">'sigma'</span>,<span class="string">'state_2'</span>,<span class="string">'state_3'</span>}; <span class="comment">% three states (example!)</span>
+                sysparams = {};
+                c_states = [0; 0];               <span class="comment">% two continuous state variables (example!)</span>
+                mealy = 1; <span class="comment">% model is of Mealy type (example!)</span>
+            <span class="keyword">else</span>
+                error([<span class="string">'mistake at constructor method for class '</span>,mfilename]);
+            <span class="keyword">end</span>
+            obj = obj@hybridatomic(name,x,y,s,c_states,mealy,elapsed,sysparams);<span class="comment">% incarnate the associated hybrid simulator</span>
+            <span class="comment">% set hybrid parameters</span>
+
+            obj.output_length = 1; <span class="comment">% the function lamda_c returns 1 element (example!)</span>
+            <span class="comment">% initialize the continuous states</span>
+            obj.c_states = c_inistates;
+            <span class="comment">% initialize the discrete states (example!)</span>
+            obj.s.sigma = inistates.sigma;
+            obj.s.state_2 = inistates.state_2;
+            obj.s.state_3 = inistates.state_3;
+            disp(<span class="string">'hybrid template constructed'</span>);
+        <span class="keyword">end</span>
+
+
+        <span class="keyword">function</span> ta = tafun(obj)
+            <span class="comment">%**** USER CODE GOES HERE ****</span>
+            ta = obj.s.sigma;  <span class="comment">% example code: set ta by some calculations</span>
+            <span class="comment">%**** END USER CODE       ****</span>
+        <span class="keyword">end</span>
+
+
+        <span class="keyword">function</span> deltaconffun(obj,gt)
+            <span class="comment">%**** USER CODE GOES HERE ****</span>
+            <span class="comment">% example code: if internal and external events occur simultaneously,</span>
+            <span class="comment">% first call external transition then internal transition</span>
+            deltaextfun(obj,gt);
+            deltaintfun(obj);
+            <span class="comment">%**** END USER CODE</span>
+        <span class="keyword">end</span>
+
+
+        <span class="keyword">function</span> deltaextfun(obj,gt) <span class="comment">%#ok&lt;INUSD&gt;</span>
+            <span class="comment">% gt ist current time, specify reactions on external events</span>
+            <span class="comment">%**** USER CODE GOES HERE ****</span>
+
+            <span class="comment">%**** END USER CODE</span>
+        <span class="keyword">end</span>
+
+
+        <span class="keyword">function</span> deltaintfun(obj) <span class="comment">%#ok&lt;*MANU&gt;</span>
+            <span class="comment">% specify reactions on internal events</span>
+            <span class="comment">%**** USER CODE GOES HERE ****</span>
+
+            <span class="comment">%**** END USER CODE</span>
+        <span class="keyword">end</span>
+
+
+        <span class="keyword">function</span> lambdafun(obj)
+            <span class="comment">% specify outputs</span>
+            <span class="comment">%**** USER CODE GOES HERE ****</span>
+            <span class="comment">% example code: set the output ports</span>
+            obj.y.p1 = {1};
+            obj.y.p2 = {<span class="string">'message'</span>};
+            <span class="comment">%**** END USER CODE</span>
+        <span class="keyword">end</span>
+
+
+        <span class="keyword">function</span> dq = f(obj,gt,x,y) <span class="comment">%#ok&lt;*INUSL&gt;</span>
+            <span class="comment">% calculate derivations here</span>
+            <span class="comment">%**** USER CODE GOES HERE ****</span>
+            <span class="comment">% example code</span>
+            dq(1) = -x(1)-x(2);<span class="comment">% derivation is the the sum of inflow and outflow (example!)</span>
+            dq(2) = 0;<span class="comment">% this rate does not change (example!)</span>
+            obj.c_states(1)= y(1);
+            obj.c_states(2)= y(2);<span class="comment">% put back the state values (necessary!)</span>
+            <span class="comment">%**** END USER CODE</span>
+        <span class="keyword">end</span>
+
+
+        <span class="keyword">function</span> ret = cse(obj,gt,y)
+            <span class="comment">% define events here</span>
+            <span class="comment">%**** USER CODE GOES HERE ****</span>
+            <span class="comment">%continuous state value height</span>
+            <span class="comment">% |  integration termination event (1/0)</span>
+            <span class="comment">% |  |    zero-crossing direction from + to - (1 if event</span>
+            <span class="comment">% |  |    fct increases, -1 if decreases)</span>
+            <span class="comment">% |  |    |</span>
+            ret = [200-y(1),1,-1]; <span class="comment">% event #1 (example!)</span>
+            <span class="comment">%**** END USER CODE</span>
+        <span class="keyword">end</span>
+
+        <span class="keyword">function</span> obj = deltastatefun(obj,gt,y,event_number)
+            <span class="comment">% specify reactions on state events</span>
+            <span class="comment">%**** USER CODE GOES HERE ****</span>
+            <span class="keyword">if</span> event_number == 1 <span class="comment">% if event #1 took place (example!)</span>
+                obj.s.sigma = 0;  <span class="comment">% do something, example: trigger internal event and output before</span>
+            <span class="keyword">end</span>
+            <span class="comment">%**** END USER CODE</span>
+        <span class="keyword">end</span>
+
+
+        <span class="keyword">function</span> cy = lambda_c(obj,gt,y,x) <span class="comment">%#ok&lt;INUSD&gt;</span>
+            <span class="comment">% calculate continuous output here</span>
+            <span class="comment">%**** USER CODE GOES HERE ****</span>
+            cy = inf; <span class="comment">% just DUMMY output! (example!)</span>
+            <span class="comment">%**** END USER CODE</span>
+        <span class="keyword">end</span>
+
+    <span class="keyword">end</span>
+
+<span class="keyword">end</span>
+</pre><p>
+<br><br>
+<hr>
+<br>
+<a href="../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:history.back()"><< Back</a>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Template for a hybrid ATOMIC PDEVS
+%  stored in DEVS_PATH/01-modelbase/am_hybrid_template.m
+%
+% Adopt this template to create your own hybrid atomic models.
+
+    %% Description
+    % Template for a class definition file of a *hybrid atomic PDEVS model
+    %
+    % constructor call: |obj =
+    % am_hybrid_template(name,inistates,c_inistates,elapsed,~)|
+    %
+    % To define your own model adopt this file and fill transition
+    % functions with your model specific behaviour.
+    % First step is to alter the class name in |classdef| section, the
+    % constructor call and save the class definition to a new m-file with the name of your
+    % user-defined class.
+    %
+    %% Superclass
+    % |hybridatomic|
+    % (superclass acts as associated hybrid simulator)
+    %
+    %% Superclass
+    % |hybridatomic|
+    % (superclass acts as associated hybrid simulator)
+    %
+    %% Class Methods
+    %
+    % *characteristic functions:*
+    % 
+    % * |ta = tafun(obj)|              : time advance function -
+    %   calculates time until next internal event by
+    %   evaluating the states in |s|
+    % * |deltaconffun(obj,gt)|   : confluent function -
+    %   calculates from states |s|, inputs |x| and elapsed time |elapsed|
+    %   the new states |s'|, if there is an internal and an external event
+    %   at the same time
+    % * |deltaextfun(obj,gt)|    : external transition function - 
+    %   calculates from states |s|, inputs |x| and elapsed time
+    %   |elapsed| the new states |s'|
+    % * |deltaintfun(obj)|       : internal transition function -
+    %   calculates from states |s| the new states |s'|
+    % * |lambdafun(obj)|         : output function
+    %   calculates from states |s| the ouptputs |y|  
+    % * |dq = f(obj,gt,x,y)|: rate of change function - returns derivations
+    % * |ret = cse(obj,gt,y)|: state event condition function - checks, if
+    %   there are events
+    % * |deltastatefun(obj,gt,y,event_number)|: state event transition function -
+    %   describes the reaction on state events
+    % * |cy = lambda_c(obj,gt,y)|: continuous output function
+    %
+    % *display functions:*
+    %
+    % * |showall(obj)|      : display the object 
+    % * |showxports(obj)|   : display x-ports and values 
+    % * |showyports(obj)|   : display y-ports and values
+    % * |showstates(obj)|   : display states in s
+    % * |showsysparams(obj)|: display system parameters in sysparams
+    % * |showcontstates(obj)|: display continuous states
+    %
+    %% Inherited Properties
+    %
+    % *inherited from atomic:*
+    %
+    % * |name|      : string, (unique) name of this model REPLACE_WITH_DASH_DASH> for debugging purposes
+    %                 max. 12 characters for "nice" debug-look ;-)
+    % * |x|         : structure, set of inport name/input value pairs
+    % * |y|         : structure, set of outport name/output value pairs
+    % * |s|         : structure, set of states
+    % * |sysparams| : structure, set of system parameters, can be set only once at instantiation
+    % * |elapsed|   : float, time elapsed since last 
+    %                 transition (only for initialization)
+    %
+    % * |debug_flag|: 0|1|2|3, no messages|messages|steps|visualize x, y, and s (default 0)
+    % * |observe_flag|: 0|1, log states of atomic subcomponents or not (default 0)
+    % * |observed|  : cell array including time stamps and a copy of s (structure of states)
+    %
+    % *inherited from hybridatomic:*
+    %
+    % * |c_states| : vector of continuous variables
+    % * |output_length| : length of output-vector returned by lamda_c
+    % * |mealy| : 0 or 1, model is of mealy or moore type 
+    %
+    %% Ports
+    % has one input |x| : in1 (example!)
+    %
+    % has two outputs |y| : out1 and out2  (example!)
+    %
+    %% States
+    %
+    % *discrete in s:*
+    %
+    % |s.sigma| : for time advance
+    %
+    % |s.state_2| : (example state!)
+    %
+    % |s.state_3| :  (example state!)
+    %
+    %
+    % *continuous:*
+    %
+    % |c_states = [c_state1; c_state2]| (examples!)
+    %
+    %% Hybrid Characteristics
+    %
+    % |mealy = 1|: model is of Mealy type (example!)
+    %
+    % |output_length = 1|: the function lamda_c returns 1 element (example!)
+    %
+    % *state events:*
+    %
+    % * if c_state1 reaches 200 (example!)
+    %
+    %
+    %
+     %% System Parameters in sysparams
+    % none
+    %
+    %% More
+    %
+    % |global SIMUSTOP| : can be used to stop allover simulation e.g. when a
+    % predefined number of jobs has finished
+    %
+    
+   %% Class File
+classdef am_hybrid_template < hybridatomic 
+   methods
+        
+        function obj = am_hybrid_template(name,inistates,c_inistates,elapsed)
+            if nargin == 4
+                x = {'in1'}; % one discrete inport (example!)
+                y = {'out1','out2'}; % two discrete outports (example!)
+                s = {'sigma','state_2','state_3'}; % three states (example!)
+                sysparams = {};
+                c_states = [0; 0];               % two continuous state variables (example!)
+                mealy = 1; % model is of Mealy type (example!)
+            else
+                error(['mistake at constructor method for class ',mfilename]);
+            end
+            obj = obj@hybridatomic(name,x,y,s,c_states,mealy,elapsed,sysparams);% incarnate the associated hybrid simulator
+            % set hybrid parameters
+            
+            obj.output_length = 1; % the function lamda_c returns 1 element (example!)
+            % initialize the continuous states
+            obj.c_states = c_inistates;
+            % initialize the discrete states (example!)
+            obj.s.sigma = inistates.sigma;
+            obj.s.state_2 = inistates.state_2;
+            obj.s.state_3 = inistates.state_3;
+            disp('hybrid template constructed');
+        end
+        
+        
+        function ta = tafun(obj)
+            %**** USER CODE GOES HERE ****
+            ta = obj.s.sigma;  % example code: set ta by some calculations
+            %**** END USER CODE       ****
+        end
+        
+        
+        function deltaconffun(obj,gt)
+            %**** USER CODE GOES HERE ****
+            % example code: if internal and external events occur simultaneously,
+            % first call external transition then internal transition
+            deltaextfun(obj,gt);
+            deltaintfun(obj);
+            %**** END USER CODE
+        end
+        
+        
+        function deltaextfun(obj,gt) %#ok<INUSD>
+            % gt ist current time, specify reactions on external events
+            %**** USER CODE GOES HERE ****
+            
+            %**** END USER CODE
+        end
+        
+        
+        function deltaintfun(obj) %#ok<*MANU>
+            % specify reactions on internal events
+            %**** USER CODE GOES HERE ****
+            
+            %**** END USER CODE
+        end
+        
+        
+        function lambdafun(obj)
+            % specify outputs
+            %**** USER CODE GOES HERE ****
+            % example code: set the output ports
+            obj.y.p1 = {1};
+            obj.y.p2 = {'message'};
+            %**** END USER CODE
+        end
+        
+        
+        function dq = f(obj,gt,x,y) %#ok<*INUSL>
+            % calculate derivations here
+            %**** USER CODE GOES HERE ****
+            % example code
+            dq(1) = -x(1)-x(2);% derivation is the the sum of inflow and outflow (example!)
+            dq(2) = 0;% this rate does not change (example!)
+            obj.c_states(1)= y(1);
+            obj.c_states(2)= y(2);% put back the state values (necessary!)
+            %**** END USER CODE
+        end
+        
+        
+        function ret = cse(obj,gt,y)
+            % define events here
+            %**** USER CODE GOES HERE ****
+            %continuous state value height
+            % |  integration termination event (1/0)
+            % |  |    zero-crossing direction from + to - (1 if event
+            % |  |    fct increases, -1 if decreases)
+            % |  |    |
+            ret = [200-y(1),1,-1]; % event #1 (example!)
+            %**** END USER CODE
+        end
+        
+        function obj = deltastatefun(obj,gt,y,event_number)
+            % specify reactions on state events
+            %**** USER CODE GOES HERE ****
+            if event_number == 1 % if event #1 took place (example!)
+                obj.s.sigma = 0;  % do something, example: trigger internal event and output before
+            end
+            %**** END USER CODE
+        end
+        
+        
+        function cy = lambda_c(obj,gt,y,x) %#ok<INUSD>
+            % calculate continuous output here
+            %**** USER CODE GOES HERE ****
+            cy = inf; % just DUMMY output! (example!)
+            %**** END USER CODE
+        end       
+        
+    end    
+        
+end
+%%
+% <html>
+% <br><br>
+% <hr>
+% <br>
+% <a href="../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% <a href="javascript:history.back()"><< Back</a>
+% </html>
+%
+
+
+##### SOURCE END #####
+--></body></html>

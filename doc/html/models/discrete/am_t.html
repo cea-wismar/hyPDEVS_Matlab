@@ -1,0 +1,219 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>ATOMIC PDEVS am_t</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-23"><meta name="DC.source" content="am_t.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>ATOMIC PDEVS am_t</h1><!--introduction--><pre>stored in DEVS_PATH/01-atomic-modelbase/2-outputs-to-1-input/am_t.m</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Description</a></li><li><a href="#3">Superclass</a></li><li><a href="#4">Class Methods</a></li><li><a href="#5">Inherited Properties</a></li><li><a href="#6">Ports</a></li><li><a href="#7">States in s</a></li><li><a href="#8">System Parameters in sysparams</a></li><li><a href="#9">More</a></li></ul></div><h2 id="2">Description</h2><p>Class definition file for an <b>atomic PDEVS model</b> for counting assembled parts</p><p><img vspace="5" hspace="5" src="img/am_t.png" alt=""> </p><p>constructor call: <tt>obj = am_t(name,inistates,elapsed)</tt></p><h2 id="3">Superclass</h2><p><tt>atomic</tt> (superclass acts as associated simulator)</p><h2 id="4">Class Methods</h2><p><b>characteristic functions:</b></p><div><ul><li><tt>ta = tafun(obj)</tt>              : time advance function -   calculates time until next internal event by   evaluating the states in <tt>s</tt></li><li><tt>deltaconffun(obj,gt)</tt>   : confluent function -   calculates from states <tt>s</tt>, inputs <tt>x</tt> and elapsed time <tt>elapsed</tt>   the new states <tt>s'</tt>, if there is an internal and an external event   at the same time</li><li><tt>deltaextfun(obj,gt)</tt>    : external transition function -   calculates from states <tt>s</tt>, inputs <tt>x</tt> and elapsed time   <tt>elapsed</tt> the new states <tt>s'</tt></li><li><tt>deltaintfun(obj)</tt>       : internal transition function -   calculates from states <tt>s</tt> the new states <tt>s'</tt></li><li><tt>lambdafun(obj)</tt>         : output function   calculates from states <tt>s</tt> the ouptputs <tt>y</tt></li></ul></div><p><b>display functions:</b></p><div><ul><li><tt>showall(obj)</tt>      : display the object</li><li><tt>showxports(obj)</tt>   : display x-ports and values</li><li><tt>showyports(obj)</tt>   : display y-ports and values</li><li><tt>showstates(obj)</tt>   : display states in s</li><li><tt>showsysparams(obj)</tt>: display system parameters in sysparams</li></ul></div><h2 id="5">Inherited Properties</h2><p><b>inherited from atomic:</b></p><div><ul><li><tt>name</tt>      : string, (unique) name of this model --&gt; for debugging purposes                 max. 12 characters for "nice" debug-look ;-)</li><li><tt>x</tt>         : structure, set of inport name/input value pairs</li><li><tt>y</tt>         : structure, set of outport name/output value pairs</li><li><tt>s</tt>         : structure, set of states</li><li><tt>sysparams</tt> : structure, set of system parameters, can be set only once at instantiation</li><li><tt>elapsed</tt>   : float, time elapsed since last                 transition (only for initialization)</li></ul></div><div><ul><li><tt>debug_flag</tt>: 0|1|2|3, no messages|messages|steps|visualize x, y, and s (default 0)</li><li><tt>observe_flag</tt>: 0|1, log states of atomic subcomponents or not (default 0)</li><li><tt>observed</tt>  : cell array including time stamps and a copy of s (structure of states)</li></ul></div><h2 id="6">Ports</h2><p>has one input <tt>x</tt> : p1 to get parts</p><p>has no output <tt>y</tt> (is pure sink)</p><h2 id="7">States in s</h2><p><tt>s.q</tt> : counter for incoming workpieces</p><h2 id="8">System Parameters in sysparams</h2><p>none</p><h2 id="9">More</h2><p><tt>global SIMUSTOP</tt> : can be used to stop allover simulation e.g. when a predefined number of jobs has finished</p><p>
+<br><br>
+<hr>
+<br>
+<a href="../../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:history.back()"><< Back</a>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% ATOMIC PDEVS am_t
+%  stored in DEVS_PATH/01-atomic-modelbase/2-outputs-to-1-input/am_t.m
+
+%%
+classdef am_t < atomic
+    %% Description
+    % Class definition file for an *atomic PDEVS model*
+    % for counting assembled parts
+    %
+    % <<img/am_t.png>>
+    %
+    % constructor call: |obj = am_t(name,inistates,elapsed)|
+    %
+    %% Superclass
+    % |atomic|
+    % (superclass acts as associated simulator)
+    %
+    %% Class Methods
+    %
+    % *characteristic functions:*
+    %
+    % * |ta = tafun(obj)|              : time advance function -
+    %   calculates time until next internal event by
+    %   evaluating the states in |s|
+    % * |deltaconffun(obj,gt)|   : confluent function -
+    %   calculates from states |s|, inputs |x| and elapsed time |elapsed|
+    %   the new states |s'|, if there is an internal and an external event
+    %   at the same time
+    % * |deltaextfun(obj,gt)|    : external transition function - 
+    %   calculates from states |s|, inputs |x| and elapsed time
+    %   |elapsed| the new states |s'|
+    % * |deltaintfun(obj)|       : internal transition function -
+    %   calculates from states |s| the new states |s'|
+    % * |lambdafun(obj)|         : output function
+    %   calculates from states |s| the ouptputs |y|
+    %
+    % *display functions:*
+    %
+    % * |showall(obj)|      : display the object 
+    % * |showxports(obj)|   : display x-ports and values 
+    % * |showyports(obj)|   : display y-ports and values
+    % * |showstates(obj)|   : display states in s
+    % * |showsysparams(obj)|: display system parameters in sysparams
+    %
+    %% Inherited Properties
+    %
+    % *inherited from atomic:*
+    %
+    % * |name|      : string, (unique) name of this model REPLACE_WITH_DASH_DASH> for debugging purposes
+    %                 max. 12 characters for "nice" debug-look ;-)
+    % * |x|         : structure, set of inport name/input value pairs
+    % * |y|         : structure, set of outport name/output value pairs
+    % * |s|         : structure, set of states
+    % * |sysparams| : structure, set of system parameters, can be set only once at instantiation
+    % * |elapsed|   : float, time elapsed since last 
+    %                 transition (only for initialization)
+    %
+    % * |debug_flag|: 0|1|2|3, no messages|messages|steps|visualize x, y, and s (default 0)
+    % * |observe_flag|: 0|1, log states of atomic subcomponents or not (default 0)
+    % * |observed|  : cell array including time stamps and a copy of s (structure of states)
+    %
+    %% Ports
+    % has one input |x| : p1 to get parts
+    %
+    % has no output |y| (is pure sink)
+    %
+    %% States in s
+    % |s.q| : counter for incoming workpieces
+    %
+    %% System Parameters in sysparams
+    % none
+    %
+    %% More
+    %
+    % |global SIMUSTOP| : can be used to stop allover simulation e.g. when a
+    % predefined number of jobs has finished
+    %
+    %
+    %
+    % <html>
+    % <br><br>
+    % <hr>
+    % <br>
+    % <a href="../../PDEVS_home.html">DEVS Tbx Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    % <a href="../../PDEVS_examples.html">Examples</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    % <a href="../../PDEVS_modelbase.html">Modelbase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    % <a href="javascript:history.back()"><< Back</a>
+    % </html>
+    %
+    %
+   methods
+        function obj = am_t(name,inistates,elapsed)
+            if nargin == 3
+                x = {'p1'};% create one input port
+                y = {};% no output ports
+                s = {'q'};% counter for incoming jobs
+                sysparams = [];
+            else
+                error('mistake at constructor method for class am_t');
+            end
+            obj = obj@atomic(name,x,y,s,elapsed,sysparams);% incarnate the associated simulator
+            % initialize the state
+            obj.s.q = inistates.q;          
+        end
+        
+        
+        function ta = tafun(obj) %#ok<*MANU>
+            ta = inf; % no internal events
+        end
+        
+        
+        function deltaconffun(obj,gt) %#ok<*INUSD>
+           % empty, because no internal events
+         end
+        
+       
+        function deltaextfun(obj,gt)
+            global SIMUSTOP %#ok<NUSED>
+            obj.s.q = obj.s.q + obj.x.p1{2};% count the job from input port p1
+            % if obj.s.q >= 6 % stop simulation, when 6 jobs are done, SIMUSTOP-test
+            %            SIMUSTOP = 1;
+            %  end
+        end
+
+        
+        function deltaintfun(obj)
+            % no internal events
+        end
+               
+              
+       function lambdafun(obj)
+            % lambdafun is never called, since there are no internal events
+        end
+
+    end
+        
+        
+ end
+
+##### SOURCE END #####
+--></body></html>
