@@ -30,10 +30,10 @@ Note:
 The install instructions are based upon a former successful Matlab R2016a (or higher) installation. The software is tested with 32/64 bit Windows 7 and Ubuntu 12.04 but should also work with other operating systems.
 Unzip the downloaded file and copy it to your harddisk into a specified folder. Add the folder including any subfolders to the path variable within Matlab (Menue: File -> Set Path -> Add with subfolders).
 Alternatively install as Matlab's App: goto Tab APPS --> install Apps --> choose MatlabDEVS.mlappinstall --> done ;-)
-For usage, please read the HTML documentation provided in folder /doc/html. Start with  PDEVS_home.html. 
 
 # DOCUMENTATION
 The hyPDEVS Toolbox for MATLAB® comes with an HTML-documentation for all examples, all basic models and hints for modeling and simulation.
+The documentation is provided in folder /doc/html. Start with  PDEVS_home.html.
 
 # BUG REPORT
 Please report bugs to the project supervisor by email (christina.deatcu[at]hs-wismar.de). 
