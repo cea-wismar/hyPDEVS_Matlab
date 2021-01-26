@@ -15,14 +15,16 @@ Open 'Supplemental Software' Tab in Matlab's help browser and browse help files 
 
 Alternatively install as Matlab's App:
  goto Tab APPS --> install Apps --> choose MatlabDEVS.mlappinstall --> done ;-)
+ 
+Start the toolbox from the App entry or from prompt by typing MatlabDEVS.
 
 
 FILES
 
-* my_odeplot.p --> adopted plot function for continuous variables (used as 'Outputfcn' via odeset)
-* ode_wrapper.p --> acts as model function and event function for ODE-solver
-* r_c_discrete.p --> root coordinator solely for simulation of pure discrete models
-* r_c_hybrid.p --> root coordinator for simulation of hybrid as well as pure discrete models (experimental status!)
+* my_odeplot.m --> adopted plot function for continuous variables (used as 'Outputfcn' via odeset)
+* ode_wrapper.m --> acts as model function and event function for ODE-solver
+* r_c_discrete.m --> root coordinator solely for simulation of pure discrete models
+* r_c_hybridmp --> root coordinator for simulation of hybrid as well as pure discrete models (experimental status!)
 
 
 CHANGES
@@ -35,8 +37,8 @@ DIRECTORIES
 ********************
 - contains class definitions for the base class 'devs', atomic PDEVS simulator 'atomic' and coupled PDEVS coordinator and models 'coupled'
 - class definitions for hybrid atomic PDEVS simulator 'hybridatomic' and hybrid coupled PDEVS coordinator and models 'hybridcoupled'
-- all files provided as p-code
- 
+
+
 01-modelbase
 ********************
 - contains class definitions for user defined atomic and coupled models; sortet by application examples, where those models are used
