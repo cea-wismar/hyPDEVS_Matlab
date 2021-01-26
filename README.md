@@ -29,7 +29,7 @@ The hyPDEVS Toolbox for MATLAB® offers the following features:
 Note:
 The install instructions are based upon a former successful Matlab R2016a (or higher) installation. The software is tested with 32/64 bit Windows 7 and Ubuntu 12.04 but should also work with other operating systems.
 Unzip the downloaded file and copy it to your harddisk into a specified folder. Add the folder including any subfolders to the path variable within Matlab (Menue: File -> Set Path -> Add with subfolders).
-Alternatively install as Matlab's App: goto Tab APPS --> install Apps --> choose MatlabDEVS.mlappinstall --> done ;-)
+Alternatively install as Matlab's App: goto Tab APPS --> install Apps --> choose MatlabDEVS.mlappinstall --> done ;-)   
 Start the toolbox from the App entry or from prompt by typing <code>MatlabDEVS</code>. 
 
 # DOCUMENTATION
