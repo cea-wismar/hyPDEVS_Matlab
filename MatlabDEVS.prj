@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="1894158603" file="/DATA/00-HS/Forschung/DEVS/Vers20-hybrid/MatlabDEVS.prj" location="/DATA/00-HS/Forschung/DEVS/Vers20-hybrid" name="MatlabDEVS" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="547334654" file="/DATA/00-HS/Forschung/DEVS/Vers20-hybrid/MatlabDEVS.prj" location="/DATA/00-HS/Forschung/DEVS/Vers20-hybrid" name="MatlabDEVS" target="target.mlapps" target-name="Package App">
     <param.appname>MatlabDEVS</param.appname>
     <param.authnamewatermark>Deatcu, Freymann, and Pawletta</param.authnamewatermark>
     <param.email>christina.deatcu@hs-wismar.de</param.email>
@@ -31,72 +31,7 @@ Vers. 2.0 September 2016</param.summary>
     <fileset.main>
       <file>${PROJECT_ROOT}/MatlabDEVS.m</file>
     </fileset.main>
-    <fileset.depfun>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/2-outputs-to-1-input/am_double_input.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/2-outputs-to-1-input/am_g_2types.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/2-outputs-to-1-input/am_t.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/assembly_line/am_generator.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/assembly_line/am_proc_block.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/assembly_line/am_transducer.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/assembly_line/cm_c13.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/bouncing_ball/am_ball_starter.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/bouncing_ball/am_bball.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/bouncing_ball/am_hit_counter.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/orange_juice_canning/am_canner.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/orange_juice_canning/am_dock_undock_server.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/orange_juice_canning/am_fifo_queue.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/orange_juice_canning/am_tank.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/orange_juice_canning/am_truck.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/orange_juice_canning/am_truck_generator.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/orange_juice_canning/am_truck_transducer.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/qss/event_detect.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/qss/qss1.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/qss/sine_qss1.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/qss/static1.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/qss/step_qss1.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/01-modelbase/qss/timed_sine_qss1.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/02-examples/discrete/2-outputs-to-1-input/init_2_out_1_in.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/02-examples/discrete/assembly_line/init_assembly_line.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/02-examples/discrete/bouncing_ball_qss/init_qss1_ball_simple.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/02-examples/discrete/sine-qss/init_sine_qss1.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/02-examples/discrete/single_server/init_singleserver.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/02-examples/discrete/steps-qss/init_steptest_qss1.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/02-examples/hybrid/bouncing_balls/init_3_balls.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/02-examples/hybrid/orange_juice_canning/init_orange_juice_canning.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/+mixin/Container.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/AncestryObserver.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/Box.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/BoxPanel.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/ButtonBox.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/CardPanel.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/ChildEvent.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/ChildObserver.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/Container.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/Divider.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/Empty.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/Grid.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/GridFlex.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/HBox.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/HBoxFlex.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/HButtonBox.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/Image.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/LocationObserver.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/Node.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/Panel.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/SelectionEvent.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/TabPanel.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/VBox.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/VBoxFlex.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/VButtonBox.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/VisibilityObserver.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/ancestors.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/calcPixelSizes.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/inrectangle.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/loadIcon.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/+uix/pvchk.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/layoutdoc/Examples/displayEndOfDemoMessage.m</file>
-      <file>/home/tina/MATLAB Add-Ons/Apps/MatlabDEVS/GUI Toolboxen/LayoutToolbox2.1.2/layoutdoc/doc.m</file>
-    </fileset.depfun>
+    <fileset.depfun />
     <fileset.resources>
       <file>${PROJECT_ROOT}/00-Readme.txt</file>
       <file>${PROJECT_ROOT}/00-simulator</file>
@@ -105,14 +40,21 @@ Vers. 2.0 September 2016</param.summary>
       <file>${PROJECT_ROOT}/01-modelbase</file>
       <file>${PROJECT_ROOT}/02-examples</file>
       <file>${PROJECT_ROOT}/03-rand</file>
+      <file>${PROJECT_ROOT}/Check.m</file>
       <file>${PROJECT_ROOT}/Contents.m</file>
       <file>${PROJECT_ROOT}/GUI Toolboxen</file>
       <file>${PROJECT_ROOT}/MatlabDEVS.fig</file>
+      <file>${PROJECT_ROOT}/MatlabDEVS.m</file>
+      <file>${PROJECT_ROOT}/MatlabDEVS.prj</file>
       <file>${PROJECT_ROOT}/MatlabDEVS_resources</file>
       <file>${PROJECT_ROOT}/debug.txt</file>
       <file>${PROJECT_ROOT}/doc</file>
       <file>${PROJECT_ROOT}/g4630.png</file>
       <file>${PROJECT_ROOT}/info.xml</file>
+      <file>${PROJECT_ROOT}/myodeplot.m</file>
+      <file>${PROJECT_ROOT}/ode_wrapper.m</file>
+      <file>${PROJECT_ROOT}/r_c_discrete.m</file>
+      <file>${PROJECT_ROOT}/r_c_hybrid.m</file>
     </fileset.resources>
     <fileset.package />
     <build-deliverables>
